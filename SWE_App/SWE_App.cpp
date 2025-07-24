@@ -5,15 +5,11 @@
 
 int main()
 {
-	// wxWidgets library should be installed and compiled at C:\wxWidgets
+	// wxWidgets library should be installed via vcpkg, See lecture video for details.
 	// Open properties for Visual Studio project
-	// Select C/C++ -> General -> Addition Include Directories
-	// C:\wxWidgets\include;C:\wxWidgets\include\msvc
-	// Select Linker -> Additional Library Dependencies
-	// C:\wxWidgets\lib\vc_lib; (If building for 64-bit, use 64-bit libraries throughout the settings e.g. C:\wxWidgets\lib\vc_x64_lib )
 	// Select Linker -> System -> Subsystem
 	// Change from Console to Windows
 
-	// Once all steps above have been completed, delete this .cpp file
+	// Delete this .cpp file
 	// and create your App class
 }
