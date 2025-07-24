@@ -5,7 +5,7 @@
 
 int main()
 {
-	// wxWidgets library should be installed via vcpkg
+	// wxWidgets library should be installed via vcpkg, See lecture video for details.
 	// Open properties for Visual Studio project
 	// Select Linker -> System -> Subsystem
 	// Change from Console to Windows
