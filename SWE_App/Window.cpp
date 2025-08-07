@@ -1,5 +1,12 @@
 #include "Window.h"
 
+wxBEGIN_EVENT_TABLE(Window, wxFrame)
+  EVT_SIZE(Window::OnSizeChange)
+//EVT_BUTTON(wxID_SIN, Window::OnSin)
+//EVT_BUTTON(wxID_COS, Window::OnCos)
+wxEND_EVENT_TABLE()
+
+
 Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(500, 500))
 {
 
@@ -20,6 +27,9 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	float buttonHeight = (windowHeight / 20.0f);
 
 	textBox = new wxTextCtrl(this, wxID_ANY, "", wxPoint((windowWidth/8), (windowHeight/20)*2), wxSize(buttonWidth*5.5, buttonHeight*4));
+	wxFont textFont(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+
+	textBox->SetFont(textFont);
 
 	button1 = new wxButton(this, wxID_ANY, "sin"); // wxPoint((windowWidth / 8), (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
 	button2 = new wxButton(this, wxID_ANY, "cos"); // wxPoint((windowWidth / 16) * 5, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
@@ -49,6 +59,33 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	button21 = new wxButton(this, wxID_ANY, "0", wxPoint((windowWidth/16)*5, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
 	button22 = new wxButton(this, wxID_ANY, ".", wxPoint((windowWidth/16)*8, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
 	button23 = new wxButton(this, wxID_ANY, "=", wxPoint((windowWidth/16)*11, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+
+	wxFont buttonFont(15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+
+	button1->SetFont(buttonFont);
+	button2->SetFont(buttonFont);
+	button3->SetFont(buttonFont);
+	button4->SetFont(buttonFont);
+	button5->SetFont(buttonFont);
+	button6->SetFont(buttonFont);
+	button7->SetFont(buttonFont);
+	button8->SetFont(buttonFont);
+	button9->SetFont(buttonFont);
+	button10->SetFont(buttonFont);
+	button11->SetFont(buttonFont);
+	button12->SetFont(buttonFont);
+	button13->SetFont(buttonFont);
+	button14->SetFont(buttonFont);
+	button15->SetFont(buttonFont);
+	button16->SetFont(buttonFont);
+	button17->SetFont(buttonFont);
+	button18->SetFont(buttonFont);
+	button19->SetFont(buttonFont);
+	button20->SetFont(buttonFont);
+	button21->SetFont(buttonFont);
+	button22->SetFont(buttonFont);
+	button23->SetFont(buttonFont);
+
 		                              
 	mainSizer->Add(textBox, 1, wxEXPAND | wxALL, 5);
 	mainSizer->Add(buttonSizer1, 1, wxEXPAND | wxALL, 5);
@@ -87,8 +124,52 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	buttonSizer6->Add(button22, 1, wxEXPAND | wxALL, 5);
 	buttonSizer6->Add(button23, 1, wxEXPAND | wxALL, 5);
 
-	//mainSizer->Add(button1, 0, wxEXPAND | wxALL, 10); 
-	//mainSizer->Add(button2, 0, wxEXPAND | wxALL, 10);
-
 
 }
+
+void Window::OnSizeChange(wxSizeEvent& event)
+{
+	wxSize newSize = event.GetSize(); 
+	int newFontSize = newSize.GetWidth() / 50; 
+	if (newFontSize < 8) newFontSize = 8; 
+	if (newFontSize > 24) newFontSize = 40; 
+
+	wxFont newButtonFont(newFontSize, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+
+	button1->SetFont(newButtonFont);
+	button3->SetFont(newButtonFont);
+	button2->SetFont(newButtonFont);
+	button4->SetFont(newButtonFont);
+	button5->SetFont(newButtonFont);
+	button6->SetFont(newButtonFont);
+	button7->SetFont(newButtonFont);
+	button8->SetFont(newButtonFont);
+	button9->SetFont(newButtonFont);
+	button10->SetFont(newButtonFont);
+	button11->SetFont(newButtonFont);
+	button12->SetFont(newButtonFont);
+	button13->SetFont(newButtonFont);
+	button14->SetFont(newButtonFont);
+	button15->SetFont(newButtonFont);
+	button16->SetFont(newButtonFont);
+	button17->SetFont(newButtonFont);
+	button18->SetFont(newButtonFont);
+	button19->SetFont(newButtonFont);
+	button20->SetFont(newButtonFont);
+	button21->SetFont(newButtonFont);
+	button22->SetFont(newButtonFont);
+	button23->SetFont(newButtonFont);
+
+	int newFontSizeText = newSize.GetWidth() / 30;
+	wxFont newTextFont(newFontSizeText, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+	if (newFontSize < 8) newFontSize = 8;
+	if (newFontSize > 60) newFontSize = 60;
+
+	textBox->SetFont(newTextFont);
+
+
+	GetSizer()->Layout(); 
+	Refresh(); 
+	event.Skip();
+}
+

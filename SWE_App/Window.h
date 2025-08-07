@@ -36,6 +36,11 @@ private:
 
 public:
 	Window(); //wxFrame requires a default constructor
+
+	//Handles font size changes when window is resized	
+	void OnSizeChange(wxSizeEvent& event);
+
+	wxDECLARE_EVENT_TABLE();
 	
 };
 
