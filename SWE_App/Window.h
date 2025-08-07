@@ -4,8 +4,8 @@
 class Window : public wxFrame
 {
 private:
-	//buttons here
-	//text control here
+	
+	wxTextCtrl* textBox = nullptr;
 	
 	wxButton* button1 = nullptr;
 	wxButton* button2 = nullptr;
@@ -32,7 +32,7 @@ private:
 	wxButton* button23 = nullptr;	
 
 
-	//wxTextCtrl* textBox = nullptr;
+	
 
 public:
 	Window(); //wxFrame requires a default constructor
