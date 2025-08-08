@@ -40,7 +40,33 @@ public:
 
 	//Handles font size changes when window is resized	
 	void OnSizeChange(wxSizeEvent& event);
+
+	//numbers
+	void OnClick0(wxCommandEvent& event); 
 	void OnClick1(wxCommandEvent& event); 
+	void OnClick2(wxCommandEvent& event);
+	void OnClick3(wxCommandEvent& event);
+	void OnClick4(wxCommandEvent& event);
+	void OnClick5(wxCommandEvent& event);
+	void OnClick6(wxCommandEvent& event);
+	void OnClick7(wxCommandEvent& event);
+	void OnClick8(wxCommandEvent& event);
+	void OnClick9(wxCommandEvent& event);
+
+	//math functions
+	void OnClickAdd(wxCommandEvent& event);
+	void OnClickSubt(wxCommandEvent& event);
+	void OnClickMult(wxCommandEvent& event);
+	void OnClickDiv(wxCommandEvent& event);
+	void OnClickMod(wxCommandEvent& event);
+	void OnClickNeg(wxCommandEvent& event);
+	void OnClickDecimal(wxCommandEvent& event);
+	void OnClickEquals(wxCommandEvent& event);
+	void OnClickSin(wxCommandEvent& event);
+	void OnClickCos(wxCommandEvent& event);
+	void OnClickTan(wxCommandEvent& event);
+
+	//other functions
 	void OnClickClear(wxCommandEvent& event);
 	void OnClickDelete(wxCommandEvent& event); 
 

@@ -2,7 +2,16 @@
 
 wxBEGIN_EVENT_TABLE(Window, wxFrame)
   EVT_SIZE(Window::OnSizeChange)
+  EVT_BUTTON(wxID_ZERO, Window::OnClick0)
   EVT_BUTTON(wxID_ONE, Window::OnClick1)
+  EVT_BUTTON(wxID_TWO, Window::OnClick2)
+  EVT_BUTTON(wxID_THREE, Window::OnClick3)
+  EVT_BUTTON(wxID_FOUR, Window::OnClick4)
+  EVT_BUTTON(wxID_FIVE, Window::OnClick5)
+  EVT_BUTTON(wxID_SIX, Window::OnClick6)
+  EVT_BUTTON(wxID_SEVEN, Window::OnClick7)
+  EVT_BUTTON(wxID_EIGHT, Window::OnClick8)
+  EVT_BUTTON(wxID_NINE, Window::OnClick9)
   EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
   EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
 
@@ -177,10 +186,14 @@ void Window::OnSizeChange(wxSizeEvent& event)
 	event.Skip();
 }
 
+void Window::OnClick0(wxCommandEvent& event)
+{
+	*textBox << 0;
+}
+
 void Window::OnClick1(wxCommandEvent& event)
 {
-	//alternative
-	//textBox->AppendText("1"); 
+	
 	*textBox << 1; 
 
 	//alternative
@@ -188,6 +201,48 @@ void Window::OnClick1(wxCommandEvent& event)
 	Refresh();
 	event.Skip();
 }
+
+void Window::OnClick2(wxCommandEvent& event)
+{
+	*textBox << 2;
+}
+
+void Window::OnClick3(wxCommandEvent& event)
+{
+	*textBox << 3;
+}
+
+void Window::OnClick4(wxCommandEvent& event)
+{
+	*textBox << 4;
+}
+
+void Window::OnClick5(wxCommandEvent& event)
+{
+	*textBox << 5;
+}
+
+void Window::OnClick6(wxCommandEvent& event)
+{
+	*textBox << 6;
+}
+
+void Window::OnClick7(wxCommandEvent& event)
+{
+	*textBox << 7;
+}
+
+void Window::OnClick8(wxCommandEvent& event)
+{
+	*textBox << 8;
+}
+
+void Window::OnClick9(wxCommandEvent& event)
+{
+	*textBox << 9;
+}
+
+
 
 
 void Window::OnClickClear(wxCommandEvent& event)
