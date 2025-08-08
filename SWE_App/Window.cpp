@@ -257,7 +257,7 @@ void Window::OnClickAdd(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
 
-	if (currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/"))
+	if (currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size()); 
 		textBox->Clear(); 
@@ -276,7 +276,7 @@ void Window::OnClickSubt(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.ends_with("+") || currentString.ends_with("*") || currentString.ends_with("/"))
+	if (currentString.ends_with("+") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size());
 		textBox->Clear();
@@ -294,7 +294,7 @@ void Window::OnClickMult(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("/"))
+	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("/") || currentString.ends_with("%"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size());
 		textBox->Clear();
@@ -311,7 +311,7 @@ void Window::OnClickDiv(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*"))
+	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("%"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size());
 		textBox->Clear();
@@ -328,7 +328,14 @@ void Window::OnClickMod(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (!currentString.ends_with("%"))
+	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		textBox->Clear();
+		*textBox << currentString << "%";
+	}
+
+	else if (!currentString.ends_with("%"))
 	{
 		*textBox << "%";
 	}
