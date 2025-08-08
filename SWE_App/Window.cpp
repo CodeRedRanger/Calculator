@@ -364,6 +364,163 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 
 void Window::OnClickEquals(wxCommandEvent& event)
 {
+	int tokens = 0;
+	double currentNumber = 0; 
+	int currentNumberI = 0; 
+	double answerD = 0; 
+	float answerF = 0; 
+	int answerI = 0; 
+	wxString currentString = textBox->GetValue(); 
+	textBox->Clear();
+
+	if (currentString.Contains("+"))
+	{
+		wxStringTokenizer tokenizer(currentString, "+");
+		while (tokenizer.HasMoreTokens())
+		{
+
+			wxString token = tokenizer.GetNextToken();
+
+			if (token.ToDouble(&currentNumber))
+			{
+				if (tokens == 0)
+				{
+					answerD = currentNumber;
+					answerF = float(answerD); 
+				}
+
+				else
+				{
+					answerD += currentNumber;
+					answerF = (float)answerD;
+				}
+			}
+
+			tokens++; 
+
+		}
+	}
+	else if (currentString.Contains("-"))
+	{
+		wxStringTokenizer tokenizer(currentString, "-");
+		while (tokenizer.HasMoreTokens())
+		{
+			
+			wxString token = tokenizer.GetNextToken();
+
+			if (token.ToDouble(&currentNumber))
+			{
+				if (tokens == 0)
+				{
+					answerD = currentNumber;
+					answerF = float(answerD);
+				}
+
+				else
+				{
+					answerD -= currentNumber;
+					answerF = (float)answerD;
+				}
+			}
+
+			tokens++;
+
+		}
+	}
+
+	else if (currentString.Contains("*"))
+	{
+		wxStringTokenizer tokenizer(currentString, "*");
+		while (tokenizer.HasMoreTokens())
+		{
+			wxString token = tokenizer.GetNextToken();
+
+			if (token.ToDouble(&currentNumber))
+			{
+				if (tokens == 0)
+				{
+					answerD = currentNumber;
+					answerF = float(answerD);
+				}
+
+				else
+				{
+					answerD *= currentNumber;
+					answerF = (float)answerD;
+				}
+			}
+
+			tokens++;
+
+
+
+		}
+	}
+
+	else if (currentString.Contains("/"))
+	{
+		wxStringTokenizer tokenizer(currentString, "/");
+		while (tokenizer.HasMoreTokens())
+		{
+			wxString token = tokenizer.GetNextToken();
+
+			if (token.ToDouble(&currentNumber))
+			{
+				if (tokens == 0)
+				{
+					answerD = currentNumber;
+					answerF = float(answerD);
+				}
+
+				else
+				{
+					answerD /= currentNumber;
+					answerF = (float)answerD;
+				}
+			}
+
+			tokens++;
+
+
+		}
+	}
+
+	else if (currentString.Contains("%"))
+	{
+		wxStringTokenizer tokenizer(currentString, "%");
+		while (tokenizer.HasMoreTokens())
+		{
+			wxString token = tokenizer.GetNextToken();
+
+
+			if (token.ToInt(&currentNumberI))
+			{
+
+				if (tokens == 0)
+				{
+					answerI = currentNumberI; 
+					answerF = (float)answerI; 
+				}
+
+				else
+				{
+					answerI = answerI % currentNumberI;
+					answerF = (float)answerI;
+				}
+			}
+
+			tokens++; 
+
+
+		}
+	}
+
+	currentString = wxString::Format(wxT("%f"), answerF); 
+	*textBox << currentString; 
+
+
+	
+
 
 }
 
