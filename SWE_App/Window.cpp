@@ -359,11 +359,29 @@ void Window::OnClickNeg(wxCommandEvent& event)
 
 void Window::OnClickDecimal(wxCommandEvent& event)
 {
-	*textBox << ".";
+	wxString currentString = textBox->GetValue(); 
+
+	if (!currentString.ends_with("."))
+	{
+		*textBox << ".";
+	}
+
+	//have to deal with error of 5.5.5
+	//parse for . if second . before operator, then don't print the .
+	//if push ., check previous char, if number, check previous char, if ., then don't print, if number then keep checking previous characters, if operator +/-/*///% then stop
 }
 
 void Window::OnClickEquals(wxCommandEvent& event)
 {
+	//first look for first operator
+	//use that to decide if statement/delimiter
+	// 
+	//if statement should take everything before that delimiter and make the first term
+	//the next part of the string should be searched for the first operator and everything after that should be cleaved off and saved as the remaining string
+	//what's left will be combined with the first term according to the operation of the if statement, this is saved as the newCurrentValue; 
+
+
+	bool error = false; 
 	int tokens = 0;
 	double currentNumber = 0; 
 	int currentNumberI = 0; 
@@ -504,8 +522,16 @@ void Window::OnClickEquals(wxCommandEvent& event)
 
 				else
 				{
-					answerI = answerI % currentNumberI;
-					answerF = (float)answerI;
+					if (currentNumberI != 0)
+					{
+						answerI = answerI % currentNumberI;
+						answerF = (float)answerI;
+					}
+					else
+					{
+						error = true;
+						break; 
+					}
 				}
 			}
 
@@ -515,7 +541,96 @@ void Window::OnClickEquals(wxCommandEvent& event)
 		}
 	}
 
-	currentString = wxString::Format(wxT("%f"), answerF); 
+	else if (currentString.starts_with("sin"))
+	{
+		currentString.Remove(0, 3); 
+		
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1);
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size()); 
+		}
+
+		if (currentString.ToDouble(&currentNumber))
+		{
+		
+			answerF = float(currentNumber);
+			answerF = answerF * 3.14 / 180; 
+			answerF = sin(answerF); 
+		}
+
+
+
+	}
+
+	else if (currentString.starts_with("cos"))
+	{
+		currentString.Remove(0, 3);
+
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1);
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size());
+		}
+
+		if (currentString.ToDouble(&currentNumber))
+		{
+
+			answerF = float(currentNumber);
+			answerF = answerF * 3.14 / 180;
+			answerF = cos(answerF);
+		}
+
+	}
+
+	else if (currentString.starts_with("tan"))
+	{
+		currentString.Remove(0, 3);
+
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1);
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size());
+		}
+
+		if (currentString.ToDouble(&currentNumber))
+		{
+
+			answerF = float(currentNumber);
+			answerF = answerF * 3.14159265358979323846 / 180;
+
+			if (cos(answerF) >= 0.00001 || cos(answerF) <= -0.00001)
+			{
+				float test = cos(answerF); 
+				answerF = tan(answerF);
+			}
+			else
+			{
+				error = true; 
+			}
+		}
+
+	}
+
+	if (error == false)
+	{
+		currentString = wxString::Format(wxT("%f"), answerF);
+	}
+	else
+	{
+		currentString = "Error!"; 
+	}
+	
+	
 	*textBox << currentString; 
 
 
@@ -553,7 +668,15 @@ void Window::OnClickSin(wxCommandEvent& event)
 	else if (!currentString.starts_with("sin"))
 	{
 		textBox->Clear();
-		*textBox << "sin(" << currentString << ")";
+
+		if (currentString.size() != 0)
+		{
+			*textBox << "sin(" << currentString << ")";
+		}
+		else
+		{
+			*textBox << "sin"; 
+		}
 	}
 
 	else if (currentString.starts_with("sin"))
@@ -607,7 +730,15 @@ void Window::OnClickCos(wxCommandEvent& event)
 	else if (!currentString.starts_with("cos"))
 	{
 		textBox->Clear();
-		*textBox << "cos(" << currentString << ")";
+
+		if (currentString.size() != 0)
+		{
+			*textBox << "cos(" << currentString << ")";
+		}
+		else
+		{
+			*textBox << "cos";
+		}
 	}
 
 	else if (currentString.starts_with("cos"))
@@ -660,7 +791,14 @@ void Window::OnClickTan(wxCommandEvent& event)
 	else if (!currentString.starts_with("tan"))
 	{
 		textBox->Clear();
-		*textBox << "tan(" << currentString << ")";
+		if (currentString.size() != 0)
+		{
+			*textBox << "tan(" << currentString << ")";
+		}
+		else
+		{
+			*textBox << "tan";
+		}
 	}
 
 	else if (currentString.starts_with("tan"))
