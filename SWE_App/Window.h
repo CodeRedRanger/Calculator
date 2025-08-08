@@ -1,5 +1,6 @@
 #pragma once
 #include "wx/wx.h"
+#include "Utilities.h"
 
 //adding functionality to buttons. 
 
@@ -9,31 +10,29 @@ private:
 	
 	wxTextCtrl* textBox = nullptr;
 	
-	wxButton* button1 = nullptr;
-	wxButton* button2 = nullptr;
-	wxButton* button3 = nullptr;
-	wxButton* button4 = nullptr;
-	wxButton* button5 = nullptr;
-	wxButton* button6 = nullptr;
+	wxButton* buttonSin = nullptr;
+	wxButton* buttonCos = nullptr;
+	wxButton* buttonTan = nullptr;
+	wxButton* buttonClear = nullptr;
+	wxButton* buttonNeg = nullptr;
+	wxButton* buttonMod = nullptr;
+	wxButton* buttonDiv = nullptr;
 	wxButton* button7 = nullptr;
 	wxButton* button8 = nullptr;
 	wxButton* button9 = nullptr;
-	wxButton* button10 = nullptr;
-	wxButton* button11 = nullptr;
-	wxButton* button12 = nullptr;
-	wxButton* button13 = nullptr;
-	wxButton* button14 = nullptr;	
-	wxButton* button15 = nullptr;
-	wxButton* button16 = nullptr;
-	wxButton* button17 = nullptr;	
-	wxButton* button18 = nullptr;
-	wxButton* button19 = nullptr;
-	wxButton* button20 = nullptr;
-	wxButton* button21 = nullptr;
-	wxButton* button22 = nullptr;
-	wxButton* button23 = nullptr;	
-
-
+	wxButton* buttonMult = nullptr;
+	wxButton* button4 = nullptr;
+	wxButton* button5 = nullptr;
+	wxButton* button6 = nullptr;	
+	wxButton* buttonSubt = nullptr;
+	wxButton* button1 = nullptr;
+	wxButton* button2 = nullptr;	
+	wxButton* button3 = nullptr;
+	wxButton* buttonAdd = nullptr;
+	wxButton* buttonDel = nullptr;
+	wxButton* button0 = nullptr;
+	wxButton* buttonDecimal = nullptr;
+	wxButton* buttonEquals = nullptr;	
 	
 
 public:
@@ -41,6 +40,7 @@ public:
 
 	//Handles font size changes when window is resized	
 	void OnSizeChange(wxSizeEvent& event);
+	void OnClickOne(wxCommandEvent& event); 
 
 	wxDECLARE_EVENT_TABLE();
 	
