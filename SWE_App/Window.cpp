@@ -2,7 +2,10 @@
 
 wxBEGIN_EVENT_TABLE(Window, wxFrame)
   EVT_SIZE(Window::OnSizeChange)
-  EVT_BUTTON(wxID_ONE, Window::OnClickOne)
+  EVT_BUTTON(wxID_ONE, Window::OnClick1)
+  EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
+  EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
+
 //EVT_BUTTON(wxID_SIN, Window::OnSin)
 //EVT_BUTTON(wxID_COS, Window::OnCos)
 wxEND_EVENT_TABLE()
@@ -32,34 +35,34 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 
 	textBox->SetFont(textFont);
 
-	buttonSin = new wxButton(this, wxID_ANY, "sin"); // wxPoint((windowWidth / 8), (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
-	buttonCos = new wxButton(this, wxID_ANY, "cos"); // wxPoint((windowWidth / 16) * 5, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
-	buttonTan = new wxButton(this, wxID_ANY, "tan"); // wxPoint((windowWidth / 16) * 8, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
+	buttonSin = new wxButton(this, wxID_SIN, "sin"); // wxPoint((windowWidth / 8), (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
+	buttonCos = new wxButton(this, wxID_COS, "cos"); // wxPoint((windowWidth / 16) * 5, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
+	buttonTan = new wxButton(this, wxID_TAN, "tan"); // wxPoint((windowWidth / 16) * 8, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
 	
-	buttonClear = new wxButton(this, wxID_ANY, "clear", wxPoint((windowWidth/8), (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
-	buttonNeg = new wxButton(this, wxID_ANY, "+/-", wxPoint((windowWidth/16)*5, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
-	buttonMod = new wxButton(this, wxID_ANY, "mod(%)", wxPoint((windowWidth/16)*8, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
-	buttonDiv = new wxButton(this, wxID_ANY, "/", wxPoint((windowWidth/16)*11, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	buttonClear = new wxButton(this, wxID_CLEAR, "clear", wxPoint((windowWidth/8), (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	buttonNeg = new wxButton(this, wxID_NEGATIVE, "+/-", wxPoint((windowWidth/16)*5, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	buttonMod = new wxButton(this, wxID_MOD, "mod(%)", wxPoint((windowWidth/16)*8, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	buttonDiv = new wxButton(this, wxID_DIV, "/", wxPoint((windowWidth/16)*11, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
 	
-	button7 = new wxButton(this, wxID_ANY, "7", wxPoint((windowWidth/8), (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
-	button8 = new wxButton(this, wxID_ANY, "8", wxPoint((windowWidth/16)*5, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
-	button9 = new wxButton(this, wxID_ANY, "9", wxPoint((windowWidth/16)*8, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
-	buttonMult = new wxButton(this, wxID_ANY, "*", wxPoint((windowWidth/16)*11, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	button7 = new wxButton(this, wxID_SEVEN, "7", wxPoint((windowWidth/8), (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	button8 = new wxButton(this, wxID_EIGHT, "8", wxPoint((windowWidth/16)*5, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	button9 = new wxButton(this, wxID_NINE, "9", wxPoint((windowWidth/16)*8, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	buttonMult = new wxButton(this, wxID_MULT, "*", wxPoint((windowWidth/16)*11, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
 	
-	button4 = new wxButton(this, wxID_ANY, "4", wxPoint((windowWidth/8), (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
-	button5 = new wxButton(this, wxID_ANY, "5", wxPoint((windowWidth/16)*5, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
-	button6 = new wxButton(this, wxID_ANY, "6", wxPoint((windowWidth/16)*8, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
-	buttonSubt = new wxButton(this, wxID_ANY, "-", wxPoint((windowWidth/16)*11, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	button4 = new wxButton(this, wxID_FOUR, "4", wxPoint((windowWidth/8), (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	button5 = new wxButton(this, wxID_FIVE, "5", wxPoint((windowWidth/16)*5, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	button6 = new wxButton(this, wxID_SIX, "6", wxPoint((windowWidth/16)*8, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	buttonSubt = new wxButton(this, wxID_SUBT, "-", wxPoint((windowWidth/16)*11, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
 	
-	button1 = new wxButton(this, wxID_ANY, "1", wxPoint((windowWidth/8), (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
-	button2 = new wxButton(this, wxID_ANY, "2", wxPoint((windowWidth/16)*5, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
-	button3 = new wxButton(this, wxID_ANY, "3", wxPoint((windowWidth/16)*8, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
-	buttonAdd = new wxButton(this, wxID_ANY, "+", wxPoint((windowWidth/16)*11, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	button1 = new wxButton(this, wxID_ONE, "1", wxPoint((windowWidth/8), (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	button2 = new wxButton(this, wxID_TWO, "2", wxPoint((windowWidth/16)*5, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	button3 = new wxButton(this, wxID_THREE, "3", wxPoint((windowWidth/16)*8, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	buttonAdd = new wxButton(this, wxID_ADD, "+", wxPoint((windowWidth/16)*11, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
 	
-	buttonDel = new wxButton(this, wxID_ANY, "back/del", wxPoint((windowWidth/8), (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
-	button0 = new wxButton(this, wxID_ANY, "0", wxPoint((windowWidth/16)*5, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
-	buttonDecimal = new wxButton(this, wxID_ANY, ".", wxPoint((windowWidth/16)*8, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
-	buttonEquals = new wxButton(this, wxID_ANY, "=", wxPoint((windowWidth/16)*11, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	buttonDel = new wxButton(this, wxID_DELETE, "back/del", wxPoint((windowWidth/8), (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	button0 = new wxButton(this, wxID_ZERO, "0", wxPoint((windowWidth/16)*5, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	buttonDecimal = new wxButton(this, wxID_DECIMAL, ".", wxPoint((windowWidth/16)*8, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	buttonEquals = new wxButton(this, wxID_EQUALS, "=", wxPoint((windowWidth/16)*11, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
 
 	wxFont buttonFont(15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 
@@ -174,7 +177,35 @@ void Window::OnSizeChange(wxSizeEvent& event)
 	event.Skip();
 }
 
-void Window::OnClickOne(wxCommandEvent& event)
+void Window::OnClick1(wxCommandEvent& event)
+{
+	//alternative
+	//textBox->AppendText("1"); 
+	*textBox << 1; 
+
+	//alternative
+	//textBox->AppendText("1"); 
+	Refresh();
+	event.Skip();
+}
+
+
+void Window::OnClickClear(wxCommandEvent& event)
+{
+	textBox->Clear(); 
+	Refresh();
+	event.Skip();
+ 
+}
+
+void Window::OnClickDelete(wxCommandEvent& event)
 {
 
+	wxString string = textBox->GetValue();
+	int stringSize = string.size();
+	
+	textBox->Remove(stringSize - 1, stringSize); 
+
+	Refresh();
+	event.Skip();
 }

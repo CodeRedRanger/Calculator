@@ -40,7 +40,10 @@ public:
 
 	//Handles font size changes when window is resized	
 	void OnSizeChange(wxSizeEvent& event);
-	void OnClickOne(wxCommandEvent& event); 
+	void OnClick1(wxCommandEvent& event); 
+	void OnClickClear(wxCommandEvent& event);
+	void OnClickDelete(wxCommandEvent& event); 
+
 
 	wxDECLARE_EVENT_TABLE();
 	
