@@ -1,6 +1,8 @@
 #pragma once
 #include "wx/wx.h"
 
+//adding functionality to buttons. 
+
 class Window : public wxFrame
 {
 private:
