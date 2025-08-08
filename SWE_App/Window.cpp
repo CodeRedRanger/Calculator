@@ -12,6 +12,13 @@ wxBEGIN_EVENT_TABLE(Window, wxFrame)
   EVT_BUTTON(wxID_SEVEN, Window::OnClick7)
   EVT_BUTTON(wxID_EIGHT, Window::OnClick8)
   EVT_BUTTON(wxID_NINE, Window::OnClick9)
+  EVT_BUTTON(wxID_ADD, Window::OnClickAdd)
+  EVT_BUTTON(wxID_SUBT, Window::OnClickSubt)
+  EVT_BUTTON(wxID_MULT, Window::OnClickMult)
+  EVT_BUTTON(wxID_DIV, Window::OnClickDiv)
+  EVT_BUTTON(wxID_MOD, Window::OnClickMod)
+  EVT_BUTTON(wxID_NEGATIVE, Window::OnClickNeg)
+  EVT_BUTTON(wxID_DECIMAL, Window::OnClickDecimal)
   EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
   EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
 
@@ -242,6 +249,61 @@ void Window::OnClick9(wxCommandEvent& event)
 	*textBox << 9;
 }
 
+void Window::OnClickAdd(wxCommandEvent& event)
+{
+	*textBox << "+"; 
+}
+
+void Window::OnClickSubt(wxCommandEvent& event)
+{
+	*textBox << "-";
+}
+
+void Window::OnClickMult(wxCommandEvent& event)
+{
+	*textBox << "*";
+}
+
+void Window::OnClickDiv(wxCommandEvent& event)
+{
+	*textBox << "/";
+}
+
+void Window::OnClickMod(wxCommandEvent& event)
+{
+	*textBox << "%";
+}
+
+void Window::OnClickNeg(wxCommandEvent& event)
+{
+
+}
+
+void Window::OnClickDecimal(wxCommandEvent& event)
+{
+	*textBox << ".";
+}
+
+void Window::OnClickEquals(wxCommandEvent& event)
+{
+
+}
+
+
+void Window::OnClickSin(wxCommandEvent& event)
+{
+
+}
+
+void Window::OnClickCos(wxCommandEvent& event)
+{
+
+}
+
+void Window::OnClickTan(wxCommandEvent& event)
+{
+
+}
 
 
 
