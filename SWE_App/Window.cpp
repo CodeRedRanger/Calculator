@@ -19,6 +19,10 @@ wxBEGIN_EVENT_TABLE(Window, wxFrame)
   EVT_BUTTON(wxID_MOD, Window::OnClickMod)
   EVT_BUTTON(wxID_NEGATIVE, Window::OnClickNeg)
   EVT_BUTTON(wxID_DECIMAL, Window::OnClickDecimal)
+  EVT_BUTTON(wxID_EQUALS, Window::OnClickEquals)
+  EVT_BUTTON(wxID_SIN, Window::OnClickSin)
+  EVT_BUTTON(wxID_COS, Window::OnClickCos)
+  EVT_BUTTON(wxID_TAN, Window::OnClickTan)
   EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
   EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
 
@@ -252,6 +256,7 @@ void Window::OnClick9(wxCommandEvent& event)
 void Window::OnClickAdd(wxCommandEvent& event)
 {
 	*textBox << "+"; 
+	//only let one be added
 }
 
 void Window::OnClickSubt(wxCommandEvent& event)
@@ -276,6 +281,17 @@ void Window::OnClickMod(wxCommandEvent& event)
 
 void Window::OnClickNeg(wxCommandEvent& event)
 {
+	wxString currentString = textBox->GetValue(); 
+
+	if (!currentString.starts_with("-"))
+	{
+		textBox->Clear();
+		*textBox << "-" << currentString;
+	}
+	else if (currentString.starts_with("-"))
+	{
+		textBox->Remove(0, 1); 
+	}
 
 }
 
@@ -292,16 +308,161 @@ void Window::OnClickEquals(wxCommandEvent& event)
 
 void Window::OnClickSin(wxCommandEvent& event)
 {
+	wxString currentString = textBox->GetValue();
+
+	if (currentString.starts_with("cos") || currentString.starts_with("tan"))
+	{
+		textBox->Remove(0, 3);
+		currentString = textBox->GetValue(); 
+
+
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1); 
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size()); 
+		}
+
+
+		textBox->Clear();
+		*textBox << "sin(" << currentString << ")";
+
+	}
+
+	else if (!currentString.starts_with("sin"))
+	{
+		textBox->Clear();
+		*textBox << "sin(" << currentString << ")";
+	}
+
+	else if (currentString.starts_with("sin"))
+	{
+		textBox->Remove(0, 3);
+		currentString = textBox->GetValue(); 
+
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1);
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size());
+		}
+
+		textBox->Clear();
+		*textBox << currentString; 
+
+	}
+
+	
 
 }
 
 void Window::OnClickCos(wxCommandEvent& event)
 {
+	wxString currentString = textBox->GetValue();
+
+	if (currentString.starts_with("sin") || currentString.starts_with("tan"))
+	{
+		textBox->Remove(0, 3);
+		currentString = textBox->GetValue();
+
+
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1);
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size());
+		}
+
+
+		textBox->Clear();
+		*textBox << "cos(" << currentString << ")";
+
+	}
+
+	else if (!currentString.starts_with("cos"))
+	{
+		textBox->Clear();
+		*textBox << "cos(" << currentString << ")";
+	}
+
+	else if (currentString.starts_with("cos"))
+	{
+		textBox->Remove(0, 3);
+		currentString = textBox->GetValue();
+
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1);
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size());
+		}
+
+		textBox->Clear();
+		*textBox << currentString;
+
+	}
+
 
 }
 
 void Window::OnClickTan(wxCommandEvent& event)
 {
+	wxString currentString = textBox->GetValue();
+
+	if (currentString.starts_with("sin") || currentString.starts_with("cos"))
+	{
+		textBox->Remove(0, 3);
+		currentString = textBox->GetValue();
+
+
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1);
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size());
+		}
+
+
+		textBox->Clear();
+		*textBox << "tan(" << currentString << ")";
+
+	}
+
+	else if (!currentString.starts_with("tan"))
+	{
+		textBox->Clear();
+		*textBox << "tan(" << currentString << ")";
+	}
+
+	else if (currentString.starts_with("tan"))
+	{
+		textBox->Remove(0, 3);
+		currentString = textBox->GetValue();
+
+		if (currentString.starts_with("("))
+		{
+			currentString.Remove(0, 1);
+		}
+		if (currentString.ends_with(")"))
+		{
+			currentString.Remove(currentString.size() - 1, currentString.size());
+		}
+
+		textBox->Clear();
+		*textBox << currentString;
+
+	}
+
 
 }
 
