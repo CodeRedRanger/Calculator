@@ -255,28 +255,83 @@ void Window::OnClick9(wxCommandEvent& event)
 
 void Window::OnClickAdd(wxCommandEvent& event)
 {
-	*textBox << "+"; 
-	//only let one be added
+	wxString currentString = textBox->GetValue(); 
+
+	if (currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size()); 
+		textBox->Clear(); 
+		*textBox << currentString << "+"; 
+	}
+
+	else if (!currentString.ends_with("+"))
+	{
+		*textBox << "+";
+	}
+	
+	
 }
 
 void Window::OnClickSubt(wxCommandEvent& event)
 {
-	*textBox << "-";
+	wxString currentString = textBox->GetValue();
+
+	if (currentString.ends_with("+") || currentString.ends_with("*") || currentString.ends_with("/"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		textBox->Clear();
+		*textBox << currentString << "-";
+	}
+
+	else if (!currentString.ends_with("-"))
+	{
+		*textBox << "-";
+	}
+
 }
 
 void Window::OnClickMult(wxCommandEvent& event)
 {
-	*textBox << "*";
+	wxString currentString = textBox->GetValue();
+
+	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("/"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		textBox->Clear();
+		*textBox << currentString << "*";
+	}
+
+	else if (!currentString.ends_with("*"))
+	{
+		*textBox << "*";
+	}
 }
 
 void Window::OnClickDiv(wxCommandEvent& event)
 {
-	*textBox << "/";
+	wxString currentString = textBox->GetValue();
+
+	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		textBox->Clear();
+		*textBox << currentString << "/";
+	}
+
+	else if (!currentString.ends_with("/"))
+	{
+		*textBox << "/";
+	}
 }
 
 void Window::OnClickMod(wxCommandEvent& event)
 {
-	*textBox << "%";
+	wxString currentString = textBox->GetValue();
+
+	if (!currentString.ends_with("%"))
+	{
+		*textBox << "%";
+	}
 }
 
 void Window::OnClickNeg(wxCommandEvent& event)
