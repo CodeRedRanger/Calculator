@@ -402,12 +402,6 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 					break; 
 				}
 			}
-			//else if (tempString.ends_with("."))
-			//{
-
-			//	currentChar = tempString.Last(); 
-			//	break; 
-			//}
 
 		}
 
@@ -424,7 +418,7 @@ void Window::OnClickEquals(wxCommandEvent& event)
 	//the next part of the string should be searched for the first operator and everything after that should be cleaved off and saved as the remaining string
 	//what's left will be combined with the first term according to the operation of the if statement, this is saved as the newCurrentValue; 
 
-
+	bool negative = false; 
 	char delimiter = ' ';
 	char operation = ' ';
 	bool error = false;
@@ -442,6 +436,23 @@ void Window::OnClickEquals(wxCommandEvent& event)
 	if (tempString.starts_with("sin") || tempString.starts_with("cos") || tempString.starts_with("tan"))
 	{
 		tempString = tempString.Remove(0, 3);
+
+		if (tempString.starts_with("("))
+		{
+			tempString = tempString.Remove(0, 1);
+		}
+		if (tempString.ends_with(")"))
+		{
+			tempString = tempString.Remove(tempString.size() - 1, tempString.size());
+		}
+	}
+
+	if (tempString.starts_with("-sin") || tempString.starts_with("-cos") || tempString.starts_with("-tan"))
+	{
+		negative = true; 
+
+		tempString = tempString.Remove(0, 4);
+		currentString = currentString.Remove(0, 1); 
 
 		if (tempString.starts_with("("))
 		{
@@ -507,7 +518,7 @@ void Window::OnClickEquals(wxCommandEvent& event)
 
 		wxString token = tokenizer.GetNextToken();
 
-		if (token.ToDouble(&currentNumber))
+		if (token.ToDouble(&currentNumber) || token.empty())
 		{
 			if (firstTerm)
 			{
@@ -567,7 +578,16 @@ void Window::OnClickEquals(wxCommandEvent& event)
 				answerF = (float)answerD;
 				operation = delimiter;
 				tempString = tempString.Remove(0, token.size() + 1);
+
 			}
+
+
+		}
+
+		else
+		{
+			error = true;
+			break;
 		}
 
 		
@@ -586,21 +606,27 @@ void Window::OnClickEquals(wxCommandEvent& event)
 			currentString.Remove(currentString.size() - 1, currentString.size()); 
 		}
 
-		if (currentString.ToDouble(&currentNumber)) 
+		//accounts for negative degrees
+		if (answerF <= 0)
 		{
-			//use the answerF from above instead of current number
-			answerF = answerF * 3.14159265358979323846 / 180;
-			answerF = sin(answerF); 
+			answerF += 360; 
+		}
+	
+		//use the answerF from above instead of current number
+		answerF = answerF * 3.14159265358979323846 / 180;
 
-			//corrects for slight pi inaccuracy
-			if (answerF < 0.00001 && answerF > -0.00001)
-			{
+		answerF = sin(answerF); 
+
+		//corrects for slight pi inaccuracy
+		if (answerF < 0.00001 && answerF > -0.00001)
+		{
 				answerF = 0; 
-			}
-
 		}
 
-
+		if (answerF != 0 && negative == true)
+		{
+			answerF = -answerF; 
+		}
 
 	}
 
@@ -617,18 +643,26 @@ void Window::OnClickEquals(wxCommandEvent& event)
 			currentString.Remove(currentString.size() - 1, currentString.size());
 		}
 
-		if (currentString.ToDouble(&currentNumber))
+		//accounts for negative degrees
+		if (answerF <= 0)
 		{
-
-			answerF = answerF * 3.14159265358979323846 / 180;
-			answerF = cos(answerF);
-
-			//corrects for slight pi inaccuracy
-			if (answerF < 0.00001 && answerF > -0.00001)
-			{
-				answerF = 0;
-			}
+			answerF += 360;
 		}
+	
+		answerF = answerF * 3.14159265358979323846 / 180;
+		answerF = cos(answerF);
+
+		//corrects for slight pi inaccuracy
+		if (answerF < 0.00001 && answerF > -0.00001)
+		{
+			answerF = 0;
+		}
+
+		if (answerF != 0 && negative == true)
+		{
+			answerF = -answerF;
+		}
+	
 
 	}
 
@@ -645,21 +679,29 @@ void Window::OnClickEquals(wxCommandEvent& event)
 			currentString.Remove(currentString.size() - 1, currentString.size());
 		}
 
-		if (currentString.ToDouble(&currentNumber))
+		//accounts for negative degrees
+		if (answerF <= 0)
 		{
+			answerF += 360;
+		}
 
-			answerF = answerF * 3.14159265358979323846 / 180;
+		answerF = answerF * 3.14159265358979323846 / 180;
 
-			if (cos(answerF) >= 0.00001 || cos(answerF) <= -0.00001)
+		if (cos(answerF) >= 0.00001 || cos(answerF) <= -0.00001)
+		{
+			//float test = cos(answerF); 
+			answerF = tan(answerF);
+
+			if ((answerF >=0.00001 || answerF <= -0.00001) && negative == true)
 			{
-				//float test = cos(answerF); 
-				answerF = tan(answerF);
-			}
-			else
-			{
-				error = true; 
+				answerF = -answerF;
 			}
 		}
+		else
+		{
+			error = true; 
+		}
+		
 
 	}
 
