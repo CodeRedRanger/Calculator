@@ -425,121 +425,121 @@ void Window::OnClickEquals(wxCommandEvent& event)
 	//what's left will be combined with the first term according to the operation of the if statement, this is saved as the newCurrentValue; 
 
 
-	bool error = false; 
-	int tokens = 0;
-	double currentNumber = 0; 
-	int currentNumberI = 0; 
-	double answerD = 0; 
-	float answerF = 0; 
-	int answerI = 0; 
-	wxString currentString = textBox->GetValue(); 
+	char delimiter = ' ';
+	char operation = ' ';
+	bool error = false;
+	bool firstTerm = true;
+	double currentNumber = 0;
+	int currentNumberI = 0;
+	double answerD = 0;
+	float answerF = 0;
+	int answerI = 0;
+	wxString currentString = textBox->GetValue();
 	textBox->Clear();
+	wxString tempString = currentString;
 
-	if (currentString.Contains("+"))
+
+	if (tempString.starts_with("sin") || tempString.starts_with("cos") || tempString.starts_with("tan"))
 	{
-		wxStringTokenizer tokenizer(currentString, "+");
-		while (tokenizer.HasMoreTokens())
+		tempString = tempString.Remove(0, 3);
+
+		if (tempString.starts_with("("))
 		{
+			tempString = tempString.Remove(0, 1);
+		}
+		if (tempString.ends_with(")"))
+		{
+			tempString = tempString.Remove(tempString.size() - 1, tempString.size());
+		}
+	}
 
-			wxString token = tokenizer.GetNextToken();
+	while (tempString.size() != 0)
+	{
 
-			if (token.ToDouble(&currentNumber))
+		size_t index = tempString.Find('+');
+
+		if (index != wxNOT_FOUND)
+		{
+			delimiter = '+';
+		}
+		else
+		{
+			index = tempString.Find('-');
+			if (index != wxNOT_FOUND)
 			{
-				if (tokens == 0)
+				delimiter = '-';
+			}
+			else
+			{
+				index = tempString.Find('*');
+				if (index != wxNOT_FOUND)
 				{
-					answerD = currentNumber;
-					answerF = float(answerD); 
+					delimiter = '*';
 				}
-
 				else
+				{
+					index = tempString.Find('/');
+					if (index != wxNOT_FOUND)
+					{
+						delimiter = '/';
+					}
+					else
+					{
+						index = tempString.Find('%');
+						if (index != wxNOT_FOUND)
+						{
+							delimiter = '%';
+						}
+						else
+						{
+							delimiter = '\0';
+
+						}
+
+					}
+
+				}
+			}
+
+		}
+
+		wxStringTokenizer tokenizer(tempString, delimiter);
+
+		wxString token = tokenizer.GetNextToken();
+
+		if (token.ToDouble(&currentNumber))
+		{
+			if (firstTerm)
+			{
+
+				answerD = currentNumber;
+				answerF = float(answerD);
+				operation = delimiter;
+				//removes first token and operator after it
+				tempString = tempString.Remove(0, token.size()+1);
+				firstTerm = false;
+			}
+
+			else
+			{
+				if (operation == '+')
 				{
 					answerD += currentNumber;
-					answerF = (float)answerD;
 				}
-			}
-
-			tokens++; 
-
-		}
-	}
-	else if (currentString.Contains("-"))
-	{
-		wxStringTokenizer tokenizer(currentString, "-");
-		while (tokenizer.HasMoreTokens())
-		{
-			
-			wxString token = tokenizer.GetNextToken();
-
-			if (token.ToDouble(&currentNumber))
-			{
-				if (tokens == 0)
-				{
-					answerD = currentNumber;
-					answerF = float(answerD);
-				}
-
-				else
+				else if (operation == '-')
 				{
 					answerD -= currentNumber;
-					answerF = (float)answerD;
 				}
-			}
-
-			tokens++;
-
-		}
-	}
-
-	else if (currentString.Contains("*"))
-	{
-		wxStringTokenizer tokenizer(currentString, "*");
-		while (tokenizer.HasMoreTokens())
-		{
-			wxString token = tokenizer.GetNextToken();
-
-			if (token.ToDouble(&currentNumber))
-			{
-				if (tokens == 0)
-				{
-					answerD = currentNumber;
-					answerF = float(answerD);
-				}
-
-				else
+				else if (operation == '*')
 				{
 					answerD *= currentNumber;
-					answerF = (float)answerD;
 				}
-			}
-
-			tokens++;
-
-
-
-		}
-	}
-
-	else if (currentString.Contains("/"))
-	{
-		wxStringTokenizer tokenizer(currentString, "/");
-		while (tokenizer.HasMoreTokens())
-		{
-			wxString token = tokenizer.GetNextToken();
-
-			if (token.ToDouble(&currentNumber))
-			{
-				if (tokens == 0)
+				else if (operation == '/')
 				{
-					answerD = currentNumber;
-					answerF = float(answerD);
-				}
-
-				else
-				{
+					answerD /= currentNumber;
 					if (currentNumber != 0)
 					{
 						answerD /= currentNumber;
-						answerF = (float)answerD;
 					}
 					else
 					{
@@ -547,53 +547,33 @@ void Window::OnClickEquals(wxCommandEvent& event)
 						break; 
 					}
 				}
-			}
-
-			tokens++;
-
-
-		}
-	}
-
-	else if (currentString.Contains("%"))
-	{
-		wxStringTokenizer tokenizer(currentString, "%");
-		while (tokenizer.HasMoreTokens())
-		{
-			wxString token = tokenizer.GetNextToken();
-
-
-			if (token.ToInt(&currentNumberI))
-			{
-
-				if (tokens == 0)
+				else if (operation == '%')
 				{
-					answerI = currentNumberI; 
-					answerF = (float)answerI; 
-				}
+					answerI = (int)answerD;
+					currentNumberI = (int)currentNumber;
 
-				else
-				{
 					if (currentNumberI != 0)
 					{
-						answerI = answerI % currentNumberI;
-						answerF = (float)answerI;
+						answerI %= currentNumberI;
+						answerD = (double)answerI; 
 					}
 					else
 					{
 						error = true;
-						break; 
+						break;
 					}
 				}
+
+				answerF = (float)answerD;
+				operation = delimiter;
+				tempString = tempString.Remove(0, token.size() + 1);
 			}
-
-			tokens++; 
-
-
 		}
+
+		
 	}
 
-	else if (currentString.starts_with("sin"))
+	if (currentString.starts_with("sin"))
 	{
 		currentString.Remove(0, 3); 
 		
@@ -606,12 +586,18 @@ void Window::OnClickEquals(wxCommandEvent& event)
 			currentString.Remove(currentString.size() - 1, currentString.size()); 
 		}
 
-		if (currentString.ToDouble(&currentNumber))
+		if (currentString.ToDouble(&currentNumber)) 
 		{
-		
-			answerF = float(currentNumber);
-			answerF = answerF * 3.14 / 180; 
+			//use the answerF from above instead of current number
+			answerF = answerF * 3.14159265358979323846 / 180;
 			answerF = sin(answerF); 
+
+			//corrects for slight pi inaccuracy
+			if (answerF < 0.00001 && answerF > -0.00001)
+			{
+				answerF = 0; 
+			}
+
 		}
 
 
@@ -634,9 +620,14 @@ void Window::OnClickEquals(wxCommandEvent& event)
 		if (currentString.ToDouble(&currentNumber))
 		{
 
-			answerF = float(currentNumber);
-			answerF = answerF * 3.14 / 180;
+			answerF = answerF * 3.14159265358979323846 / 180;
 			answerF = cos(answerF);
+
+			//corrects for slight pi inaccuracy
+			if (answerF < 0.00001 && answerF > -0.00001)
+			{
+				answerF = 0;
+			}
 		}
 
 	}
@@ -657,12 +648,11 @@ void Window::OnClickEquals(wxCommandEvent& event)
 		if (currentString.ToDouble(&currentNumber))
 		{
 
-			answerF = float(currentNumber);
 			answerF = answerF * 3.14159265358979323846 / 180;
 
 			if (cos(answerF) >= 0.00001 || cos(answerF) <= -0.00001)
 			{
-				float test = cos(answerF); 
+				//float test = cos(answerF); 
 				answerF = tan(answerF);
 			}
 			else
@@ -682,11 +672,10 @@ void Window::OnClickEquals(wxCommandEvent& event)
 		currentString = "Error!"; 
 	}
 	
+
 	
 	*textBox << currentString; 
 
-
-	
 
 
 }
@@ -896,3 +885,166 @@ void Window::OnClickDelete(wxCommandEvent& event)
 	Refresh();
 	event.Skip();
 }
+
+
+
+//OLD CALCULATIONS
+
+/*
+if (currentString.Contains("+"))
+{
+	wxStringTokenizer tokenizer(currentString, "+");
+	while (tokenizer.HasMoreTokens())
+	{
+
+		wxString token = tokenizer.GetNextToken();
+
+		if (token.ToDouble(&currentNumber))
+		{
+			if (tokens == 0)
+			{
+				answerD = currentNumber;
+				answerF = float(answerD);
+			}
+
+			else
+			{
+				answerD += currentNumber;
+				answerF = (float)answerD;
+			}
+		}
+
+		tokens++;
+
+	}
+}
+else if (currentString.Contains("-"))
+{
+	wxStringTokenizer tokenizer(currentString, "-");
+	while (tokenizer.HasMoreTokens())
+	{
+
+		wxString token = tokenizer.GetNextToken();
+
+		if (token.ToDouble(&currentNumber))
+		{
+			if (tokens == 0)
+			{
+				answerD = currentNumber;
+				answerF = float(answerD);
+			}
+
+			else
+			{
+				answerD -= currentNumber;
+				answerF = (float)answerD;
+			}
+		}
+
+		tokens++;
+
+	}
+}
+
+else if (currentString.Contains("*"))
+{
+	wxStringTokenizer tokenizer(currentString, "*");
+	while (tokenizer.HasMoreTokens())
+	{
+		wxString token = tokenizer.GetNextToken();
+
+		if (token.ToDouble(&currentNumber))
+		{
+			if (tokens == 0)
+			{
+				answerD = currentNumber;
+				answerF = float(answerD);
+			}
+
+			else
+			{
+				answerD *= currentNumber;
+				answerF = (float)answerD;
+			}
+		}
+
+		tokens++;
+
+
+
+	}
+}
+
+else if (currentString.Contains("/"))
+{
+	wxStringTokenizer tokenizer(currentString, "/");
+	while (tokenizer.HasMoreTokens())
+	{
+		wxString token = tokenizer.GetNextToken();
+
+		if (token.ToDouble(&currentNumber))
+		{
+			if (tokens == 0)
+			{
+				answerD = currentNumber;
+				answerF = float(answerD);
+			}
+
+			else
+			{
+				if (currentNumber != 0)
+				{
+					answerD /= currentNumber;
+					answerF = (float)answerD;
+				}
+				else
+				{
+					error = true;
+					break;
+				}
+			}
+		}
+
+		tokens++;
+
+
+	}
+}
+
+else if (currentString.Contains("%"))
+{
+	wxStringTokenizer tokenizer(currentString, "%");
+	while (tokenizer.HasMoreTokens())
+	{
+		wxString token = tokenizer.GetNextToken();
+
+
+		if (token.ToInt(&currentNumberI))
+		{
+
+			if (tokens == 0)
+			{
+				answerI = currentNumberI;
+				answerF = (float)answerI;
+			}
+
+			else
+			{
+				if (currentNumberI != 0)
+				{
+					answerI = answerI % currentNumberI;
+					answerF = (float)answerI;
+				}
+				else
+				{
+					error = true;
+					break;
+				}
+			}
+		}
+
+		tokens++;
+
+
+	}
+}*/
