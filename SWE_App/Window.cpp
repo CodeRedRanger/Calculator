@@ -361,14 +361,58 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
 
-	if (!currentString.ends_with("."))
+	if (currentString.ends_with("."))
+	{
+		//do nothing
+	}
+
+	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%")
+		|| currentString.ends_with("n") || currentString.ends_with("s") || currentString.ends_with("(") || currentString.size() == 0)
 	{
 		*textBox << ".";
 	}
 
-	//have to deal with error of 5.5.5
-	//parse for . if second . before operator, then don't print the .
-	//if push ., check previous char, if number, check previous char, if ., then don't print, if number then keep checking previous characters, if operator +/-/*///% then stop
+	else
+	{
+		char currentChar = currentString.Last()	; 
+		wxString tempString = currentString; 
+		//check for previous . before operator
+
+		while (currentChar != '+' && currentChar != '-' && currentChar != '*' && currentChar != '/' && currentChar != '%'
+			|| currentChar != 'n' || currentChar != 's' || currentChar != '(' || currentChar != '.' || tempString.size() != 0)
+		{
+			if (isdigit(currentChar) && tempString.size() != 0)
+			{
+				tempString = tempString.RemoveLast(); 
+
+				if (tempString.size() != 0)
+				{
+					currentChar = tempString.Last();
+				}
+				
+				if (tempString.size() == 0 || currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/' || currentChar == '%'
+					|| currentChar == 'n' || currentChar == 's' || currentChar == '(')
+				{
+					*textBox << ".";
+					currentChar = '.'; 
+					break; 
+				}
+				else if (currentChar == '.')
+				{
+					break; 
+				}
+			}
+			//else if (tempString.ends_with("."))
+			//{
+
+			//	currentChar = tempString.Last(); 
+			//	break; 
+			//}
+
+		}
+
+	}
+
 }
 
 void Window::OnClickEquals(wxCommandEvent& event)
@@ -492,8 +536,16 @@ void Window::OnClickEquals(wxCommandEvent& event)
 
 				else
 				{
-					answerD /= currentNumber;
-					answerF = (float)answerD;
+					if (currentNumber != 0)
+					{
+						answerD /= currentNumber;
+						answerF = (float)answerD;
+					}
+					else
+					{
+						error = true;
+						break; 
+					}
 				}
 			}
 

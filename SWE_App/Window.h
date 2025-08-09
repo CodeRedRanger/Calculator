@@ -1,6 +1,8 @@
 #pragma once
 #include "wx/wx.h"
 #include <wx/tokenzr.h>	
+#include <wx/defs.h>
+#include <wx/string.h>
 #include "Utilities.h"
 
 //adding functionality to buttons. 
