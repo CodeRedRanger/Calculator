@@ -49,7 +49,7 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	int windowHeight = windowSize.GetHeight();
 	float buttonWidth = (windowWidth / 8.0f); 
 	float buttonHeight = (windowHeight / 20.0f);
-
+ 
 	textBox = new wxTextCtrl(this, wxID_ANY, "", wxPoint((windowWidth/8), (windowHeight/20)*2), wxSize(buttonWidth*5.5, buttonHeight*4));
 	wxFont textFont(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 
@@ -411,12 +411,9 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 
 void Window::OnClickEquals(wxCommandEvent& event)
 {
-	//first look for first operator
-	//use that to decide if statement/delimiter
-	// 
-	//if statement should take everything before that delimiter and make the first term
-	//the next part of the string should be searched for the first operator and everything after that should be cleaved off and saved as the remaining string
-	//what's left will be combined with the first term according to the operation of the if statement, this is saved as the newCurrentValue; 
+	//fix decimal places if whole number
+	//try to cut off trailing zeros
+	//disallow typing into text box
 
 	bool negative = false; 
 	char delimiter = ' ';
@@ -547,7 +544,6 @@ void Window::OnClickEquals(wxCommandEvent& event)
 				}
 				else if (operation == '/')
 				{
-					answerD /= currentNumber;
 					if (currentNumber != 0)
 					{
 						answerD /= currentNumber;
@@ -714,7 +710,7 @@ void Window::OnClickEquals(wxCommandEvent& event)
 		currentString = "Error!"; 
 	}
 	
-
+	currentString = wxNumberFormatter::ToString(answerF, 5, wxNumberFormatter::Style_NoTrailingZeroes); 
 	
 	*textBox << currentString; 
 
