@@ -428,6 +428,7 @@ void Window::OnClickEquals(wxCommandEvent& event)
 	wxString currentString = textBox->GetValue();
 	textBox->Clear();
 	wxString tempString = currentString;
+	wxString preAlteredStr = currentString; 
 
 
 	if (tempString.starts_with("sin") || tempString.starts_with("cos") || tempString.starts_with("tan"))
@@ -461,7 +462,9 @@ void Window::OnClickEquals(wxCommandEvent& event)
 		}
 	}
 
-	while (tempString.size() != 0)
+
+
+	while (tempString.size() != 0 && currentString.Last() != '+' && currentString.Last() != '-' && currentString.Last() != '*' && currentString.Last() != '/' && currentString.Last() != '%')
 	{
 
 		size_t index = tempString.Find('+');
@@ -588,6 +591,7 @@ void Window::OnClickEquals(wxCommandEvent& event)
 
 		
 	}
+	
 
 	if (currentString.starts_with("sin"))
 	{
@@ -698,21 +702,31 @@ void Window::OnClickEquals(wxCommandEvent& event)
 			error = true; 
 		}
 		
-
 	}
 
 	if (error == false)
 	{
+		
 		currentString = wxString::Format(wxT("%f"), answerF);
+		currentString = wxNumberFormatter::ToString(answerF, 5, wxNumberFormatter::Style_NoTrailingZeroes);
+	
 	}
 	else
 	{
 		currentString = "Error!"; 
 	}
 	
-	currentString = wxNumberFormatter::ToString(answerF, 5, wxNumberFormatter::Style_NoTrailingZeroes); 
-	
-	*textBox << currentString; 
+	if (tempString.size() == 0 || (tempString.Last() != '+' && tempString.Last() != '-' && tempString.Last() != '*' && tempString.Last() != '/' && tempString.Last() != '%'))
+	{
+		*textBox << currentString;
+	}
+	else
+	{
+		*textBox << preAlteredStr; 
+	}
+
+
+
 
 
 
@@ -741,6 +755,7 @@ void Window::OnClickSin(wxCommandEvent& event)
 
 		textBox->Clear();
 		*textBox << "sin(" << currentString << ")";
+	
 
 	}
 
