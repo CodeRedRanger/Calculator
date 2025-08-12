@@ -747,8 +747,24 @@ void Window::OnClickEquals(wxCommandEvent& event)
 void Window::OnClickSin(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
+	char lastChar = ' '; 
+	
+	if (currentString.size() != 0)
+	{
+		lastChar = currentString.Last();
+	}
 
-	if (currentString.starts_with("cos") || currentString.starts_with("tan"))
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar))
+	{
+		//do nothing; 
+	}
+	else
+	{
+		*textBox << "sin";
+	}
+
+	/*
+	else if (currentString.starts_with("cos") || currentString.starts_with("tan"))
 	{
 		textBox->Remove(0, 3);
 		currentString = textBox->GetValue(); 
@@ -768,9 +784,9 @@ void Window::OnClickSin(wxCommandEvent& event)
 		*textBox << "sin(" << currentString << ")";
 	
 
-	}
+	}*/
 
-	else if (!currentString.starts_with("sin"))
+	/*else if (!currentString.starts_with("sin"))
 	{
 		textBox->Clear();
 
@@ -782,8 +798,9 @@ void Window::OnClickSin(wxCommandEvent& event)
 		{
 			*textBox << "sin"; 
 		}
-	}
+	}*/
 
+	/*
 	else if (currentString.starts_with("sin"))
 	{
 		textBox->Remove(0, 3);
@@ -801,7 +818,7 @@ void Window::OnClickSin(wxCommandEvent& event)
 		textBox->Clear();
 		*textBox << currentString; 
 
-	}
+	}*/
 
 	
 
@@ -810,7 +827,24 @@ void Window::OnClickSin(wxCommandEvent& event)
 void Window::OnClickCos(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
+	char lastChar = ' ';
 
+	if (currentString.size() != 0)
+	{
+		lastChar = currentString.Last();
+	}
+
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar))
+	{
+		//do nothing; 
+	}
+	else
+	{
+		*textBox << "cos";
+	}
+
+
+	/*
 	if (currentString.starts_with("sin") || currentString.starts_with("tan"))
 	{
 		textBox->Remove(0, 3);
@@ -863,13 +897,31 @@ void Window::OnClickCos(wxCommandEvent& event)
 		textBox->Clear();
 		*textBox << currentString;
 
-	}
+	}*/
 
 
 }
 
 void Window::OnClickTan(wxCommandEvent& event)
 {
+	wxString currentString = textBox->GetValue();
+	char lastChar = ' ';
+
+	if (currentString.size() != 0)
+	{
+		lastChar = currentString.Last();
+	}
+
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar))
+	{
+		//do nothing; 
+	}
+	else
+	{
+		*textBox << "tan";
+	}
+	
+	/*
 	wxString currentString = textBox->GetValue();
 
 	if (currentString.starts_with("sin") || currentString.starts_with("cos"))
@@ -923,7 +975,7 @@ void Window::OnClickTan(wxCommandEvent& event)
 		textBox->Clear();
 		*textBox << currentString;
 
-	}
+	}*/
 
 
 }
