@@ -5,6 +5,7 @@
 #include <wx/string.h>
 #include <wx/numformatter.h>
 #include "Utilities.h"
+#include "ButtonFactory.h"
 
 //adding functionality to buttons. 
 

@@ -55,34 +55,57 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 
 	textBox->SetFont(textFont);
 
-	buttonSin = new wxButton(this, wxID_SIN, "sin"); // wxPoint((windowWidth / 8), (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
-	buttonCos = new wxButton(this, wxID_COS, "cos"); // wxPoint((windowWidth / 16) * 5, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
-	buttonTan = new wxButton(this, wxID_TAN, "tan"); // wxPoint((windowWidth / 16) * 8, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
+	//buttonSin = new wxButton(this, wxID_SIN, "sin"); // wxPoint((windowWidth / 8), (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
+	buttonSin = ButtonFactory::CreateSinButton(this);
+	//buttonCos = new wxButton(this, wxID_COS, "cos"); // wxPoint((windowWidth / 16) * 5, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
+	buttonCos = ButtonFactory::CreateCosButton(this);
+	//buttonTan = new wxButton(this, wxID_TAN, "tan"); // wxPoint((windowWidth / 16) * 8, (windowHeight / 10) * 4), wxSize(buttonWidth, buttonHeight));
+	buttonTan = ButtonFactory::CreateTanButton(this);
 	
-	buttonClear = new wxButton(this, wxID_CLEAR, "clear", wxPoint((windowWidth/8), (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
-	buttonNeg = new wxButton(this, wxID_NEGATIVE, "+/-", wxPoint((windowWidth/16)*5, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
-	buttonMod = new wxButton(this, wxID_MOD, "mod(%)", wxPoint((windowWidth/16)*8, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
-	buttonDiv = new wxButton(this, wxID_DIV, "/", wxPoint((windowWidth/16)*11, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	//buttonClear = new wxButton(this, wxID_CLEAR, "clear", wxPoint((windowWidth/8), (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	buttonClear = ButtonFactory::CreateClearButton(this);
+	//buttonNeg = new wxButton(this, wxID_NEGATIVE, "+/-", wxPoint((windowWidth/16)*5, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	buttonNeg = ButtonFactory::CreateNegButton(this);
+	//buttonMod = new wxButton(this, wxID_MOD, "mod(%)", wxPoint((windowWidth/16)*8, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	buttonMod = ButtonFactory::CreateModButton(this);
+	//buttonDiv = new wxButton(this, wxID_DIV, "/", wxPoint((windowWidth/16)*11, (windowHeight/20)*9), wxSize(buttonWidth, buttonHeight));
+	buttonDiv = ButtonFactory::CreateDivButton(this);
 	
-	button7 = new wxButton(this, wxID_SEVEN, "7", wxPoint((windowWidth/8), (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
-	button8 = new wxButton(this, wxID_EIGHT, "8", wxPoint((windowWidth/16)*5, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
-	button9 = new wxButton(this, wxID_NINE, "9", wxPoint((windowWidth/16)*8, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
-	buttonMult = new wxButton(this, wxID_MULT, "*", wxPoint((windowWidth/16)*11, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	//button7 = new wxButton(this, wxID_SEVEN, "7", wxPoint((windowWidth/8), (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	button7 = ButtonFactory::Create7Button(this); 
+	//button8 = new wxButton(this, wxID_EIGHT, "8", wxPoint((windowWidth/16)*5, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	button8 = ButtonFactory::Create8Button(this);
+	//button9 = new wxButton(this, wxID_NINE, "9", wxPoint((windowWidth/16)*8, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	button9 = ButtonFactory::Create9Button(this);
+	//buttonMult = new wxButton(this, wxID_MULT, "*", wxPoint((windowWidth/16)*11, (windowHeight/20)*10), wxSize(buttonWidth, buttonHeight));
+	buttonMult = ButtonFactory::CreateMultButton(this);
 	
-	button4 = new wxButton(this, wxID_FOUR, "4", wxPoint((windowWidth/8), (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
-	button5 = new wxButton(this, wxID_FIVE, "5", wxPoint((windowWidth/16)*5, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
-	button6 = new wxButton(this, wxID_SIX, "6", wxPoint((windowWidth/16)*8, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
-	buttonSubt = new wxButton(this, wxID_SUBT, "-", wxPoint((windowWidth/16)*11, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	//button4 = new wxButton(this, wxID_FOUR, "4", wxPoint((windowWidth/8), (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	button4 = ButtonFactory::Create4Button(this);
+	//button5 = new wxButton(this, wxID_FIVE, "5", wxPoint((windowWidth/16)*5, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	button5 = ButtonFactory::Create5Button(this);
+	//button6 = new wxButton(this, wxID_SIX, "6", wxPoint((windowWidth/16)*8, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	button6 = ButtonFactory::Create6Button(this);
+	//buttonSubt = new wxButton(this, wxID_SUBT, "-", wxPoint((windowWidth/16)*11, (windowHeight/20)*11), wxSize(buttonWidth, buttonHeight));
+	buttonSubt = ButtonFactory::CreateSubtButton(this);
 	
-	button1 = new wxButton(this, wxID_ONE, "1", wxPoint((windowWidth/8), (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
-	button2 = new wxButton(this, wxID_TWO, "2", wxPoint((windowWidth/16)*5, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
-	button3 = new wxButton(this, wxID_THREE, "3", wxPoint((windowWidth/16)*8, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
-	buttonAdd = new wxButton(this, wxID_ADD, "+", wxPoint((windowWidth/16)*11, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	//button1 = new wxButton(this, wxID_ONE, "1", wxPoint((windowWidth/8), (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	button1 = ButtonFactory::Create1Button(this);
+	//button2 = new wxButton(this, wxID_TWO, "2", wxPoint((windowWidth/16)*5, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	button2 = ButtonFactory::Create2Button(this);
+	//button3 = new wxButton(this, wxID_THREE, "3", wxPoint((windowWidth/16)*8, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	button3 = ButtonFactory::Create3Button(this);
+	//buttonAdd = new wxButton(this, wxID_ADD, "+", wxPoint((windowWidth/16)*11, (windowHeight/20)*12), wxSize(buttonWidth, buttonHeight));
+	buttonAdd = ButtonFactory::CreateAddButton(this); 
 	
-	buttonDel = new wxButton(this, wxID_DELETE, "back/del", wxPoint((windowWidth/8), (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
-	button0 = new wxButton(this, wxID_ZERO, "0", wxPoint((windowWidth/16)*5, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
-	buttonDecimal = new wxButton(this, wxID_DECIMAL, ".", wxPoint((windowWidth/16)*8, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
-	buttonEquals = new wxButton(this, wxID_EQUALS, "=", wxPoint((windowWidth/16)*11, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	//buttonDel = new wxButton(this, wxID_DELETE, "back/del", wxPoint((windowWidth/8), (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	buttonDel = ButtonFactory::CreateDeleteButton(this);
+	//button0 = new wxButton(this, wxID_ZERO, "0", wxPoint((windowWidth/16)*5, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	button0 = ButtonFactory::Create0Button(this);
+	//buttonDecimal = new wxButton(this, wxID_DECIMAL, ".", wxPoint((windowWidth/16)*8, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	buttonDecimal = ButtonFactory::CreateDecimalButton(this);
+	//buttonEquals = new wxButton(this, wxID_EQUALS, "=", wxPoint((windowWidth/16)*11, (windowHeight/20)*13), wxSize(buttonWidth, buttonHeight));
+	buttonEquals = ButtonFactory::CreateEqualsButton(this);
 
 	wxFont buttonFont(15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 
