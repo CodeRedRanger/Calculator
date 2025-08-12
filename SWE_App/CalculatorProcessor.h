@@ -1,5 +1,9 @@
 #pragma once
 #include <wx/wx.h>
+#include <wx/tokenzr.h>	
+#include <wx/defs.h>
+#include <wx/string.h>
+#include <wx/numformatter.h>
 
 class CalculatorProcessor
 {
@@ -12,7 +16,7 @@ public:
 	}
 	
 	//public member functions
-	void Calulate(wxString currentString); 
+	void Calulate(wxString currentString, wxTextCtrl* textBox); 
 
 
 private:

@@ -31,6 +31,7 @@ EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
 //EVT_BUTTON(wxID_COS, Window::OnCos)
 wxEND_EVENT_TABLE()
 
+//define the static instance of CalculatorProcessor
 CalculatorProcessor CalculatorProcessor::s_instance;
 
 Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(500, 500))
@@ -420,8 +421,9 @@ void Window::OnClickEquals(wxCommandEvent& event)
 
 
 	wxString currentString = textBox->GetValue();
-	CalculatorProcessor::GetInstance()->Calulate(currentString);
 	textBox->Clear();
+	CalculatorProcessor::GetInstance()->Calulate(currentString, textBox);
+	
 
 	/*
 

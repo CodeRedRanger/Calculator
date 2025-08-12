@@ -1,6 +1,7 @@
 #include "CalculatorProcessor.h"
 
-void CalculatorProcessor::Calulate(wxString currentString)
+
+void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 {
 	bool negative = false;
 	char delimiter = ' ';
@@ -16,7 +17,14 @@ void CalculatorProcessor::Calulate(wxString currentString)
 	wxString tempString = currentString;
 	wxString preAlteredStr = currentString;
 
+	//check if sin found; if so, check forward until next operator
+	//from sin to next operator, make number for sin function
+	//repeat for sin, if no other sin, go to cos, then tan
+	//after trig functions handled, check for *, /, %, +, - in order of operations
+	//after an operator found, check until previous operator for first term, then check until next operator for second term
 
+
+	
 	if (tempString.starts_with("sin") || tempString.starts_with("cos") || tempString.starts_with("tan"))
 	{
 		tempString = tempString.Remove(0, 3);
@@ -309,5 +317,10 @@ void CalculatorProcessor::Calulate(wxString currentString)
 	else
 	{
 		*textBox << preAlteredStr;
-	}
+	} 
+
+	
+	
 }
+
+
