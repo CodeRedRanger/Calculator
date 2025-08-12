@@ -3,9 +3,6 @@
 
 wxButton* ButtonFactory::CreateButton(Window* window, wxWindowID ID, wxString label)
 {
-	//windowSize.GetWidth()/8.0f, windowSize.GetHeight()/20.0f) maybe pass this too??
-
-
 	wxButton* button = new wxButton(window, ID, label);
 
 	return button;
