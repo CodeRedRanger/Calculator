@@ -1,35 +1,37 @@
 #include "Window.h"
 
+
 wxBEGIN_EVENT_TABLE(Window, wxFrame)
-  EVT_SIZE(Window::OnSizeChange)
-  EVT_BUTTON(wxID_ZERO, Window::OnClick0)
-  EVT_BUTTON(wxID_ONE, Window::OnClick1)
-  EVT_BUTTON(wxID_TWO, Window::OnClick2)
-  EVT_BUTTON(wxID_THREE, Window::OnClick3)
-  EVT_BUTTON(wxID_FOUR, Window::OnClick4)
-  EVT_BUTTON(wxID_FIVE, Window::OnClick5)
-  EVT_BUTTON(wxID_SIX, Window::OnClick6)
-  EVT_BUTTON(wxID_SEVEN, Window::OnClick7)
-  EVT_BUTTON(wxID_EIGHT, Window::OnClick8)
-  EVT_BUTTON(wxID_NINE, Window::OnClick9)
-  EVT_BUTTON(wxID_ADD, Window::OnClickAdd)
-  EVT_BUTTON(wxID_SUBT, Window::OnClickSubt)
-  EVT_BUTTON(wxID_MULT, Window::OnClickMult)
-  EVT_BUTTON(wxID_DIV, Window::OnClickDiv)
-  EVT_BUTTON(wxID_MOD, Window::OnClickMod)
-  EVT_BUTTON(wxID_NEGATIVE, Window::OnClickNeg)
-  EVT_BUTTON(wxID_DECIMAL, Window::OnClickDecimal)
-  EVT_BUTTON(wxID_EQUALS, Window::OnClickEquals)
-  EVT_BUTTON(wxID_SIN, Window::OnClickSin)
-  EVT_BUTTON(wxID_COS, Window::OnClickCos)
-  EVT_BUTTON(wxID_TAN, Window::OnClickTan)
-  EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
-  EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
+EVT_SIZE(Window::OnSizeChange)
+EVT_BUTTON(wxID_ZERO, Window::OnClick0)
+EVT_BUTTON(wxID_ONE, Window::OnClick1)
+EVT_BUTTON(wxID_TWO, Window::OnClick2)
+EVT_BUTTON(wxID_THREE, Window::OnClick3)
+EVT_BUTTON(wxID_FOUR, Window::OnClick4)
+EVT_BUTTON(wxID_FIVE, Window::OnClick5)
+EVT_BUTTON(wxID_SIX, Window::OnClick6)
+EVT_BUTTON(wxID_SEVEN, Window::OnClick7)
+EVT_BUTTON(wxID_EIGHT, Window::OnClick8)
+EVT_BUTTON(wxID_NINE, Window::OnClick9)
+EVT_BUTTON(wxID_ADD, Window::OnClickAdd)
+EVT_BUTTON(wxID_SUBT, Window::OnClickSubt)
+EVT_BUTTON(wxID_MULT, Window::OnClickMult)
+EVT_BUTTON(wxID_DIV, Window::OnClickDiv)
+EVT_BUTTON(wxID_MOD, Window::OnClickMod)
+EVT_BUTTON(wxID_NEGATIVE, Window::OnClickNeg)
+EVT_BUTTON(wxID_DECIMAL, Window::OnClickDecimal)
+EVT_BUTTON(wxID_EQUALS, Window::OnClickEquals)
+EVT_BUTTON(wxID_SIN, Window::OnClickSin)
+EVT_BUTTON(wxID_COS, Window::OnClickCos)
+EVT_BUTTON(wxID_TAN, Window::OnClickTan)
+EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
+EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
 
 //EVT_BUTTON(wxID_SIN, Window::OnSin)
 //EVT_BUTTON(wxID_COS, Window::OnCos)
 wxEND_EVENT_TABLE()
 
+CalculatorProcessor CalculatorProcessor::s_instance;
 
 Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), wxSize(500, 500))
 {
@@ -148,6 +150,7 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	buttonSizer6->Add(button0, 1, wxEXPAND | wxALL, 5);
 	buttonSizer6->Add(buttonDecimal, 1, wxEXPAND | wxALL, 5);
 	buttonSizer6->Add(buttonEquals, 1, wxEXPAND | wxALL, 5);
+
 
 
 }
@@ -412,11 +415,17 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 
 void Window::OnClickEquals(wxCommandEvent& event)
 {
-	//fix decimal places if whole number
-	//try to cut off trailing zeros
+	
 	//disallow typing into text box
 
-	bool negative = false; 
+
+	wxString currentString = textBox->GetValue();
+	CalculatorProcessor::GetInstance()->Calulate(currentString);
+	textBox->Clear();
+
+	/*
+
+	bool negative = false;
 	char delimiter = ' ';
 	char operation = ' ';
 	bool error = false;
@@ -426,10 +435,9 @@ void Window::OnClickEquals(wxCommandEvent& event)
 	double answerD = 0;
 	float answerF = 0;
 	int answerI = 0;
-	wxString currentString = textBox->GetValue();
 	textBox->Clear();
 	wxString tempString = currentString;
-	wxString preAlteredStr = currentString; 
+	wxString preAlteredStr = currentString;
 
 
 	if (tempString.starts_with("sin") || tempString.starts_with("cos") || tempString.starts_with("tan"))
@@ -729,7 +737,7 @@ void Window::OnClickEquals(wxCommandEvent& event)
 
 
 
-
+	*/
 
 }
 
