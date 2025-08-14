@@ -530,7 +530,7 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 				}
 				
 				if (tempString.size() == 0 || currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/' || currentChar == '%'
-					|| currentChar == 'n' || currentChar == 's' || currentChar == '(')
+					|| currentChar == 'n' || currentChar == 's')
 				{
 					*textBox << ".";
 					currentChar = '.'; 
