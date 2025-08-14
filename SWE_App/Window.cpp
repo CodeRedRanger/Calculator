@@ -262,7 +262,7 @@ void Window::OnClickAdd(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
 
-	if (currentString.size() == 0)
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan"))
 	{
 		//do nothing
 	}
@@ -305,7 +305,7 @@ void Window::OnClickMult(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.size() == 0)
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan"))
 	{
 		//do nothing
 	}
@@ -327,7 +327,8 @@ void Window::OnClickDiv(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.size() == 0)
+
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan"))
 	{
 		//do nothing
 	}
@@ -349,7 +350,7 @@ void Window::OnClickMod(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.size() == 0)
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan"))
 	{
 		//do nothing
 	}
@@ -372,15 +373,60 @@ void Window::OnClickNeg(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
 
-	if (!currentString.starts_with("-"))
+	if (currentString.ends_with("+"))
 	{
-		textBox->Clear();
-		*textBox << "-" << currentString;
+		currentString = currentString.Remove(currentString.size() - 1, currentString.size());
+		currentString << "-"; 
+		textBox->Clear(); 
+		*textBox << currentString;
 	}
-	else if (currentString.starts_with("-"))
+
+	else if (currentString.ends_with("-") && currentString.size() != 1)
 	{
-		textBox->Remove(0, 1); 
+		currentString = currentString.Remove(currentString.size() - 1, currentString.size());
+		currentString << "+";
+		textBox->Clear(); 
+		*textBox << currentString;
 	}
+
+	else if (currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%")
+		|| currentString.ends_with("n") || currentString.ends_with("s") || currentString.size() == 0)
+	{
+		*textBox << "-";
+	}
+
+	else 
+	{
+		bool onlyDigits = true; ;
+		for (int stringIndex = 0; stringIndex != currentString.size(); ++stringIndex)
+		{
+			if (!isdigit(currentString[stringIndex]) && currentString[stringIndex] != '.' && currentString[0] != '-')
+			{
+				onlyDigits = false; 
+				break; 
+			}
+
+		}
+
+		if (onlyDigits && currentString.size() != 0 && currentString != "0")
+		{
+			if (!currentString.starts_with("-"))
+			{
+				textBox->Clear();
+				*textBox << "-" << currentString;
+			}
+
+			else if (currentString.starts_with("-"))
+			{
+				currentString.Remove(0, 1);
+				textBox->Clear();
+				*textBox << currentString;
+			}
+
+		}
+	
+	}
+
 
 }
 

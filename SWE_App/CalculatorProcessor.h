@@ -4,6 +4,7 @@
 #include <wx/defs.h>
 #include <wx/string.h>
 #include <wx/numformatter.h>
+#include <wx/regex.h>
 
 class CalculatorProcessor
 {

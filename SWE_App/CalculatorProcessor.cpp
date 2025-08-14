@@ -68,6 +68,127 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 		tempString.Remove(0, 1); 
 		tempString = "~" + tempString; 
 	}
+	if (currentString.Contains("*-") || currentString.Contains("/-") || currentString.Contains("%-")
+		|| currentString.Contains("n-") || currentString.Contains("s-"))
+	{
+ 
+		tempString.Replace("*-", "*~"); 
+		tempString.Replace("/-", "/~");
+		tempString.Replace("%-", "%~");
+
+		//instead of replacing with ~, add 360 to next number....go down to tokenizer below, if delimiter is ~, check if previous char is n or s, if so, add 360 to number being processed
+		tempString.Replace("n-", "n~"); 
+		tempString.Replace("s-", "s~");
+
+		wxString tempOutputString = tempString; 
+		wxString tempNumString = ""; 
+
+		while (tempOutputString.size() != 0)
+		{
+			int index = tempOutputString.find("n~"); 
+			if (index != wxNOT_FOUND)
+			{
+				for (int stringIndex = index + 2; stringIndex != tempOutputString.size(); ++stringIndex)
+				{
+					if (isdigit(tempOutputString[stringIndex]) || tempOutputString[stringIndex] == '.')
+					{
+						tempNumString << tempOutputString[stringIndex]; 
+						if (stringIndex == tempOutputString.size() - 1)
+						{
+							if (tempNumString.size() != 0)
+							{
+								float num = wxAtof(tempNumString);
+								num = -num; 
+								num += 360; 
+								wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
+								tempString.Replace("n~" + tempNumString, "n" + newNumStr);
+								tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
+								tempNumString = "";
+							}
+							break;
+
+						}
+
+					}
+					else
+					{
+						if (tempNumString.size() != 0)
+						{
+							float num = wxAtof(tempNumString); 
+							num = -num;
+							num += 360;
+							wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes); 
+							tempString.Replace("n~" + tempNumString, "n" + newNumStr); 
+							tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
+							tempNumString = "";	
+						}
+						break; 
+					}
+				}
+			}
+			else
+			{
+				break; 
+			}
+		}
+
+		tempOutputString = tempString;
+		tempNumString = "";
+
+		while (tempOutputString.size() != 0)
+		{
+			int index = tempOutputString.find("s~");
+			if (index != wxNOT_FOUND)
+			{
+				for (int stringIndex = index + 2; stringIndex != tempOutputString.size(); ++stringIndex)
+				{
+					if (isdigit(tempOutputString[stringIndex]) || tempOutputString[stringIndex] == '.')
+					{
+						tempNumString << tempOutputString[stringIndex];
+						if (stringIndex == tempOutputString.size() - 1)
+						{
+							if (tempNumString.size() != 0)
+							{
+								float num = wxAtof(tempNumString);
+								num = -num;
+								num += 360;
+								wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
+								tempString.Replace("s~" + tempNumString, "s" + newNumStr);
+								tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
+								tempNumString = "";
+							}
+							break;
+
+						}
+
+					}
+					else
+					{
+						if (tempNumString.size() != 0)
+						{
+							float num = wxAtof(tempNumString);
+							num = -num;
+							num += 360;
+							wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
+							tempString.Replace("s~" + tempNumString, "s" + newNumStr);
+							tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
+							tempNumString = "";
+						}
+						break;
+					}
+				}
+			}
+			else
+			{
+				break;
+			}
+		}
+
+
+
+
+	}
+
 
 	
 	std::vector<wxString> output; 
