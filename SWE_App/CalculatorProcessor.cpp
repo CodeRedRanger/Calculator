@@ -78,7 +78,7 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 	{
 		for (int charIndex = 0; charIndex < tempString.size(); ++charIndex)
 		{
-			if (!isdigit(tempString[charIndex]) && tempString[charIndex] != '.')  //can solve issue with letters inserted by putting if == "+" or == "-" etc
+			if (!isdigit(tempString[charIndex]) && tempString[charIndex] != '.')  
 			{
 				delimiter = tempString[charIndex];
 				break; 
@@ -298,10 +298,9 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 		return; 
 	}	
 
-	else if (numberStack.size() == 1) //this is causing problems
+	else if (numberStack.size() == 1) 
 	{
 
-		//currentString = wxString::Format(wxT("%f"), numberStack.front());
 		currentString = wxNumberFormatter::ToString(numberStack.front(), 5, wxNumberFormatter::Style_NoTrailingZeroes);
 		*textBox << currentString; 
 	}
