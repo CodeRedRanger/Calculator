@@ -97,8 +97,11 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 							if (tempNumString.size() != 0)
 							{
 								float num = wxAtof(tempNumString);
-								num = -num; 
-								num += 360; 
+								num = -num;
+								while (num < 0)
+								{
+									num += 360;
+								}
 								wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
 								tempString.Replace("n~" + tempNumString, "n" + newNumStr);
 								tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
@@ -115,7 +118,10 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 						{
 							float num = wxAtof(tempNumString); 
 							num = -num;
-							num += 360;
+							while (num < 0)
+							{
+								num += 360;
+							}
 							wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes); 
 							tempString.Replace("n~" + tempNumString, "n" + newNumStr); 
 							tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
@@ -150,7 +156,10 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 							{
 								float num = wxAtof(tempNumString);
 								num = -num;
-								num += 360;
+								while (num < 0)
+								{
+									num += 360;
+								}
 								wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
 								tempString.Replace("s~" + tempNumString, "s" + newNumStr);
 								tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
@@ -167,7 +176,10 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 						{
 							float num = wxAtof(tempNumString);
 							num = -num;
-							num += 360;
+							while (num < 0)
+							{
+								num += 360;
+							}
 							wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
 							tempString.Replace("s~" + tempNumString, "s" + newNumStr);
 							tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
