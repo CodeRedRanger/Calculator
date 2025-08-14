@@ -78,7 +78,7 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 	{
 		for (int charIndex = 0; charIndex < tempString.size(); ++charIndex)
 		{
-			if (!isdigit(tempString[charIndex]) && tempString[charIndex] != '.')
+			if (!isdigit(tempString[charIndex]) && tempString[charIndex] != '.')  //can solve issue with letters inserted by putting if == "+" or == "-" etc
 			{
 				delimiter = tempString[charIndex];
 				break; 
@@ -173,11 +173,6 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 	char operation = ' ';
 	std::list<float> numberStack; 
 
-	//evalute the shunted string
-	//Go through output string, if number push to number stack
-	//if operator, and unary, pop one number, apply operator, push result back (need result variable)
-	//if operator is binary, pop two numbers, apply operator, push result back (need term1,term2 and result variables)
-	//to perform operation, if operator is for example +, then result = term1 + term2; do for all operators
 
 	for (int outputIndex = 0; outputIndex != output.size(); ++outputIndex)
 	{
@@ -212,14 +207,30 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 			else if (currentOperator.symbol == 's')
 			{
 				result = sin(term1 * 3.14159265358979323846 / 180); 
+				if (result <= 0.00001 && result >= -0.00001)
+				{
+					result = 0;
+				}
 			}
 			else if (currentOperator.symbol == 'c')
 			{
 				result = cos(term1 * 3.14159265358979323846 / 180);
+				if (result <= 0.00001 && result >= -0.00001)
+				{
+					result = 0; 
+				}
 			}
 			else if (currentOperator.symbol == 't')
 			{
-				result = tan(term1 * 3.14159265358979323846 / 180);
+				if (cos(term1 * 3.14159265358979323846 / 180) <= 0.00001 && cos(term1 * 3.14159265358979323846 / 180) >= -0.00001)
+				{
+					error = true; 
+					break; 
+				}
+				else
+				{
+					result = tan(term1 * 3.14159265358979323846 / 180);
+				}
 			}
 
 			numberStack.push_front(result); 
