@@ -1,9 +1,5 @@
 #pragma once
 #include "wx/wx.h"
-//#include <wx/tokenzr.h>	
-//#include <wx/defs.h>
-//#include <wx/string.h>
-//#include <wx/numformatter.h>
 #include "Utilities.h"
 #include "ButtonFactory.h"
 #include "CalculatorProcessor.h"

@@ -53,7 +53,7 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	float buttonWidth = (windowWidth / 8.0f); 
 	float buttonHeight = (windowHeight / 20.0f);
  
-	textBox = new wxTextCtrl(this, wxID_ANY, "", wxPoint((windowWidth/8), (windowHeight/20)*2), wxSize(buttonWidth*5.5, buttonHeight*4));
+	textBox = new wxTextCtrl(this, wxID_ANY, "", wxPoint((windowWidth/8), (windowHeight/20)*2), wxSize(buttonWidth*5.5, buttonHeight*4), wxTE_READONLY);
 	wxFont textFont(20, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 
 	textBox->SetFont(textFont);
@@ -262,7 +262,12 @@ void Window::OnClickAdd(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
 
-	if (currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
+	if (currentString.size() == 0)
+	{
+		//do nothing
+	}
+
+	else if (currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size()); 
 		textBox->Clear(); 
@@ -280,6 +285,7 @@ void Window::OnClickAdd(wxCommandEvent& event)
 void Window::OnClickSubt(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
+
 
 	if (currentString.ends_with("+") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
 	{
@@ -299,7 +305,12 @@ void Window::OnClickMult(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("/") || currentString.ends_with("%"))
+	if (currentString.size() == 0)
+	{
+		//do nothing
+	}
+
+	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("/") || currentString.ends_with("%"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size());
 		textBox->Clear();
@@ -316,7 +327,12 @@ void Window::OnClickDiv(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("%"))
+	if (currentString.size() == 0)
+	{
+		//do nothing
+	}
+
+	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("%"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size());
 		textBox->Clear();
@@ -333,7 +349,13 @@ void Window::OnClickMod(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/"))
+	if (currentString.size() == 0)
+	{
+		//do nothing
+	}
+
+
+	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size());
 		textBox->Clear();
