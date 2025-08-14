@@ -509,14 +509,13 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%")
 		|| currentString.ends_with("n") || currentString.ends_with("s") || currentString.ends_with("(") || currentString.size() == 0)
 	{
-		*textBox << ".";
+		*textBox << "0.";
 	}
 
 	else
 	{
 		char currentChar = currentString.Last()	; 
 		wxString tempString = currentString; 
-		//check for previous . before operator
 
 		while (currentChar != '+' && currentChar != '-' && currentChar != '*' && currentChar != '/' && currentChar != '%'
 			|| currentChar != 'n' || currentChar != 's' || currentChar != '(' || currentChar != '.' || tempString.size() != 0)
