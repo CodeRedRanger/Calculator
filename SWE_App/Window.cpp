@@ -204,13 +204,21 @@ void Window::OnSizeChange(wxSizeEvent& event)
 
 void Window::OnClick0(wxCommandEvent& event)
 {
-	*textBox << 0;
+
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 0;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClick1(wxCommandEvent& event)
 {
-	
-	*textBox << 1; 
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 1;
+	}
 
 	//alternative
 	//textBox->AppendText("1"); 
@@ -220,49 +228,89 @@ void Window::OnClick1(wxCommandEvent& event)
 
 void Window::OnClick2(wxCommandEvent& event)
 {
-	*textBox << 2;
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 2;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClick3(wxCommandEvent& event)
 {
-	*textBox << 3;
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 3;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClick4(wxCommandEvent& event)
 {
-	*textBox << 4;
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 4;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClick5(wxCommandEvent& event)
 {
-	*textBox << 5;
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 5;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClick6(wxCommandEvent& event)
 {
-	*textBox << 6;
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 6;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClick7(wxCommandEvent& event)
 {
-	*textBox << 7;
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 7;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClick8(wxCommandEvent& event)
 {
-	*textBox << 8;
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 8;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClick9(wxCommandEvent& event)
 {
-	*textBox << 9;
+	if (textBox->GetValue() != "Error!")
+	{
+		*textBox << 9;
+	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClickAdd(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
 
-	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan"))
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
 	{
 		//do nothing
 	}
@@ -279,15 +327,20 @@ void Window::OnClickAdd(wxCommandEvent& event)
 		*textBox << "+";
 	}
 	
-	
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClickSubt(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
+	if (currentString == "Error!")
+	{
+		//do nothing
+	}
 
-	if (currentString.ends_with("+") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
+	else if (currentString.ends_with("+") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
 	{
 		currentString.Remove(currentString.size() - 1, currentString.size());
 		textBox->Clear();
@@ -298,14 +351,15 @@ void Window::OnClickSubt(wxCommandEvent& event)
 	{
 		*textBox << "-";
 	}
-
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClickMult(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan"))
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
 	{
 		//do nothing
 	}
@@ -321,6 +375,8 @@ void Window::OnClickMult(wxCommandEvent& event)
 	{
 		*textBox << "*";
 	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClickDiv(wxCommandEvent& event)
@@ -328,7 +384,7 @@ void Window::OnClickDiv(wxCommandEvent& event)
 	wxString currentString = textBox->GetValue();
 
 
-	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan"))
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
 	{
 		//do nothing
 	}
@@ -344,13 +400,15 @@ void Window::OnClickDiv(wxCommandEvent& event)
 	{
 		*textBox << "/";
 	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClickMod(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
 
-	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan"))
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
 	{
 		//do nothing
 	}
@@ -367,13 +425,20 @@ void Window::OnClickMod(wxCommandEvent& event)
 	{
 		*textBox << "%";
 	}
+	Refresh();
+	event.Skip();
 }
 
 void Window::OnClickNeg(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
 
-	if (currentString.ends_with("+"))
+	if (currentString == "Error!")
+	{
+		//do nothing
+	}
+
+	else if (currentString.ends_with("+"))
 	{
 		currentString = currentString.Remove(currentString.size() - 1, currentString.size());
 		currentString << "-"; 
@@ -426,6 +491,8 @@ void Window::OnClickNeg(wxCommandEvent& event)
 		}
 	
 	}
+	Refresh();
+	event.Skip();
 
 
 }
@@ -434,7 +501,7 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
 
-	if (currentString.ends_with("."))
+	if (currentString.ends_with(".") || currentString == "Error!")
 	{
 		//do nothing
 	}
@@ -479,6 +546,8 @@ void Window::OnClickDecimal(wxCommandEvent& event)
 		}
 
 	}
+	Refresh();
+	event.Skip();
 
 }
 
@@ -506,7 +575,7 @@ void Window::OnClickSin(wxCommandEvent& event)
 		lastChar = currentString.Last();
 	}
 
-	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar))
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar) || currentString == "Error!")
 	{
 		//do nothing; 
 	}
@@ -515,9 +584,9 @@ void Window::OnClickSin(wxCommandEvent& event)
 		*textBox << "sin";
 	}
 
-	
+	Refresh();
+	event.Skip();
 
-	
 
 }
 
@@ -531,7 +600,7 @@ void Window::OnClickCos(wxCommandEvent& event)
 		lastChar = currentString.Last();
 	}
 
-	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar))
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar) || currentString == "Error!")
 	{
 		//do nothing; 
 	}
@@ -540,7 +609,8 @@ void Window::OnClickCos(wxCommandEvent& event)
 		*textBox << "cos";
 	}
 
-
+	Refresh();
+	event.Skip();
 
 }
 
@@ -554,7 +624,7 @@ void Window::OnClickTan(wxCommandEvent& event)
 		lastChar = currentString.Last();
 	}
 
-	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar))
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar) || currentString == "Error!")
 	{
 		//do nothing; 
 	}
@@ -563,7 +633,8 @@ void Window::OnClickTan(wxCommandEvent& event)
 		*textBox << "tan";
 	}
 	
-
+	Refresh();
+	event.Skip();
 
 }
 
@@ -582,8 +653,15 @@ void Window::OnClickDelete(wxCommandEvent& event)
 
 	wxString string = textBox->GetValue();
 	int stringSize = string.size();
-	
-	textBox->Remove(stringSize - 1, stringSize); 
+
+	if (stringSize == 0 || string == "Error!") 
+	{
+		//do nothing
+	}
+	else
+	{
+		textBox->Remove(stringSize - 1, stringSize);
+	}
 
 	Refresh();
 	event.Skip();
