@@ -446,7 +446,7 @@ void Window::OnClickNeg(wxCommandEvent& event)
 		*textBox << currentString;
 	}
 
-	else if (currentString.ends_with("-") && currentString.size() != 1)
+	else if (currentString.ends_with("-") && currentString.size() != 1 && !currentString.ends_with("n-") && !currentString.ends_with("s-"))
 	{
 		currentString = currentString.Remove(currentString.size() - 1, currentString.size());
 		currentString << "+";

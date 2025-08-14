@@ -49,19 +49,21 @@ CalculatorProcessor::OperatorType CalculatorProcessor::CreateOperatorType(char s
 
 void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 {
-	bool negative = false;
 	char delimiter = ' ';
 	OperatorType currentOperator;
 	bool error = false;
-	//bool firstTerm = true; //take out
 	double currentNumber = 0;
-	int currentNumberI = 0;
-	double answerD = 0;
-	float answerF = 0;
-	int answerI = 0;
-	//textBox->Clear();
+
 	wxString tempString = currentString;
 	wxString preAlteredStr = currentString;
+
+	if (currentString.ends_with("n") || currentString.ends_with("s") || currentString.ends_with("n-") || currentString.ends_with("s-")
+		|| currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
+	{
+		*textBox << "Error!"; 
+		return; 
+	}
+
 
 	if (currentString.starts_with('-'))
 	{
