@@ -68,6 +68,126 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 		tempString.Remove(0, 1); 
 		tempString = "~" + tempString; 
 	}
+	if (currentString.Contains("*-") || currentString.Contains("/-") || currentString.Contains("%-")
+		|| currentString.Contains("n-") || currentString.Contains("s-"))
+	{
+ 
+		tempString.Replace("*-", "*~"); 
+		tempString.Replace("/-", "/~");
+		tempString.Replace("%-", "%~");
+
+		tempString.Replace("n-", "n~"); 
+		tempString.Replace("s-", "s~");
+
+		wxString tempOutputString = tempString; 
+		wxString tempNumString = ""; 
+
+		while (tempOutputString.size() != 0)
+		{
+			int index = tempOutputString.find("n~"); 
+			if (index != wxNOT_FOUND)
+			{
+				for (int stringIndex = index + 2; stringIndex != tempOutputString.size(); ++stringIndex)
+				{
+					if (isdigit(tempOutputString[stringIndex]) || tempOutputString[stringIndex] == '.')
+					{
+						tempNumString << tempOutputString[stringIndex]; 
+						if (stringIndex == tempOutputString.size() - 1)
+						{
+							if (tempNumString.size() != 0)
+							{
+								float num = wxAtof(tempNumString);
+								num = -num; 
+								num += 360; 
+								wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
+								tempString.Replace("n~" + tempNumString, "n" + newNumStr);
+								tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
+								tempNumString = "";
+							}
+							break;
+
+						}
+
+					}
+					else
+					{
+						if (tempNumString.size() != 0)
+						{
+							float num = wxAtof(tempNumString); 
+							num = -num;
+							num += 360;
+							wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes); 
+							tempString.Replace("n~" + tempNumString, "n" + newNumStr); 
+							tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
+							tempNumString = "";	
+						}
+						break; 
+					}
+				}
+			}
+			else
+			{
+				break; 
+			}
+		}
+
+		tempOutputString = tempString;
+		tempNumString = "";
+
+		while (tempOutputString.size() != 0)
+		{
+			int index = tempOutputString.find("s~");
+			if (index != wxNOT_FOUND)
+			{
+				for (int stringIndex = index + 2; stringIndex != tempOutputString.size(); ++stringIndex)
+				{
+					if (isdigit(tempOutputString[stringIndex]) || tempOutputString[stringIndex] == '.')
+					{
+						tempNumString << tempOutputString[stringIndex];
+						if (stringIndex == tempOutputString.size() - 1)
+						{
+							if (tempNumString.size() != 0)
+							{
+								float num = wxAtof(tempNumString);
+								num = -num;
+								num += 360;
+								wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
+								tempString.Replace("s~" + tempNumString, "s" + newNumStr);
+								tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
+								tempNumString = "";
+							}
+							break;
+
+						}
+
+					}
+					else
+					{
+						if (tempNumString.size() != 0)
+						{
+							float num = wxAtof(tempNumString);
+							num = -num;
+							num += 360;
+							wxString newNumStr = wxNumberFormatter::ToString(num, 5, wxNumberFormatter::Style_NoTrailingZeroes);
+							tempString.Replace("s~" + tempNumString, "s" + newNumStr);
+							tempOutputString = tempOutputString.Remove(0, index + tempNumString.size()); 
+							tempNumString = "";
+						}
+						break;
+					}
+				}
+			}
+			else
+			{
+				break;
+			}
+		}
+
+
+
+
+	}
+
 
 	
 	std::vector<wxString> output; 
@@ -78,7 +198,7 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 	{
 		for (int charIndex = 0; charIndex < tempString.size(); ++charIndex)
 		{
-			if (!isdigit(tempString[charIndex]) && tempString[charIndex] != '.')  
+			if (!isdigit(tempString[charIndex]) && tempString[charIndex] != '.')  //can solve issue with letters inserted by putting if == "+" or == "-" etc
 			{
 				delimiter = tempString[charIndex];
 				break; 
@@ -298,9 +418,10 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 		return; 
 	}	
 
-	else if (numberStack.size() == 1) 
+	else if (numberStack.size() == 1) //this is causing problems
 	{
 
+		//currentString = wxString::Format(wxT("%f"), numberStack.front());
 		currentString = wxNumberFormatter::ToString(numberStack.front(), 5, wxNumberFormatter::Style_NoTrailingZeroes);
 		*textBox << currentString; 
 	}
