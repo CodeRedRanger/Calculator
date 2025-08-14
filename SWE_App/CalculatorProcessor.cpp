@@ -76,7 +76,6 @@ void CalculatorProcessor::Calulate(wxString currentString, wxTextCtrl* textBox)
 		tempString.Replace("/-", "/~");
 		tempString.Replace("%-", "%~");
 
-		//instead of replacing with ~, add 360 to next number....go down to tokenizer below, if delimiter is ~, check if previous char is n or s, if so, add 360 to number being processed
 		tempString.Replace("n-", "n~"); 
 		tempString.Replace("s-", "s~");
 
