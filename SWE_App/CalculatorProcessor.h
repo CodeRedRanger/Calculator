@@ -19,6 +19,18 @@ public:
 	void Calulate(wxString currentString, wxTextCtrl* textBox); 
 
 
+	struct OperatorType
+	{
+		wxString symbol;
+		int precedence;
+		bool isUnary;
+	};
+
+	OperatorType CreateOperatorType(char symbol);
+
+
+
+
 private:
 	CalculatorProcessor() { }// Private constructor to prevent instantiation
 	static CalculatorProcessor s_instance; // Static instance for singleton pattern
