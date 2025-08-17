@@ -40,6 +40,12 @@ private:
 public:
 	Window(); //wxFrame requires a default constructor
 
+	//Getters
+	wxTextCtrl* GetTextBox() const
+	{
+		return textBox; 
+	}
+
 	//Handles font size changes when window is resized	
 	void OnSizeChange(wxSizeEvent& event);
 
