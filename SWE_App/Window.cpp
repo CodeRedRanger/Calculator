@@ -13,19 +13,19 @@ EVT_SIZE(Window::OnSizeChange)
 //EVT_BUTTON(wxID_SEVEN, Window::OnClick7)
 //EVT_BUTTON(wxID_EIGHT, Window::OnClick8)
 //EVT_BUTTON(wxID_NINE, Window::OnClick9)
-EVT_BUTTON(wxID_ADD, Window::OnClickAdd)
-EVT_BUTTON(wxID_SUBT, Window::OnClickSubt)
-EVT_BUTTON(wxID_MULT, Window::OnClickMult)
-EVT_BUTTON(wxID_DIV, Window::OnClickDiv)
-EVT_BUTTON(wxID_MOD, Window::OnClickMod)
-EVT_BUTTON(wxID_NEGATIVE, Window::OnClickNeg)
-EVT_BUTTON(wxID_DECIMAL, Window::OnClickDecimal)
-EVT_BUTTON(wxID_EQUALS, Window::OnClickEquals)
-EVT_BUTTON(wxID_SIN, Window::OnClickSin)
-EVT_BUTTON(wxID_COS, Window::OnClickCos)
-EVT_BUTTON(wxID_TAN, Window::OnClickTan)
-EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
-EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
+//EVT_BUTTON(wxID_ADD, Window::OnClickAdd)
+//EVT_BUTTON(wxID_SUBT, Window::OnClickSubt)
+//EVT_BUTTON(wxID_MULT, Window::OnClickMult)
+//EVT_BUTTON(wxID_DIV, Window::OnClickDiv)
+//EVT_BUTTON(wxID_MOD, Window::OnClickMod)
+//EVT_BUTTON(wxID_NEGATIVE, Window::OnClickNeg)
+//EVT_BUTTON(wxID_DECIMAL, Window::OnClickDecimal)
+//EVT_BUTTON(wxID_EQUALS, Window::OnClickEquals)
+//EVT_BUTTON(wxID_SIN, Window::OnClickSin)
+//EVT_BUTTON(wxID_COS, Window::OnClickCos)
+//EVT_BUTTON(wxID_TAN, Window::OnClickTan)
+//EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
+//EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
 
 wxEND_EVENT_TABLE()
 
@@ -306,6 +306,7 @@ void Window::OnClick9(wxCommandEvent& event)
 	event.Skip();
 } */
 
+/*
 void Window::OnClickAdd(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue(); 
@@ -329,8 +330,9 @@ void Window::OnClickAdd(wxCommandEvent& event)
 	
 	Refresh();
 	event.Skip();
-}
+}*/
 
+/*
 void Window::OnClickSubt(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
@@ -353,8 +355,9 @@ void Window::OnClickSubt(wxCommandEvent& event)
 	}
 	Refresh();
 	event.Skip();
-}
+}*/
 
+/*
 void Window::OnClickMult(wxCommandEvent& event)
 {
 	wxString currentString = textBox->GetValue();
@@ -666,5 +669,5 @@ void Window::OnClickDelete(wxCommandEvent& event)
 	event.Skip();
 }
 
-
+*/
 
