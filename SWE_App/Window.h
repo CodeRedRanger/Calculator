@@ -9,8 +9,10 @@
 class Window : public wxFrame
 {
 private:
-	
+public:
 	wxTextCtrl* textBox = nullptr;
+
+private:
 	
 	wxButton* buttonSin = nullptr;
 	wxButton* buttonCos = nullptr;
@@ -40,20 +42,25 @@ private:
 public:
 	Window(); //wxFrame requires a default constructor
 
+	//wxTextCtrl* GetTextBox()const { return textBox; }
+	//void SetTextBox(wxTextCtrl* newTextBox) { textBox = newTextBox; }
+
 	//Handles font size changes when window is resized	
 	void OnSizeChange(wxSizeEvent& event);
 
 	//numbers
-	void OnClick0(wxCommandEvent& event); 
-	void OnClick1(wxCommandEvent& event); 
-	void OnClick2(wxCommandEvent& event);
-	void OnClick3(wxCommandEvent& event);
-	void OnClick4(wxCommandEvent& event);
-	void OnClick5(wxCommandEvent& event);
-	void OnClick6(wxCommandEvent& event);
-	void OnClick7(wxCommandEvent& event);
-	void OnClick8(wxCommandEvent& event);
-	void OnClick9(wxCommandEvent& event);
+	//void OnClick0(wxCommandEvent& event); 
+	
+	//void OnClick1(wxCommandEvent& event); 
+	//void OnClick2(wxCommandEvent& event);
+	//void OnClick3(wxCommandEvent& event);
+	//void OnClick4(wxCommandEvent& event);
+	//void OnClick5(wxCommandEvent& event);
+	//void OnClick6(wxCommandEvent& event);
+	//void OnClick7(wxCommandEvent& event);
+	//void OnClick8(wxCommandEvent& event);
+	//void OnClick9(wxCommandEvent& event); 
+	
 
 	//math functions
 	void OnClickAdd(wxCommandEvent& event);

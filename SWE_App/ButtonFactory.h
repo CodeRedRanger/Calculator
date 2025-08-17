@@ -48,13 +48,10 @@ public:
 	static wxButton* CreateSinButton(Window* window);
 	static wxButton* CreateCosButton(Window* window);
 	static wxButton* CreateTanButton(Window* window);
+
 	
-
-
-
 private:
-	//static float m_buttonWidth;
-	//static float m_buttonHeight; 
+	
 
 
 };

@@ -3,16 +3,16 @@
 
 wxBEGIN_EVENT_TABLE(Window, wxFrame)
 EVT_SIZE(Window::OnSizeChange)
-EVT_BUTTON(wxID_ZERO, Window::OnClick0)
-EVT_BUTTON(wxID_ONE, Window::OnClick1)
-EVT_BUTTON(wxID_TWO, Window::OnClick2)
-EVT_BUTTON(wxID_THREE, Window::OnClick3)
-EVT_BUTTON(wxID_FOUR, Window::OnClick4)
-EVT_BUTTON(wxID_FIVE, Window::OnClick5)
-EVT_BUTTON(wxID_SIX, Window::OnClick6)
-EVT_BUTTON(wxID_SEVEN, Window::OnClick7)
-EVT_BUTTON(wxID_EIGHT, Window::OnClick8)
-EVT_BUTTON(wxID_NINE, Window::OnClick9)
+//EVT_BUTTON(wxID_ZERO, Window::OnClick0)
+//EVT_BUTTON(wxID_ONE, Window::OnClick1)
+//EVT_BUTTON(wxID_TWO, Window::OnClick2)
+//EVT_BUTTON(wxID_THREE, Window::OnClick3)
+//EVT_BUTTON(wxID_FOUR, Window::OnClick4)
+//EVT_BUTTON(wxID_FIVE, Window::OnClick5)
+//EVT_BUTTON(wxID_SIX, Window::OnClick6)
+//EVT_BUTTON(wxID_SEVEN, Window::OnClick7)
+//EVT_BUTTON(wxID_EIGHT, Window::OnClick8)
+//EVT_BUTTON(wxID_NINE, Window::OnClick9)
 EVT_BUTTON(wxID_ADD, Window::OnClickAdd)
 EVT_BUTTON(wxID_SUBT, Window::OnClickSubt)
 EVT_BUTTON(wxID_MULT, Window::OnClickMult)
@@ -27,8 +27,6 @@ EVT_BUTTON(wxID_TAN, Window::OnClickTan)
 EVT_BUTTON(wxID_CLEAR, Window::OnClickClear)
 EVT_BUTTON(wxID_DELETE, Window::OnClickDelete)
 
-//EVT_BUTTON(wxID_SIN, Window::OnSin)
-//EVT_BUTTON(wxID_COS, Window::OnCos)
 wxEND_EVENT_TABLE()
 
 //define the static instance of CalculatorProcessor
@@ -202,6 +200,7 @@ void Window::OnSizeChange(wxSizeEvent& event)
 	event.Skip();
 }
 
+/*
 void Window::OnClick0(wxCommandEvent& event)
 {
 
@@ -211,8 +210,9 @@ void Window::OnClick0(wxCommandEvent& event)
 	}
 	Refresh();
 	event.Skip();
-}
+}*/
 
+/*
 void Window::OnClick1(wxCommandEvent& event)
 {
 	if (textBox->GetValue() != "Error!")
@@ -304,7 +304,7 @@ void Window::OnClick9(wxCommandEvent& event)
 	}
 	Refresh();
 	event.Skip();
-}
+} */
 
 void Window::OnClickAdd(wxCommandEvent& event)
 {
