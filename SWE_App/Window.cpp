@@ -555,7 +555,6 @@ void Window::OnClickEquals(wxCommandEvent& event)
 	
 	//disallow typing into text box
 
-
 	wxString currentString = textBox->GetValue();
 	textBox->Clear();
 	CalculatorProcessor::GetInstance()->Calulate(currentString, textBox);
