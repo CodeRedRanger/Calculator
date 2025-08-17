@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "CppUnitTest.h"
+#include "../SWE_App/Window.h"
 #include "../SWE_App/ButtonFactory.h"
 #include <wx/wx.h>
 
@@ -12,20 +13,20 @@ namespace ButtonFactoryTest
 	{
 	public:
 
-		TEST_METHOD(TestMethod1)
-		{
-		}
-
+		
+		/*
 		TEST_METHOD(TestClassInit)
 		{
-			//wxString expression = "2+2";
-			//wxTextCtrl* textBox = new wxTextCtrl();
-			//textBox->SetValue(expression);
+		}
+		*/
+		TEST_METHOD(TestCreateButton1)
+		{
 
-			//	CalculatorProcessor::GetInstance()->Calulate(expression, textBox);
-			//	Assert::AreEqual("4", textBox->GetValue());
+			Window* window = new Window();
+			std::string buttonLabel = "1";
+			wxButton* sampleButton = ButtonFactory::Create1Button(window);
+			Assert::AreEqual(buttonLabel, std::string(sampleButton->GetLabel()));
 
-				//Assert::AreEqual(name, mc.GetName());
 		}
 
 

@@ -16,11 +16,11 @@ namespace CalculatorProcessorTest
 	public:
 
 		/*
-		TEST_METHOD(TestMethod1)
+		TEST_METHOD(TestClassInit)
 		{
 		}*/
 
-		TEST_METHOD(TestClassInit)
+		TEST_METHOD(TestAddition)
 		{
 			
 			
