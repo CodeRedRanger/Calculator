@@ -299,6 +299,7 @@ wxButton* ButtonFactory::CreateAddButton(Window* window)
 	buttonAdd->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
+			/*
 			wxString currentString = window->textBox->GetValue();
 
 			if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
@@ -316,13 +317,32 @@ wxButton* ButtonFactory::CreateAddButton(Window* window)
 			else if (!currentString.ends_with("+"))
 			{
 				*(window->textBox) << "+";
-			}
-
+			}*/
+			OnClickAdd(window);
 			event.Skip();
 
 		});
 
 	return buttonAdd; 
+}
+
+void ButtonFactory::OnClickAdd(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
+	{
+		//do nothing
+	}
+	else if (currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		window->textBox->Clear();
+		*(window->textBox) << currentString << "+";
+	}
+	else if (!currentString.ends_with("+"))
+	{
+		*(window->textBox) << "+";
+	}
 }
 
 wxButton* ButtonFactory::CreateSubtButton(Window* window)
@@ -331,7 +351,7 @@ wxButton* ButtonFactory::CreateSubtButton(Window* window)
 
 	buttonSubt->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 
 			if (currentString == "Error!")
@@ -349,13 +369,33 @@ wxButton* ButtonFactory::CreateSubtButton(Window* window)
 			else if (!currentString.ends_with("-"))
 			{
 				*(window->textBox) << "-";
-			}
+			} */
 
+			OnClickSubt(window);
 			event.Skip();
 
 		});
 
 	return buttonSubt;
+}
+
+void ButtonFactory::OnClickSubt(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	if (currentString == "Error!")
+	{
+		//do nothing
+	}
+	else if (currentString.ends_with("+") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		window->textBox->Clear();
+		*(window->textBox) << currentString << "-";
+	}
+	else if (!currentString.ends_with("-"))
+	{
+		*(window->textBox) << "-";
+	}
 }
 
 wxButton* ButtonFactory::CreateMultButton(Window* window)
@@ -364,7 +404,7 @@ wxButton* ButtonFactory::CreateMultButton(Window* window)
 
 	buttonMult->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 
 			if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
@@ -382,12 +422,32 @@ wxButton* ButtonFactory::CreateMultButton(Window* window)
 			else if (!currentString.ends_with("*"))
 			{
 				*(window->textBox) << "*";
-			}
+			}*/
+			OnClickMult(window);
 			event.Skip();
 
 		});
 
 	return buttonMult;
+}
+
+void ButtonFactory::OnClickMult(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
+	{
+		//do nothing
+	}
+	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("/") || currentString.ends_with("%"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		window->textBox->Clear();
+		*(window->textBox) << currentString << "*";
+	}
+	else if (!currentString.ends_with("*"))
+	{
+		*(window->textBox) << "*";
+	}
 }
 
 wxButton* ButtonFactory::CreateDivButton(Window* window)
@@ -396,7 +456,7 @@ wxButton* ButtonFactory::CreateDivButton(Window* window)
 
 	buttonDiv->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 
 
@@ -415,13 +475,33 @@ wxButton* ButtonFactory::CreateDivButton(Window* window)
 			else if (!currentString.ends_with("/"))
 			{
 				*(window->textBox) << "/";
-			}
-	
+			}*/
+			
+			OnClickDiv(window);
 			event.Skip();
 
 		});
 
 	return buttonDiv;
+}
+
+void ButtonFactory::OnClickDiv(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
+	{
+		//do nothing
+	}
+	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("%"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		window->textBox->Clear();
+		*(window->textBox) << currentString << "/";
+	}
+	else if (!currentString.ends_with("/"))
+	{
+		*(window->textBox) << "/";
+	}
 }
 
 wxButton* ButtonFactory::CreateModButton(Window* window)
@@ -430,7 +510,7 @@ wxButton* ButtonFactory::CreateModButton(Window* window)
 
 	buttonMod->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 
 			if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
@@ -449,13 +529,33 @@ wxButton* ButtonFactory::CreateModButton(Window* window)
 			else if (!currentString.ends_with("%"))
 			{
 				*(window->textBox) << "%";
-			}
+			}*/
 
+			OnClickMod(window);
 			event.Skip();
 
 		});
 
 	return buttonMod;
+}
+
+void ButtonFactory::OnClickMod(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	if (currentString.size() == 0 || currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || currentString == "Error!")
+	{
+		//do nothing
+	}
+	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/"))
+	{
+		currentString.Remove(currentString.size() - 1, currentString.size());
+		window->textBox->Clear();
+		*(window->textBox) << currentString << "%";
+	}
+	else if (!currentString.ends_with("%"))
+	{
+		*(window->textBox) << "%";
+	}
 }
 
 wxButton* ButtonFactory::CreateClearButton(Window* window)
@@ -465,12 +565,18 @@ wxButton* ButtonFactory::CreateClearButton(Window* window)
 	buttonClear->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			window->textBox->Clear();
+			//window->textBox->Clear();
+			OnClickClear(window);
 			event.Skip();
 
 		});
 
 	return buttonClear;
+}
+
+void ButtonFactory::OnClickClear(Window* window)
+{
+	window->textBox->Clear();
 }
 
 wxButton* ButtonFactory::CreateDeleteButton(Window* window)
@@ -479,7 +585,7 @@ wxButton* ButtonFactory::CreateDeleteButton(Window* window)
 
 	buttonDel ->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString string = window->textBox->GetValue();
 			int stringSize = string.size();
 
@@ -490,13 +596,28 @@ wxButton* ButtonFactory::CreateDeleteButton(Window* window)
 			else
 			{
 				window->textBox->Remove(stringSize - 1, stringSize);
-			}
+			}*/
 
+			OnClickDelete(window);
 			event.Skip();
 
 		});
 
 	return buttonDel;
+}
+
+void ButtonFactory::OnClickDelete(Window* window)
+{
+	wxString string = window->textBox->GetValue();
+	int stringSize = string.size();
+	if (stringSize == 0 || string == "Error!")
+	{
+		//do nothing
+	}
+	else
+	{
+		window->textBox->Remove(stringSize - 1, stringSize);
+	}
 }
 
 wxButton* ButtonFactory::CreateDecimalButton(Window* window)
@@ -505,7 +626,7 @@ wxButton* ButtonFactory::CreateDecimalButton(Window* window)
 
 	buttonDecimal->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 
 			if (currentString.ends_with(".") || currentString == "Error!")
@@ -552,12 +673,56 @@ wxButton* ButtonFactory::CreateDecimalButton(Window* window)
 				}
 
 			}
-		
+			*/
+			OnClickDecimal(window);
 			event.Skip();
 
 		});
 
 	return buttonDecimal;
+}
+
+
+void ButtonFactory::OnClickDecimal(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	if (currentString.ends_with(".") || currentString == "Error!")
+	{
+		//do nothing
+	}
+	else if (currentString.ends_with("+") || currentString.ends_with("-") || currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%")
+		|| currentString.ends_with("n") || currentString.ends_with("s") || currentString.ends_with("(") || currentString.size() == 0)
+	{
+		*(window->textBox) << "0.";
+	}
+	else
+	{
+		char currentChar = currentString.Last();
+		wxString tempString = currentString;
+		while (currentChar != '+' && currentChar != '-' && currentChar != '*' && currentChar != '/' && currentChar != '%'
+			|| currentChar != 'n' || currentChar != 's' || currentChar != '(' || currentChar != '.' || tempString.size() != 0)
+		{
+			if (isdigit(currentChar) && tempString.size() != 0)
+			{
+				tempString = tempString.RemoveLast();
+				if (tempString.size() != 0)
+				{
+					currentChar = tempString.Last();
+				}
+				if (tempString.size() == 0 || currentChar == '+' || currentChar == '-' || currentChar == '*' || currentChar == '/' || currentChar == '%'
+					|| currentChar == 'n' || currentChar == 's')
+				{
+					*(window->textBox) << ".";
+					currentChar = '.';
+					break;
+				}
+				else if (currentChar == '.')
+				{
+					break;
+				}
+			}
+		}
+	}
 }
 
 wxButton* ButtonFactory::CreateNegButton(Window* window)
@@ -566,7 +731,7 @@ wxButton* ButtonFactory::CreateNegButton(Window* window)
 
 	buttonNeg->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 
 			if (currentString == "Error!")
@@ -626,12 +791,67 @@ wxButton* ButtonFactory::CreateNegButton(Window* window)
 
 				}
 
-			}
+			}*/
+			OnClickNeg(window);
 			event.Skip();
 
 		});
 
 	return buttonNeg;
+}
+
+void ButtonFactory::OnClickNeg(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	if (currentString == "Error!")
+	{
+		//do nothing
+	}
+	else if (currentString.ends_with("+"))
+	{
+		currentString = currentString.Remove(currentString.size() - 1, currentString.size());
+		currentString << "-";
+		window->textBox->Clear();
+		*(window->textBox) << currentString;
+	}
+	else if (currentString.ends_with("-") && currentString.size() != 1 && !currentString.ends_with("n-") && !currentString.ends_with("s-"))
+	{
+		currentString = currentString.Remove(currentString.size() - 1, currentString.size());
+		currentString << "+";
+		window->textBox->Clear();
+		*(window->textBox) << currentString;
+	}
+	else if (currentString.ends_with("*") || currentString.ends_with("/") || currentString.ends_with("%")
+		|| currentString.ends_with("n") || currentString.ends_with("s") || currentString.size() == 0)
+	{
+		*(window->textBox) << "-";
+	}
+	else
+	{
+		bool onlyDigits = true; ;
+		for (int stringIndex = 0; stringIndex != currentString.size(); ++stringIndex)
+		{
+			if (!isdigit(currentString[stringIndex]) && currentString[stringIndex] != '.' && currentString[0] != '-')
+			{
+				onlyDigits = false;
+				break;
+			}
+		}
+		if (onlyDigits && currentString.size() != 0 && currentString != "0")
+		{
+			if (!currentString.starts_with("-"))
+			{
+				window->textBox->Clear();
+				*(window->textBox) << "-" << currentString;
+			}
+			else if (currentString.starts_with("-"))
+			{
+				currentString.Remove(0, 1);
+				window->textBox->Clear();
+				*(window->textBox) << currentString;
+			}
+		}
+	}
 }
 
 wxButton* ButtonFactory::CreateEqualsButton(Window* window)
@@ -656,7 +876,7 @@ wxButton* ButtonFactory::CreateSinButton(Window* window)
 
 	buttonSin->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 			char lastChar = ' ';
 
@@ -673,7 +893,8 @@ wxButton* ButtonFactory::CreateSinButton(Window* window)
 			{
 				*(window->textBox) << "sin";
 			}
-
+			*/
+			OnClickSin(window);
 			event.Skip();
 
 		});
@@ -681,13 +902,32 @@ wxButton* ButtonFactory::CreateSinButton(Window* window)
 	return buttonSin;
 }
 
+void ButtonFactory::OnClickSin(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	char lastChar = ' ';
+	if (currentString.size() != 0)
+	{
+		lastChar = currentString.Last();
+	}
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar) || currentString == "Error!")
+	{
+		//do nothing; 
+	}
+	else
+	{
+		*(window->textBox) << "sin";
+	}
+}
+
+
 wxButton* ButtonFactory::CreateCosButton(Window* window)
 {
 	wxButton* buttonCos = CreateButton(window, wxID_COS, "cos");
 
 	buttonCos->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 			char lastChar = ' ';
 
@@ -704,12 +944,31 @@ wxButton* ButtonFactory::CreateCosButton(Window* window)
 			{
 				*window->textBox << "cos";
 			}
-
+			*/
+			OnClickCos(window);
 			event.Skip();
 
 		});
 
 	return buttonCos;
+}
+
+void ButtonFactory::OnClickCos(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	char lastChar = ' ';
+	if (currentString.size() != 0)
+	{
+		lastChar = currentString.Last();
+	}
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar) || currentString == "Error!")
+	{
+		//do nothing; 
+	}
+	else
+	{
+		*(window->textBox) << "cos";
+	}
 }
 
 wxButton* ButtonFactory::CreateTanButton(Window* window)
@@ -718,7 +977,7 @@ wxButton* ButtonFactory::CreateTanButton(Window* window)
 
 	buttonTan->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
-
+			/*
 			wxString currentString = window->textBox->GetValue();
 			char lastChar = ' ';
 
@@ -735,7 +994,8 @@ wxButton* ButtonFactory::CreateTanButton(Window* window)
 			{
 				*(window->textBox) << "tan";
 			}
-
+			*/
+			OnClickTan(window);
 			event.Skip();
 
 		});
@@ -743,3 +1003,20 @@ wxButton* ButtonFactory::CreateTanButton(Window* window)
 	return buttonTan;
 }
 
+void ButtonFactory::OnClickTan(Window* window)
+{
+	wxString currentString = window->textBox->GetValue();
+	char lastChar = ' ';
+	if (currentString.size() != 0)
+	{
+		lastChar = currentString.Last();
+	}
+	if (currentString.ends_with("sin") || currentString.ends_with("cos") || currentString.ends_with("tan") || isdigit(lastChar) || currentString == "Error!")
+	{
+		//do nothing; 
+	}
+	else
+	{
+		*(window->textBox) << "tan";
+	}
+}

@@ -42,6 +42,8 @@ namespace CalculatorProcessorTest
 	};
 }
 
+//test that tan of any multiple of 90 (except 90 + 180k) gives error
+
 /*
 
 Common Assert Functions
