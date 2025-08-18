@@ -35,7 +35,6 @@ namespace ButtonFactoryTest
 			Assert::AreEqual(ID, sampleButton->GetId());
 
 		}
-
 		
 
 		TEST_METHOD(TestClickButton1True)
