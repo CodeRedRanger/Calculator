@@ -61,6 +61,9 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	buttonDecimal = ButtonFactory::CreateDecimalButton(this);
 	buttonEquals = ButtonFactory::CreateEqualsButton(this);
 
+	//add below to button factor
+
+	/*
 	wxFont buttonFont(15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
 
 	buttonSin->SetFont(buttonFont);
@@ -86,6 +89,8 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	button0->SetFont(buttonFont);
 	buttonDecimal->SetFont(buttonFont);
 	buttonEquals->SetFont(buttonFont);
+
+	*/
 
 		                              
 	mainSizer->Add(textBox, 1, wxEXPAND | wxALL, 5);

@@ -5,6 +5,10 @@ wxButton* ButtonFactory::CreateButton(Window* window, wxWindowID ID, wxString la
 {
 	wxButton* button = new wxButton(window, ID, label);
 
+	wxFont buttonFont(15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
+
+	button->SetFont(buttonFont);
+
 	return button;
 }
 
