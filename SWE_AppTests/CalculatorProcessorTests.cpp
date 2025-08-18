@@ -35,9 +35,49 @@ namespace CalculatorProcessorTest
 			Assert::AreEqual("4", textBox->GetValue());
 			
 
-			//Assert::AreEqual(name, mc.GetName());
+			//Assert::AreNotEqual(name, mc.GetName());
 		}
 
 
 	};
 }
+
+/*
+
+Common Assert Functions
+
+3.	Assert::IsTrue(condition)
+o	Verifies that a condition is true.
+o	Example:
+o	Assert::IsTrue(1 + 1 == 2); // Passes
+o	Assert::IsTrue(false); // Fails
+4.	Assert::IsFalse(condition)
+o	Verifies that a condition is false.
+o	Example:
+o	Assert::IsFalse(1 + 1 == 3); // Passes
+o	Assert::IsFalse(true); // Fails
+5.	Assert::IsNull(pointer)
+o	Verifies that a pointer is null.
+o	Example:
+o	int* ptr = nullptr;
+o	Assert::IsNull(ptr); // Passes
+6.	Assert::IsNotNull(pointer)
+o	Verifies that a pointer is not null.
+o	Example:
+o	int value = 10;
+o	int* ptr = &value;
+o	Assert::IsNotNull(ptr); // Passes
+7.	Assert::Fail(message)
+o	Forces a test to fail with a custom message.
+o	Example:
+o	Assert::Fail(L"Test failed intentionally.");
+________________________________________
+Additional Assert Functions
+•	Assert::AreSame(expected, actual)
+o	Verifies that two references refer to the same object.
+•	Assert::AreNotSame(expected, actual)
+o	Verifies that two references do not refer to the same object.
+
+
+
+*/

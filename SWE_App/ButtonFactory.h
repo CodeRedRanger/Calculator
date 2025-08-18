@@ -49,6 +49,34 @@ public:
 	static wxButton* CreateCosButton(Window* window);
 	static wxButton* CreateTanButton(Window* window);
 
+	static void OnClickButton1(Window* window);
+	static void OnClickButton2(Window* window);
+	static void OnClickButton3(Window* window);
+	static void OnClickButton4(Window* window);
+	static void OnClickButton5(Window* window);
+	static void OnClickButton6(Window* window);
+	static void OnClickButton7(Window* window);
+	static void OnClickButton8(Window* window);
+	static void OnClickButton9(Window* window);
+	static void OnClickButton0(Window* window);
+	static void OnClickAdd(Window* window);
+	static void OnClickSubt(Window* window);
+	static void OnClickMult(Window* window);
+	static void OnClickDiv(Window* window);
+	static void OnClickMod(Window* window);
+	static void OnClickClear(Window* window);
+	static void OnClickDelete(Window* window);
+	static void OnClickDecimal(Window* window);
+	static void OnClickNeg(Window* window);
+	static void OnClickEquals(Window* window);
+	static void OnClickSin(Window* window);
+	static void OnClickCos(Window* window);
+	static void OnClickTan(Window* window);
+
+
+
+
+
 	
 private:
 	

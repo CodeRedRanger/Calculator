@@ -10,21 +10,32 @@ wxButton* ButtonFactory::CreateButton(Window* window, wxWindowID ID, wxString la
 
 wxButton* ButtonFactory::Create1Button(Window* window)
 {
-	wxButton* button1 = CreateButton(window, wxID_ONE, "1");
+	wxButton* button1 = CreateButton(window, wxID_ONE, "1"); //can use wxID_ANY but kept IDs for unit tests
 
 	button1->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 1;
 			}
-			event.Skip();
+			event.Skip();*/
+			OnClickButton1(window);
+			event.Skip(); 
 
 		});
 
 	return button1;
+}
+
+void ButtonFactory::OnClickButton1(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 1;
+	}
 }
 
 wxButton* ButtonFactory::Create2Button(Window* window)
@@ -34,17 +45,26 @@ wxButton* ButtonFactory::Create2Button(Window* window)
 	button2->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 2;
-			}
+			}*/
+			OnClickButton2(window);
 			event.Skip();
 
 		});
 
 
 	return button2;
+}
+
+void ButtonFactory::OnClickButton2(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 2;
+	}
 }
 
 wxButton* ButtonFactory::Create3Button(Window* window)
@@ -54,17 +74,27 @@ wxButton* ButtonFactory::Create3Button(Window* window)
 	button3->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 3;
-			}
+			}*/
+			OnClickButton3(window);
 			event.Skip();
 
 		});
 
 	return button3;
 }
+
+void ButtonFactory::OnClickButton3(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 3;
+	}
+}
+
 
 wxButton* ButtonFactory::Create4Button(Window* window)
 {
@@ -73,16 +103,25 @@ wxButton* ButtonFactory::Create4Button(Window* window)
 	button4->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 4;
-			}
+			}*/
+			OnClickButton4(window);
 			event.Skip();
 
 		});
 
 	return button4;
+}
+
+void ButtonFactory::OnClickButton4(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 4;
+	}
 }
 
 wxButton* ButtonFactory::Create5Button(Window* window)
@@ -92,16 +131,25 @@ wxButton* ButtonFactory::Create5Button(Window* window)
 	button5->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 5;
-			}
+			}*/
+			OnClickButton5(window);
 			event.Skip();
 
 		});
 
 	return button5;
+}
+
+void ButtonFactory::OnClickButton5(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 5;
+	}
 }
 
 wxButton* ButtonFactory::Create6Button(Window* window)
@@ -111,16 +159,25 @@ wxButton* ButtonFactory::Create6Button(Window* window)
 	button6->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 6;
-			}
+			}*/
+			OnClickButton6(window);
 			event.Skip();
 
 		});
 
 	return button6;
+}
+
+void ButtonFactory::OnClickButton6(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 6;
+	}
 }
 
 wxButton* ButtonFactory::Create7Button(Window* window)
@@ -130,16 +187,25 @@ wxButton* ButtonFactory::Create7Button(Window* window)
 	button7->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 7;
-			}
+			}*/
+			OnClickButton7(window);
 			event.Skip();
 
 		});
 
 	return button7;
+}
+
+void ButtonFactory::OnClickButton7(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 7;
+	}
 }
 
 wxButton* ButtonFactory::Create8Button(Window* window)
@@ -149,16 +215,25 @@ wxButton* ButtonFactory::Create8Button(Window* window)
 	button8->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 8;
-			}
+			}*/
+			OnClickButton8(window);
 			event.Skip();
 
 		});
 
 	return button8;
+}
+
+void ButtonFactory::OnClickButton8(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 8;
+	}
 }
 
 wxButton* ButtonFactory::Create9Button(Window* window)
@@ -168,11 +243,12 @@ wxButton* ButtonFactory::Create9Button(Window* window)
 	button9->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 9;
-			}
+			}*/
+			OnClickButton9(window);
 			event.Skip();
 
 		});
@@ -180,23 +256,40 @@ wxButton* ButtonFactory::Create9Button(Window* window)
 	return button9;
 }
 
+void ButtonFactory::OnClickButton9(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 9;
+	}
+}
+
 wxButton* ButtonFactory::Create0Button(Window* window)
 {
-	wxButton* button0 = CreateButton(window, wxID_ANY, "0");
+	wxButton* button0 = CreateButton(window, wxID_ZERO, "0"); 
 
 	button0->Bind(wxEVT_BUTTON, [window](wxCommandEvent& event)
 		{
 
-			if (window->textBox->GetValue() != "Error!")
+			/*if (window->textBox->GetValue() != "Error!")
 			{
 
 				*(window->textBox) << 0;
-			}
+			}*/
+			OnClickButton0(window);
 			event.Skip();
 
 		}); 
 
 	return button0;
+}
+
+void ButtonFactory::OnClickButton0(Window* window)
+{
+	if (window->textBox->GetValue() != "Error!")
+	{
+		*(window->textBox) << 0;
+	}
 }
 
 wxButton* ButtonFactory::CreateAddButton(Window* window)
