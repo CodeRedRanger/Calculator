@@ -61,37 +61,6 @@ Window::Window() : wxFrame(nullptr, wxID_ANY, "Calculator", wxPoint(200, 200), w
 	buttonDecimal = ButtonFactory::CreateDecimalButton(this);
 	buttonEquals = ButtonFactory::CreateEqualsButton(this);
 
-	//add below to button factor
-
-	/*
-	wxFont buttonFont(15, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_NORMAL);
-
-	buttonSin->SetFont(buttonFont);
-	buttonCos->SetFont(buttonFont);
-	buttonTan->SetFont(buttonFont);
-	buttonClear->SetFont(buttonFont);
-	buttonNeg->SetFont(buttonFont);
-	buttonMod->SetFont(buttonFont);
-	buttonDiv->SetFont(buttonFont);
-	button7->SetFont(buttonFont);
-	button8->SetFont(buttonFont);
-	button9->SetFont(buttonFont);
-	buttonMult->SetFont(buttonFont);
-	button4->SetFont(buttonFont);
-	button5->SetFont(buttonFont);
-	button6->SetFont(buttonFont);
-	buttonSubt->SetFont(buttonFont);
-	button1->SetFont(buttonFont);
-	button2->SetFont(buttonFont);
-	button3->SetFont(buttonFont);
-	buttonAdd->SetFont(buttonFont);
-	buttonDel->SetFont(buttonFont);
-	button0->SetFont(buttonFont);
-	buttonDecimal->SetFont(buttonFont);
-	buttonEquals->SetFont(buttonFont);
-
-	*/
-
 		                              
 	mainSizer->Add(textBox, 1, wxEXPAND | wxALL, 5);
 	mainSizer->Add(buttonSizer1, 1, wxEXPAND | wxALL, 5);
