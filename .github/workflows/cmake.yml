@@ -39,8 +39,11 @@ jobs:
           ./emsdk activate latest
 
       - name: Configure CMake
-        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=$GITHUB_WORKSPACE/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+        run: |
+          #cmake -S ../../ -B ../../build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+          ls -R
+          pwd
 
       - name: Build
 
-        run: cmake --build ./build --config Release
+        #run: cmake --build ./build --config Release
