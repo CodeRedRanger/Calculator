@@ -31,7 +31,7 @@ jobs:
         shell: bash
 
         # Change the directory to be emsdk instead of the project root
-        working-directory: /home/runner/work/Calculator/Calculator/emsdk
+        working-directory: /home/runner/work/Calculator/emsdk
         run: |
           ls -R
           pwd
