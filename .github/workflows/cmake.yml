@@ -21,22 +21,22 @@ jobs:
       - name: Install Packages
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y gcc-multilib python3 curl zip unzip
+          sudo apt-get install -y  gcc-multilib python3 curl zip unzip
           sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
 
-      #- name: Checkout emsdk
-       # run: git clone https://github.com/emscripten-core/emsdk.git /home/runner/work/Calculator/Calculator
+      - name: Checkout emsdk
+        run: git clone https://github.com/emscripten-core/emsdk.git /home/runner/work/Calculator
 
       - name: Configure Emscripten
         shell: bash
 
         # Change the directory to be emsdk instead of the project root
-        working-directory: /home/runner/work/Calculator
+        working-directory: /home/runner/work/Calculator/emsdk
         run: |
           ls -R
           pwd
-         # ./emsdk install latest
-         # ./emsdk activate latest
+          ./emsdk install latest
+          ./emsdk activate latest
 
       - name: Configure CMake
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=$GITHUB_WORKSPACE/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
