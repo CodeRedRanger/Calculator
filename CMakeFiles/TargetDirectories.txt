@@ -1,3 +1,0 @@
-C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/CMakeFiles/Calc_App.dir
-C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/CMakeFiles/ALL_BUILD.dir
-C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/CMakeFiles/ZERO_CHECK.dir
