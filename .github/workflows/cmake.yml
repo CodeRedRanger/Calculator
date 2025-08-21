@@ -24,15 +24,17 @@ jobs:
           sudo apt-get install -y gcc-multilib python3 curl zip unzip
           sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
 
-      - name: Checkout emsdk
-        run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
+      #- name: Checkout emsdk
+       # run: git clone https://github.com/emscripten-core/emsdk.git /home/runner/work/Calculator/Calculator
 
       - name: Configure Emscripten
         shell: bash
 
         # Change the directory to be emsdk instead of the project root
-        working-directory: ${{github.workspace}}/emsdk
+        working-directory: /home/runner/work/Calculator/Calculator/emsdk
         run: |
+          ls -R
+          pwd
           ./emsdk install latest
           ./emsdk activate latest
 
