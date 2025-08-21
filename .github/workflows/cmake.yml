@@ -30,8 +30,8 @@ jobs:
         # Change the directory to be emsdk instead of the project root
         working-directory: ${{github.workspace}}/emsdk
         run: |
-          ./emsdk install latest
-          ./emsdk activate latest
+          ../emsdk install latest
+          ../emsdk activate latest
 
       - name: Configure CMake
         run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=$GITHUB_WORKSPACE/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
