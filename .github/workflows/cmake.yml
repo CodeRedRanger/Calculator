@@ -24,8 +24,8 @@ jobs:
           sudo apt-get install -y  gcc-multilib python3 curl zip unzip
           sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
 
-      - name: Checkout emsdk
-        run: git clone https://github.com/emscripten-core/emsdk.git /home/runner/work/Calculator
+      #- name: Checkout emsdk
+      #  run: git clone https://github.com/emscripten-core/emsdk.git /home/runner/work/Calculator
 
       - name: Configure Emscripten
         shell: bash
