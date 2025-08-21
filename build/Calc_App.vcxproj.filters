@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\App.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\ButtonFactory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\CalculatorProcessor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\Window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\App.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\ButtonFactory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\CalculatorProcessor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\Window.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{7E784675-1F0E-3637-8165-B639CBED8A2E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{DB1AC602-CF4D-3AE3-8F2F-A204C15011F6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
