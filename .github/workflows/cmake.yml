@@ -30,7 +30,7 @@ jobs:
         # Change the directory to be emsdk instead of the project root
         working-directory: ${{github.workspace}}  #/emsdk
         run: |
-          ./emsdk install latest
+          ../../emsdk install latest
           ./emsdk activate latest
 
       - name: Configure CMake
