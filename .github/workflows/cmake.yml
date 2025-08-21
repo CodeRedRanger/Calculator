@@ -40,7 +40,7 @@ jobs:
         run: |
           ls -R
           pwd
-          cmake -S ../ -B ../build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
     
       #- name: Build
 
