@@ -44,6 +44,6 @@ jobs:
           ls -R
           pwd
 
-      - name: Build
+      #- name: Build
 
         #run: cmake --build ./build --config Release
