@@ -24,13 +24,16 @@ jobs:
           sudo apt-get install -y gcc-multilib python3 curl zip unzip
           sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
 
+      - name: Checkout emsdk
+        run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
+
       - name: Configure Emscripten
         shell: bash
 
         # Change the directory to be emsdk instead of the project root
-        working-directory: ${{github.workspace}}  #/emsdk
+        working-directory: ${{github.workspace}}/emsdk
         run: |
-          ../../emsdk install latest
+          ./emsdk install latest
           ./emsdk activate latest
 
       - name: Configure CMake
