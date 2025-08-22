@@ -1,45 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\App.cpp">
+    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\App.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\ButtonFactory.cpp">
+    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\ButtonFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\CalculatorProcessor.cpp">
+    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\CalculatorProcessor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\Window.cpp">
+    <ClCompile Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\Window.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\App.h">
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\App.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\ButtonFactory.h">
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\ButtonFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\CalculatorProcessor.h">
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\CalculatorProcessor.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\Window.h">
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\Window.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\SWE_App\Utilities.h">
+    <ClInclude Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\SWE_App\Utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-chris-CodeRedRanger\CMakeLists.txt" />
+    <CustomBuild Include="C:\Dev and Fullsail\Software Engineering\calculator\calculator-CMake\Calculator\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{7E784675-1F0E-3637-8165-B639CBED8A2E}</UniqueIdentifier>
+      <UniqueIdentifier>{87B2AB63-798F-371D-BF30-DE4E3FCB2E28}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{DB1AC602-CF4D-3AE3-8F2F-A204C15011F6}</UniqueIdentifier>
+      <UniqueIdentifier>{5E5D1C32-F7EB-337D-A709-D14404574ECD}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

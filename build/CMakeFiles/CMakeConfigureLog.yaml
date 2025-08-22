@@ -70,9 +70,9 @@ events:
       The output was:
       0
       MSBuild version 17.14.10+8b8e13593 for .NET Framework
-      Build started 8/21/2025 3:07:32 PM.
+      Build started 8/21/2025 8:35:40 PM.
       
-      Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
+      Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -88,13 +88,13 @@ events:
         CMakeCCompilerId.c
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdC.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdC.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdC.lib" /MACHINE:X64 Debug\\CMakeCCompilerId.obj
-        CompilerIdC.vcxproj -> C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.exe
+        CompilerIdC.vcxproj -> C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.exe
       AppLocalFromInstalled:
-        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
         'pwsh.exe' is not recognized as an internal or external command,
         operable program or batch file.
-        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
-        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdC.tlog\\CompilerIdC.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_C_COMPILER=%%~$PATH:i
         :VCEnd
@@ -102,13 +102,13 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdC.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdC.tlog\\CompilerIdC.lastbuildstate".
-      Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
+      Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdC\\CompilerIdC.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
           0 Error(s)
       
-      Time Elapsed 00:00:00.53
+      Time Elapsed 00:00:00.52
       
       
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.exe"
@@ -116,7 +116,7 @@ events:
       Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "CompilerIdC.vcxproj"
       
       The C compiler identification is MSVC, found in:
-        C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/4.1.0-rc3/CompilerIdC/CompilerIdC.exe
+        C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/4.1.0-rc3/CompilerIdC/CompilerIdC.exe
       
   -
     kind: "find-v1"
@@ -1238,9 +1238,9 @@ events:
       The output was:
       0
       MSBuild version 17.14.10+8b8e13593 for .NET Framework
-      Build started 8/21/2025 3:07:33 PM.
+      Build started 8/21/2025 8:35:40 PM.
       
-      Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
+      Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" on node 1 (default targets).
       PrepareForBuild:
         Creating directory "Debug\\".
         Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
@@ -1256,13 +1256,13 @@ events:
         CMakeCXXCompilerId.cpp
       Link:
         C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib" /LIBPATH:"C:\\vcpkg\\installed\\x64-windows\\lib\\manual-link" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib "C:\\vcpkg\\installed\\x64-windows\\lib\\*.lib" /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
-        CompilerIdCXX.vcxproj -> C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.exe
+        CompilerIdCXX.vcxproj -> C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.exe
       AppLocalFromInstalled:
-        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
         'pwsh.exe' is not recognized as an internal or external command,
         operable program or batch file.
-        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
-        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
+        The command "pwsh.exe -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"" exited with code 9009.
+        "C:\\WINDOWS\\System32\\WindowsPowerShell\\v1.0\\powershell.exe" -ExecutionPolicy Bypass -noprofile -File "C:\\vcpkg\\scripts\\buildsystems\\msbuild\\applocal.ps1" "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.exe" "C:\\vcpkg\\installed\\x64-windows\\bin" "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.write.1u.tlog" "Debug\\vcpkg.applocal.log"
       PostBuildEvent:
         for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
         :VCEnd
@@ -1270,7 +1270,7 @@ events:
       FinalizeBuildStatus:
         Deleting file "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild".
         Touching "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate".
-      Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
+      Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\4.1.0-rc3\\CompilerIdCXX\\CompilerIdCXX.vcxproj" (default targets).
       
       Build succeeded.
           0 Warning(s)
@@ -1284,7 +1284,7 @@ events:
       Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
       
       The CXX compiler identification is MSVC, found in:
-        C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/4.1.0-rc3/CompilerIdCXX/CompilerIdCXX.exe
+        C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/4.1.0-rc3/CompilerIdCXX/CompilerIdCXX.exe
       
   -
     kind: "find-v1"
@@ -2024,8 +2024,8 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-t1xoy6"
-      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-t1xoy6"
+      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-wtdmrk"
+      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-wtdmrk"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -2038,40 +2038,40 @@ events:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-t1xoy6'
+        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-wtdmrk'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_47ee4.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_911b6.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 8/21/2025 3:07:33 PM.
+        Build started 8/21/2025 8:35:41 PM.
         
-        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t1xoy6\\cmTC_47ee4.vcxproj" on node 1 (default targets).
+        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtdmrk\\cmTC_911b6.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_47ee4.dir\\Debug\\".
+          Creating directory "cmTC_911b6.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t1xoy6\\Debug\\".
-          Creating directory "cmTC_47ee4.dir\\Debug\\cmTC_47ee4.tlog\\".
+          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtdmrk\\Debug\\".
+          Creating directory "cmTC_911b6.dir\\Debug\\cmTC_911b6.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_47ee4.dir\\Debug\\cmTC_47ee4.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_47ee4.dir\\Debug\\cmTC_47ee4.tlog\\unsuccessfulbuild".
+          Creating "cmTC_911b6.dir\\Debug\\cmTC_911b6.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_911b6.dir\\Debug\\cmTC_911b6.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_47ee4.dir\\Debug\\\\" /Fd"cmTC_47ee4.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_911b6.dir\\Debug\\\\" /Fd"cmTC_911b6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_47ee4.dir\\Debug\\\\" /Fd"cmTC_47ee4.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_911b6.dir\\Debug\\\\" /Fd"cmTC_911b6.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCCompilerABI.c"
           CMakeCCompilerABI.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t1xoy6\\Debug\\cmTC_47ee4.exe" /INCREMENTAL /ILK:"cmTC_47ee4.dir\\Debug\\cmTC_47ee4.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-t1xoy6/Debug/cmTC_47ee4.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-t1xoy6/Debug/cmTC_47ee4.lib" /MACHINE:X64  /machine:x64 cmTC_47ee4.dir\\Debug\\CMakeCCompilerABI.obj
-          cmTC_47ee4.vcxproj -> C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t1xoy6\\Debug\\cmTC_47ee4.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtdmrk\\Debug\\cmTC_911b6.exe" /INCREMENTAL /ILK:"cmTC_911b6.dir\\Debug\\cmTC_911b6.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-wtdmrk/Debug/cmTC_911b6.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-wtdmrk/Debug/cmTC_911b6.lib" /MACHINE:X64  /machine:x64 cmTC_911b6.dir\\Debug\\CMakeCCompilerABI.obj
+          cmTC_911b6.vcxproj -> C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtdmrk\\Debug\\cmTC_911b6.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_47ee4.dir\\Debug\\cmTC_47ee4.tlog\\unsuccessfulbuild".
-          Touching "cmTC_47ee4.dir\\Debug\\cmTC_47ee4.tlog\\cmTC_47ee4.lastbuildstate".
-        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-t1xoy6\\cmTC_47ee4.vcxproj" (default targets).
+          Deleting file "cmTC_911b6.dir\\Debug\\cmTC_911b6.tlog\\unsuccessfulbuild".
+          Touching "cmTC_911b6.dir\\Debug\\cmTC_911b6.tlog\\cmTC_911b6.lastbuildstate".
+        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-wtdmrk\\cmTC_911b6.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
             0 Error(s)
         
-        Time Elapsed 00:00:00.28
+        Time Elapsed 00:00:00.29
         
       exitCode: 0
   -
@@ -2111,8 +2111,8 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-s1vnim"
-      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-s1vnim"
+      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-amp4qu"
+      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-amp4qu"
     cmakeVariables:
       CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /GR /EHsc"
       CMAKE_CXX_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -2126,34 +2126,34 @@ events:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-s1vnim'
+        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-amp4qu'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_e2549.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_3db3a.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 8/21/2025 3:07:34 PM.
+        Build started 8/21/2025 8:35:41 PM.
         
-        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s1vnim\\cmTC_e2549.vcxproj" on node 1 (default targets).
+        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-amp4qu\\cmTC_3db3a.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_e2549.dir\\Debug\\".
+          Creating directory "cmTC_3db3a.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s1vnim\\Debug\\".
-          Creating directory "cmTC_e2549.dir\\Debug\\cmTC_e2549.tlog\\".
+          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-amp4qu\\Debug\\".
+          Creating directory "cmTC_3db3a.dir\\Debug\\cmTC_3db3a.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_e2549.dir\\Debug\\cmTC_e2549.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_e2549.dir\\Debug\\cmTC_e2549.tlog\\unsuccessfulbuild".
+          Creating "cmTC_3db3a.dir\\Debug\\cmTC_3db3a.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_3db3a.dir\\Debug\\cmTC_3db3a.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_e2549.dir\\Debug\\\\" /Fd"cmTC_e2549.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_3db3a.dir\\Debug\\\\" /Fd"cmTC_3db3a.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_e2549.dir\\Debug\\\\" /Fd"cmTC_e2549.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /GR /Fo"cmTC_3db3a.dir\\Debug\\\\" /Fd"cmTC_3db3a.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.1\\Modules\\CMakeCXXCompilerABI.cpp"
           CMakeCXXCompilerABI.cpp
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s1vnim\\Debug\\cmTC_e2549.exe" /INCREMENTAL /ILK:"cmTC_e2549.dir\\Debug\\cmTC_e2549.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-s1vnim/Debug/cmTC_e2549.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-s1vnim/Debug/cmTC_e2549.lib" /MACHINE:X64  /machine:x64 cmTC_e2549.dir\\Debug\\CMakeCXXCompilerABI.obj
-          cmTC_e2549.vcxproj -> C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s1vnim\\Debug\\cmTC_e2549.exe
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-amp4qu\\Debug\\cmTC_3db3a.exe" /INCREMENTAL /ILK:"cmTC_3db3a.dir\\Debug\\cmTC_3db3a.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-amp4qu/Debug/cmTC_3db3a.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-amp4qu/Debug/cmTC_3db3a.lib" /MACHINE:X64  /machine:x64 cmTC_3db3a.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_3db3a.vcxproj -> C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-amp4qu\\Debug\\cmTC_3db3a.exe
         FinalizeBuildStatus:
-          Deleting file "cmTC_e2549.dir\\Debug\\cmTC_e2549.tlog\\unsuccessfulbuild".
-          Touching "cmTC_e2549.dir\\Debug\\cmTC_e2549.tlog\\cmTC_e2549.lastbuildstate".
-        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-s1vnim\\cmTC_e2549.vcxproj" (default targets).
+          Deleting file "cmTC_3db3a.dir\\Debug\\cmTC_3db3a.tlog\\unsuccessfulbuild".
+          Touching "cmTC_3db3a.dir\\Debug\\cmTC_3db3a.tlog\\cmTC_3db3a.lastbuildstate".
+        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-amp4qu\\cmTC_3db3a.vcxproj" (default targets).
         
         Build succeeded.
             0 Warning(s)
@@ -4484,8 +4484,8 @@ events:
       - "C:/vcpkg/scripts/buildsystems/vcpkg.cmake:850 (include)"
       - "CMakeLists.txt:5 (find_package)"
     directories:
-      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-fysr2e"
-      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-fysr2e"
+      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-hpdsc0"
+      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-hpdsc0"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -4498,40 +4498,40 @@ events:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-fysr2e'
+        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-hpdsc0'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_2257f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_2a217.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 8/21/2025 3:07:34 PM.
+        Build started 8/21/2025 8:35:42 PM.
         
-        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\cmTC_2257f.vcxproj" on node 1 (default targets).
+        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\cmTC_2a217.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_2257f.dir\\Debug\\".
+          Creating directory "cmTC_2a217.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\Debug\\".
-          Creating directory "cmTC_2257f.dir\\Debug\\cmTC_2257f.tlog\\".
+          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\Debug\\".
+          Creating directory "cmTC_2a217.dir\\Debug\\cmTC_2a217.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_2257f.dir\\Debug\\cmTC_2257f.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_2257f.dir\\Debug\\cmTC_2257f.tlog\\unsuccessfulbuild".
+          Creating "cmTC_2a217.dir\\Debug\\cmTC_2a217.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_2a217.dir\\Debug\\cmTC_2a217.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_2257f.dir\\Debug\\\\" /Fd"cmTC_2257f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\src.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_2a217.dir\\Debug\\\\" /Fd"cmTC_2a217.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\src.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_2257f.dir\\Debug\\\\" /Fd"cmTC_2257f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\src.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CMAKE_HAVE_LIBC_PTHREAD /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_2a217.dir\\Debug\\\\" /Fd"cmTC_2a217.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\src.c"
           src.c
-        C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\cmTC_2257f.vcxproj]
-        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\cmTC_2257f.vcxproj" (default targets) -- FAILED.
+        C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\cmTC_2a217.vcxproj]
+        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\cmTC_2a217.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\cmTC_2257f.vcxproj" (default target) (1) ->
+        "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\cmTC_2a217.vcxproj" (default target) (1) ->
         (ClCompile target) -> 
-          C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fysr2e\\cmTC_2257f.vcxproj]
+          C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\src.c(1,10): error C1083: Cannot open include file: 'pthread.h': No such file or directory [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-hpdsc0\\cmTC_2a217.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.17
+        Time Elapsed 00:00:00.18
         
       exitCode: 1
   -
@@ -4546,8 +4546,8 @@ events:
       - "C:/vcpkg/scripts/buildsystems/vcpkg.cmake:850 (include)"
       - "CMakeLists.txt:5 (find_package)"
     directories:
-      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-6yykam"
-      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-6yykam"
+      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-vcjapm"
+      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-vcjapm"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -4560,42 +4560,42 @@ events:
       variable: "CMAKE_HAVE_PTHREADS_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-6yykam'
+        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-vcjapm'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_c0ba2.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_7122f.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 8/21/2025 3:07:35 PM.
+        Build started 8/21/2025 8:35:42 PM.
         
-        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\cmTC_c0ba2.vcxproj" on node 1 (default targets).
+        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\cmTC_7122f.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_c0ba2.dir\\Debug\\".
+          Creating directory "cmTC_7122f.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\Debug\\".
-          Creating directory "cmTC_c0ba2.dir\\Debug\\cmTC_c0ba2.tlog\\".
+          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\Debug\\".
+          Creating directory "cmTC_7122f.dir\\Debug\\cmTC_7122f.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_c0ba2.dir\\Debug\\cmTC_c0ba2.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_c0ba2.dir\\Debug\\cmTC_c0ba2.tlog\\unsuccessfulbuild".
+          Creating "cmTC_7122f.dir\\Debug\\cmTC_7122f.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_7122f.dir\\Debug\\cmTC_7122f.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_c0ba2.dir\\Debug\\\\" /Fd"cmTC_c0ba2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_7122f.dir\\Debug\\\\" /Fd"cmTC_7122f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\CheckFunctionExists.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_c0ba2.dir\\Debug\\\\" /Fd"cmTC_c0ba2.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\CheckFunctionExists.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_7122f.dir\\Debug\\\\" /Fd"cmTC_7122f.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\Debug\\cmTC_c0ba2.exe" /INCREMENTAL /ILK:"cmTC_c0ba2.dir\\Debug\\cmTC_c0ba2.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-6yykam/Debug/cmTC_c0ba2.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-6yykam/Debug/cmTC_c0ba2.lib" /MACHINE:X64  /machine:x64 cmTC_c0ba2.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\cmTC_c0ba2.vcxproj]
-        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\cmTC_c0ba2.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\Debug\\cmTC_7122f.exe" /INCREMENTAL /ILK:"cmTC_7122f.dir\\Debug\\cmTC_7122f.ilk" /NOLOGO pthreads.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-vcjapm/Debug/cmTC_7122f.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-vcjapm/Debug/cmTC_7122f.lib" /MACHINE:X64  /machine:x64 cmTC_7122f.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\cmTC_7122f.vcxproj]
+        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\cmTC_7122f.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\cmTC_c0ba2.vcxproj" (default target) (1) ->
+        "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\cmTC_7122f.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6yykam\\cmTC_c0ba2.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthreads.lib' [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-vcjapm\\cmTC_7122f.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.23
+        Time Elapsed 00:00:00.22
         
       exitCode: 1
   -
@@ -4610,8 +4610,8 @@ events:
       - "C:/vcpkg/scripts/buildsystems/vcpkg.cmake:850 (include)"
       - "CMakeLists.txt:5 (find_package)"
     directories:
-      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-3kp4hb"
-      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-3kp4hb"
+      source: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-ebrz1c"
+      binary: "C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-ebrz1c"
     cmakeVariables:
       CMAKE_C_FLAGS: "/DWIN32 /D_WINDOWS"
       CMAKE_C_FLAGS_DEBUG: "/Zi /Ob0 /Od /RTC1"
@@ -4624,42 +4624,42 @@ events:
       variable: "CMAKE_HAVE_PTHREAD_CREATE"
       cached: true
       stdout: |
-        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-3kp4hb'
+        Change Dir: 'C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-ebrz1c'
         
-        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_b8928.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_1fa76.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
         MSBuild version 17.14.10+8b8e13593 for .NET Framework
-        Build started 8/21/2025 3:07:35 PM.
+        Build started 8/21/2025 8:35:43 PM.
         
-        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\cmTC_b8928.vcxproj" on node 1 (default targets).
+        Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\cmTC_1fa76.vcxproj" on node 1 (default targets).
         PrepareForBuild:
-          Creating directory "cmTC_b8928.dir\\Debug\\".
+          Creating directory "cmTC_1fa76.dir\\Debug\\".
           Structured output is enabled. The formatting of compiler diagnostics will reflect the error hierarchy. See https://aka.ms/cpp/structured-output for more details.
-          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\Debug\\".
-          Creating directory "cmTC_b8928.dir\\Debug\\cmTC_b8928.tlog\\".
+          Creating directory "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\Debug\\".
+          Creating directory "cmTC_1fa76.dir\\Debug\\cmTC_1fa76.tlog\\".
         InitializeBuildStatus:
-          Creating "cmTC_b8928.dir\\Debug\\cmTC_b8928.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
-          Touching "cmTC_b8928.dir\\Debug\\cmTC_b8928.tlog\\unsuccessfulbuild".
+          Creating "cmTC_1fa76.dir\\Debug\\cmTC_1fa76.tlog\\unsuccessfulbuild" because "AlwaysCreate" was specified.
+          Touching "cmTC_1fa76.dir\\Debug\\cmTC_1fa76.tlog\\unsuccessfulbuild".
         ClCompile:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_b8928.dir\\Debug\\\\" /Fd"cmTC_b8928.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\CheckFunctionExists.c"
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\CL.exe /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_1fa76.dir\\Debug\\\\" /Fd"cmTC_1fa76.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\CheckFunctionExists.c"
           Microsoft (R) C/C++ Optimizing Compiler Version 19.44.35209 for x64
           Copyright (C) Microsoft Corporation.  All rights reserved.
-          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_b8928.dir\\Debug\\\\" /Fd"cmTC_b8928.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\CheckFunctionExists.c"
+          cl /c /Zi /W1 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D CHECK_FUNCTION_EXISTS=pthread_create /D "CMAKE_INTDIR=\\"Debug\\"" /RTC1 /MDd /GS /fp:precise /Fo"cmTC_1fa76.dir\\Debug\\\\" /Fd"cmTC_1fa76.dir\\Debug\\vc143.pdb" /external:W1 /Gd /TC /errorReport:queue "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\CheckFunctionExists.c"
           CheckFunctionExists.c
         Link:
-          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\Debug\\cmTC_b8928.exe" /INCREMENTAL /ILK:"cmTC_b8928.dir\\Debug\\cmTC_b8928.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-3kp4hb/Debug/cmTC_b8928.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-chris-CodeRedRanger/build/CMakeFiles/CMakeScratch/TryCompile-3kp4hb/Debug/cmTC_b8928.lib" /MACHINE:X64  /machine:x64 cmTC_b8928.dir\\Debug\\CheckFunctionExists.obj
-        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\cmTC_b8928.vcxproj]
-        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\cmTC_b8928.vcxproj" (default targets) -- FAILED.
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\bin\\HostX64\\x64\\link.exe /OUT:"C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\Debug\\cmTC_1fa76.exe" /INCREMENTAL /ILK:"cmTC_1fa76.dir\\Debug\\cmTC_1fa76.ilk" /NOLOGO pthread.lib kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-ebrz1c/Debug/cmTC_1fa76.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /IMPLIB:"C:/Dev and Fullsail/Software Engineering/calculator/calculator-CMake/Calculator/build/CMakeFiles/CMakeScratch/TryCompile-ebrz1c/Debug/cmTC_1fa76.lib" /MACHINE:X64  /machine:x64 cmTC_1fa76.dir\\Debug\\CheckFunctionExists.obj
+        LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\cmTC_1fa76.vcxproj]
+        Done Building Project "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\cmTC_1fa76.vcxproj" (default targets) -- FAILED.
         
         Build FAILED.
         
-        "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\cmTC_b8928.vcxproj" (default target) (1) ->
+        "C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\cmTC_1fa76.vcxproj" (default target) (1) ->
         (Link target) -> 
-          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-chris-CodeRedRanger\\build\\CMakeFiles\\CMakeScratch\\TryCompile-3kp4hb\\cmTC_b8928.vcxproj]
+          LINK : fatal error LNK1104: cannot open file 'pthread.lib' [C:\\Dev and Fullsail\\Software Engineering\\calculator\\calculator-CMake\\Calculator\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ebrz1c\\cmTC_1fa76.vcxproj]
         
             0 Warning(s)
             1 Error(s)
         
-        Time Elapsed 00:00:00.23
+        Time Elapsed 00:00:00.22
         
       exitCode: 1
   -
