@@ -83,8 +83,8 @@ jobs:
           ./emsdk/emsdk activate latest
           
         working-directory: ${{ github.workspace }}
-      - name: Clean build directory
-        run: rm -rf ./build
+      #- name: Clean build directory
+      #  run: rm -rf ./build
 
       - name: Configure CMake
         run: |
