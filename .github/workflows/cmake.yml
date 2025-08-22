@@ -11,8 +11,17 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: "https://github.com/Microsoft/vcpkg"
+          path: "vcpkg"
+
+      - name: Bootstrap vcpkg
+        run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.bat"
+        shell: pwsh
+    
       - name: Set VCPKG_ROOT
-        run: echo "VCPKG_ROOT=C:/vcpkg" >> $GITHUB_ENV
+        run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
       - name: Build with vcpkg
         run: |
           vcpkg install 
