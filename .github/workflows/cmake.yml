@@ -18,10 +18,11 @@ jobs:
         #working-directory: \home\runner\work\Calculator\
         run: |
           pwd
-          git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}\vcpkg
+          git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}/vcpkg
           cd /home/runner/work/Calculator/vcpkg
           .\bootstrap-vcpkg.bat
-          cd ${{ env.VCPKG_ROOT }}
+          cd /home/runner/work/Calculator
+          pwd
           vcpkg install
       #- name: Install wxWidgets via vcpkg
       #  run: |
