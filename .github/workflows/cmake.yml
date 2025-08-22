@@ -51,9 +51,9 @@ jobs:
         run: |
          echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" >> $GITHUB_ENV # -S .  -B ./build 
 
-      - name: Install wxWidgets via vcpkg
+      - name: Installs including wxWidgets via vcpkg
         run: |
-          ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets --triplet x64-linux
+          ${{ github.workspace }}/vcpkg/vcpkg install 
 
       - name: Checkout emsdk
         run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
