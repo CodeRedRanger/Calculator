@@ -15,8 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install vcpkg
-        working-directory: \home\runner\work\Calculator\
+        #working-directory: \home\runner\work\Calculator\
         run: |
+          pwd
           #git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
           #cd /home/runner/work/Calculator/vcpkg
           #.\bootstrap-vcpkg.bat
