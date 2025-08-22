@@ -18,8 +18,8 @@ jobs:
         run: git clone https://github.com/Microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
   
       - name: Bootstrap vcpkg
-        run: "${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat"
-        #shell: pwsh
+        run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
+        shell: pwsh
     
       #- name: Setup VCPKG_ROOT
        # run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
