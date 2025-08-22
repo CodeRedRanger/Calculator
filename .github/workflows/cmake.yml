@@ -10,15 +10,15 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    env:
-      VCPKG_ROOT: ${{ github.workspace }}
+    #env:
+     # VCPKG_ROOT: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
       - name: Install vcpkg
         #working-directory: \home\runner\work\Calculator\
         run: |
           pwd
-          git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}/vcpkg
+          git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
           cd ${{ github.workspace }}/vcpkg
           .\bootstrap-vcpkg.bat
           cd ${{ github.workspace }}
