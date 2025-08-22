@@ -9,22 +9,23 @@ on:
 
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
+    env:
+      VCPKG_ROOT: ${{ github.workspace }}/vcpkg
     steps:
       - uses: actions/checkout@v2
-        with:
-          repository: "https://github.com/Microsoft/vcpkg"
-          path: "vcpkg"
-
+      - name: Clone vcpkg
+        run: git clone https://github.com/Microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
+  
       - name: Bootstrap vcpkg
-        run: "${{ github.workspace }}/vcpkg/bootstrap-vcpkg.bat"
-        shell: pwsh
+        run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat"
+        #shell: pwsh
     
-      - name: Set VCPKG_ROOT
-        run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
-      - name: Build with vcpkg
-        run: |
-          vcpkg install 
+      #- name: Setup VCPKG_ROOT
+       # run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
+      #- name: Build with vcpkg
+       # run: |
+        #  vcpkg install 
 
   release_web:
     name: Web Release
