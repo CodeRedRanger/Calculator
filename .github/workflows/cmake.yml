@@ -55,6 +55,9 @@ jobs:
         run: |
           ${{ github.workspace }}/vcpkg/vcpkg install 
 
+      - name: Integrate vcpkg
+        run: vcpkg integrate install
+
       - name: Checkout emsdk
         run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
 
