@@ -2,8 +2,6 @@ cmake_minimum_required(VERSION 3.18)
 
 project(Calc_App)
 
--DCMAKE_TOOLCHAIN_FILE="$ENV{VCPKG_ROOT}/vcpkg/
-
 find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base PATHS "$ENV{VCPKG_ROOT}/vcpkg_installed/x64-windows/share/wxwidgets")
 
 set(CMAKE_CXX_STANDARD 11)
