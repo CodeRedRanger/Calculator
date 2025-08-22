@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.18)
 
 project(Calc_App)
 
-find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
+find_package(wxWidgets 3.3 CONFIG REQUIRED COMPONENTS net core base)
+
+set(CMAKE_CXX_STANDARD 11)
 
 if(wxWidgets_FOUND)
 
