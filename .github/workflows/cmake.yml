@@ -9,18 +9,7 @@ on:
 
 jobs:
 
-      #- name: Install wxWidgets via vcpkg
-      #  run: |
-      #    cd /home/runner/work/Calculator/vcpkg
-      #    .\vcpkg.exe install wxwidgets:x64-windows
-        
-      #- name: Clone vcpkg
-      #  run: git clone https://github.com/Microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
-  
-      #- name: Bootstrap vcpkg
-       # run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
-       # shell: pwsh
-
+      
       #- name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
       #  uses: lukka/run-vcpkg@v11
       #  with: 
@@ -28,12 +17,7 @@ jobs:
          # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg #not needed
        #   vcpkgArguments: 'install wxwidgets:x64-windows-static'
           
-    
-      #- name: Setup VCPKG_ROOT #This block is not needed
-       # run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
-      #- name: Build with vcpkg
-       # run: |
-        #  vcpkg install 
+  
 
   release_web:
     name: Web Release
@@ -56,6 +40,7 @@ jobs:
         run: cmake -E make_directory ${{ github.workspace }}\build
 
       - name: Install vcpkg 
+        shell: bash
         run: |
           pwd
           git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
@@ -65,14 +50,14 @@ jobs:
           pwd
           vcpkg install
 
+      - name: Install wxWidgets via vcpkg
+        run: ${{ github.workspace }}/vcpkg.exe install wxwidgets:x64-windows
+
       - name: Checkout emsdk
         run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
 
       - name: Configure Emscripten
         shell: bash
-
-        # Change the directory to be emsdk instead of the project root
-        #working-directory: /home/runner/work/Calculator/emsdk
         run: |
           ./emsdk/emsdk install latest
           ./emsdk/emsdk activate latest
