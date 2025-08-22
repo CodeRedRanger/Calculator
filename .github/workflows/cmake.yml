@@ -51,7 +51,7 @@ jobs:
           vcpkg install
 
       - name: Install wxWidgets via vcpkg
-        run: ${{ github.workspace }}/vcpkg.exe install wxwidgets:x64-windows
+        run: ${{ github.workspace }}/vcpkg/vcpkg.exe install wxwidgets:x64-windows
 
       - name: Checkout emsdk
         run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
