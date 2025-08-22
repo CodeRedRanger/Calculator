@@ -13,7 +13,7 @@ jobs:
     env:
       VCPKG_ROOT: /home/runner/work/Calculator/vcpkg
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Install vcpkg
         run: |
           git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
@@ -22,7 +22,7 @@ jobs:
       - name: Install wxWidgets via vcpkg
         run: |
           cd /home/runner/work/Calculator/vcpkg
-          .\vcpkg.exe install wxwidgets
+          .\vcpkg.exe install wxwidgets:x64-windows
         
       #- name: Clone vcpkg
       #  run: git clone https://github.com/Microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
@@ -50,13 +50,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Clean build directory
-        run: rm -rf /home/runner/work/Calculator/build
+      #- name: Clean build directory
+       # run: rm -rf /home/runner/work/Calculator/build
 
-      - name: Create Build Directory
-        run: cmake -E make_directory /home/runner/work/Calculator/build
+      #- name: Create Build Directory
+       # run: cmake -E make_directory /home/runner/work/Calculator/build
 
       - name: Install Packages
         run: |
