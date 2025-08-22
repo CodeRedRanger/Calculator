@@ -23,8 +23,8 @@ jobs:
 
       #- name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
       #  uses: lukka/run-vcpkg@v11
-      #  with: 
-      #    runVcpkgInstall: true
+       #  with: 
+        #  runVcpkgInstall: true
          # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg #not needed
          # vcpkgArguments: 'install wxwidgets:x64-windows-static'
           
@@ -71,8 +71,8 @@ jobs:
           ls -R
           pwd
           #cmake -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake -S .  -B .\build  #not needed
-          #cmake -DCMAKE_TOOLCHAIN_FILE= /home/runner/work/Calculator/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B .\build ##this won't work without json above working
-          #cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake #won't work without above chain
+          cmake -DCMAKE_TOOLCHAIN_FILE= /home/runner/work/Calculator/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B .\build ##this won't work without json above working
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake #won't work without above chain
     
       #- name: Build #wait until everything else is working
 
