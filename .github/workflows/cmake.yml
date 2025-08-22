@@ -34,6 +34,9 @@ jobs:
           sudo apt-get install -y  gcc-multilib python3 curl zip unzip
           sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
 
+      - name: Install build dependencies
+        run: sudo apt-get update && sudo apt-get install -y libtool
+
       - name: Clean build directory
         run: rm -f build/CMakeCache.txt
         #run: rm -rf ${{ github.workspace }}\build
