@@ -2,9 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 
 project(Calc_App)
 
-find_package(wxWidgets REQUIRED COMPONENTS net core base)
-
-set(CMAKE_TOOLCHAIN_FILE "${CMAKE_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
+find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
 
 if(wxWidgets_FOUND)
 
