@@ -20,6 +20,11 @@ jobs:
       - name: Bootstrap vcpkg
         run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
         shell: pwsh
+
+      - name: Install wxWidgets with vcpkg
+        uses: lukka/run-vcpkg@v11
+        with: 
+          vcpkgArguments: 'install wxwidgets:x64-windows-static'
     
       #- name: Setup VCPKG_ROOT
        # run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
