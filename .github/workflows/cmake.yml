@@ -12,7 +12,7 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Set VCPKG_ROOT
-        run: echo "VCPKG_ROOT=C:\vcpkg" >> $GITHUB_ENV
+        run: echo "VCPKG_ROOT=C:/vcpkg" >> $GITHUB_ENV
       - name: Build with vcpkg
         run: |
           vcpkg install 
