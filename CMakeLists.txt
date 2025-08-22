@@ -4,6 +4,7 @@ project(Calc_App)
 
 if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)
 	set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystem/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+endif() 
 
 find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
 
