@@ -8,6 +8,15 @@ on:
     types: [closed]
 
 jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Set VCPKG_ROOT
+        run: echo "VCPKG_ROOT=C:\vcpkg" >> $GITHUB_ENV
+      - name: Build with vcpkg
+        run: |
+          vcpkg install 
+
   release_web:
     name: Web Release
     runs-on: ubuntu-latest
