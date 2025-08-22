@@ -10,18 +10,18 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    #env:
-      #VCPKG_ROOT: /home/runner/work/Calculator/vcpkg
+    env:
+      VCPKG_ROOT: /home/runner/work/Calculator
     steps:
       - uses: actions/checkout@v4
       - name: Install vcpkg
         #working-directory: \home\runner\work\Calculator\
         run: |
           pwd
-          #git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
+          git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
           #cd /home/runner/work/Calculator/vcpkg
-          #.\bootstrap-vcpkg.bat
-          cd ..\ #\home\runner\work\Calculator\
+          .\bootstrap-vcpkg.bat
+          cd ${{ env.VCPKG_ROOT }}
           vcpkg install
       #- name: Install wxWidgets via vcpkg
       #  run: |
