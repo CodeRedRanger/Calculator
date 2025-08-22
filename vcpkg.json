@@ -6,11 +6,14 @@
 	
 	[
 
+		{
+		"name": "wxwidgets"
+		"host": true,
+		"platform": "windows",
+		"triplet": "x64-windows-static"
+		}
 
-		"wxwidgets"
-
-	],
-
-	"builtin-baseline": 8eb57355a4ffb410a2e94c07b4dca2dffbee8e50
+	]
+	
 	
 }
