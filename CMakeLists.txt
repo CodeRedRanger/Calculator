@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.18)
 
 project(Calc_App)
 
-find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
+find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base PATHS "${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets")
 
 set(CMAKE_CXX_STANDARD 11)
 
