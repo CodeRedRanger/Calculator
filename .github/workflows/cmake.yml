@@ -18,6 +18,10 @@ jobs:
       #- name: Clean build directory
       #  run: rm -rf ${{ github.workspace }}\build
 
+      #working-directory: ${{ github.workspace }}
+      - name: Clean build directory
+        run: rm -rf ./build
+
       #- name: Create Build Directory
       #  run: cmake -E make_directory ${{ github.workspace }}\build
 
@@ -82,9 +86,6 @@ jobs:
           ./emsdk/emsdk install latest
           ./emsdk/emsdk activate latest
           
-        working-directory: ${{ github.workspace }}
-      #- name: Clean build directory
-      #  run: rm -rf ./build
 
       - name: Configure CMake
         run: |
