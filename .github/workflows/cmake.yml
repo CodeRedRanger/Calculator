@@ -20,7 +20,7 @@ jobs:
 
       #working-directory: ${{ github.workspace }}
       - name: Clean build directory
-        run: rm -rf ./build
+        run: rm -rf ${{ github.workspace }}\build
 
       #- name: Create Build Directory
       #  run: cmake -E make_directory ${{ github.workspace }}\build
