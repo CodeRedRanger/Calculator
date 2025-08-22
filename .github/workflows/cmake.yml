@@ -20,7 +20,7 @@ jobs:
           pwd
           git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}/vcpkg
           cd ${{ github.workspace }}/vcpkg
-          .\bootstrap-vcpkg.bat
+          #.\bootstrap-vcpkg.bat
           cd ${{ github.workspace }}
           pwd
           vcpkg install
