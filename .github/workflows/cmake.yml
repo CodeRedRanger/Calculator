@@ -16,8 +16,8 @@ jobs:
       - uses: actions/checkout@v4
 
       #working-directory: ${{ github.workspace }}
-      - name: Clean build directory
-        run: rm -rf ${{ github.workspace }}\build
+      #- name: Clean build directory
+      #  run: rm -rf ${{ github.workspace }}\build
 
       - name: Remove build directory (Windows)
         run: Remove-Item -Recurse -Force ${{ github.workspace }}\build
