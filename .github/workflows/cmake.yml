@@ -55,7 +55,7 @@ jobs:
 
       - name: Installs including wxWidgets via vcpkg
         run: |
-          ${{ github.workspace }}/vcpkg/vcpkg install 
+          ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets
 
       - name: Integrate vcpkg
         run: vcpkg integrate install
