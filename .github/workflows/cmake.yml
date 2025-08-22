@@ -45,6 +45,6 @@ jobs:
           pwd
           cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
     
-      #- name: Build
+      - name: Build
 
-        #run: cmake --build ./build --config Release
+        run: cmake --build ./build --config Release
