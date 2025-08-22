@@ -1,19 +1,10 @@
 {
-
- "name": "Calc App"
-
- "dependencies": 
-	
-	[
-
-		{
-		"name": "wxwidgets"
+ "dependencies": [
+	{
+		"name": "wxwidgets",
 		"host": true,
 		"platform": "windows",
 		"triplet": "x64-windows-static"
-		}
-
-	]
-	
-	
+	}
+  ]
 }
