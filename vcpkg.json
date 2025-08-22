@@ -1,9 +1,7 @@
 {
  "dependencies": [
 	{
-		"name": "wxwidgets",
-		"host": true,
-		"platform": "windows"
+		"wxwidgets"
 	}
   ]
 }
