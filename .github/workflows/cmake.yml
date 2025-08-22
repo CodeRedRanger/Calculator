@@ -21,12 +21,12 @@ jobs:
         run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
         shell: pwsh
 
-      #- name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
-      #  uses: lukka/run-vcpkg@v11
-       #  with: 
-        #  runVcpkgInstall: true
+      - name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
+        uses: lukka/run-vcpkg@v11
+        with: 
+          runVcpkgInstall: true
          # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg #not needed
-         # vcpkgArguments: 'install wxwidgets:x64-windows-static'
+          vcpkgArguments: 'install wxwidgets:x64-windows-static'
           
     
       #- name: Setup VCPKG_ROOT #This block is not needed
