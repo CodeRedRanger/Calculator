@@ -60,7 +60,7 @@ jobs:
           pwd
           git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
           cd ${{ github.workspace }}/vcpkg
-          .\bootstrap-vcpkg.sh
+          ./bootstrap-vcpkg.sh
           shell: bash
           cd ${{ github.workspace }}
           pwd
