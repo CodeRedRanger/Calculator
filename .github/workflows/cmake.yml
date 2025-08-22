@@ -14,19 +14,29 @@ jobs:
       VCPKG_ROOT: /home/runner/work/Calculator/vcpkg
     steps:
       - uses: actions/checkout@v2
-      - name: Clone vcpkg
-        run: git clone https://github.com/Microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
+      - name: Install vcpkg
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
+          cd /home/runner/work/Calculator/vcpkg
+          .\bootstrap-vcpkg.bat
+      - name: Install wxWidgets via vcpkg
+        run: |
+          cd /home/runner/work/Calculator/vcpkg
+          .\vcpkg.exe install wxwidgets
+        
+      #- name: Clone vcpkg
+      #  run: git clone https://github.com/Microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
   
-      - name: Bootstrap vcpkg
-        run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
-        shell: pwsh
+      #- name: Bootstrap vcpkg
+       # run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
+       # shell: pwsh
 
-      - name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
-        uses: lukka/run-vcpkg@v11
-        with: 
-          runVcpkgInstall: true
+      #- name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
+      #  uses: lukka/run-vcpkg@v11
+      #  with: 
+      #    runVcpkgInstall: true
          # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg #not needed
-          vcpkgArguments: 'install wxwidgets:x64-windows-static'
+       #   vcpkgArguments: 'install wxwidgets:x64-windows-static'
           
     
       #- name: Setup VCPKG_ROOT #This block is not needed
