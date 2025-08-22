@@ -21,7 +21,7 @@ jobs:
           #git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
           #cd /home/runner/work/Calculator/vcpkg
           #.\bootstrap-vcpkg.bat
-          #cd \home\runner\work\Calculator\
+          cd ..\ #\home\runner\work\Calculator\
           vcpkg install
       #- name: Install wxWidgets via vcpkg
       #  run: |
