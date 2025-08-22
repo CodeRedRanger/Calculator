@@ -21,15 +21,15 @@ jobs:
         run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
         shell: pwsh
 
-      - name: Install wxWidgets with vcpkg
-        uses: lukka/run-vcpkg@v11
-        with: 
-          runVcpkgInstall: true
-         # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg
-          vcpkgArguments: 'install wxwidgets:x64-windows-static'
+      #- name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
+      #  uses: lukka/run-vcpkg@v11
+      #  with: 
+      #    runVcpkgInstall: true
+         # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg #not needed
+         # vcpkgArguments: 'install wxwidgets:x64-windows-static'
           
     
-      #- name: Setup VCPKG_ROOT
+      #- name: Setup VCPKG_ROOT #This block is not needed
        # run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
       #- name: Build with vcpkg
        # run: |
@@ -70,10 +70,10 @@ jobs:
         run: |
           ls -R
           pwd
-          #cmake -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake -S .  -B .\build
-          cmake -DCMAKE_TOOLCHAIN_FILE= /home/runner/work/Calculator/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B .\build
-          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+          #cmake -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake -S .  -B .\build  #not needed
+          #cmake -DCMAKE_TOOLCHAIN_FILE= /home/runner/work/Calculator/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B .\build ##this won't work without json above working
+          #cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake #won't work without above chain
     
-      - name: Build
+      #- name: Build #wait until everything else is working
 
-        run: cmake --build ./build --config Release
+        #run: cmake --build ./build --config Release
