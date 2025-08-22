@@ -19,7 +19,7 @@ jobs:
         run: |
           pwd
           git clone https://github.com/microsoft/vcpkg.git ${{ env.VCPKG_ROOT }}
-          #cd /home/runner/work/Calculator/vcpkg
+          cd /home/runner/work/Calculator/vcpkg
           .\bootstrap-vcpkg.bat
           cd ${{ env.VCPKG_ROOT }}
           vcpkg install
