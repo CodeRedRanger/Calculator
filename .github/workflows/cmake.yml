@@ -21,12 +21,12 @@ jobs:
         run: ${{ env.VCPKG_ROOT }}/bootstrap-vcpkg.bat
         shell: pwsh
 
-      - name: Install wxWidgets with vcpkg
-        uses: lukka/run-vcpkg@v11
-        with: 
-          runVcpkgInstall: true
+      #- name: Install wxWidgets with vcpkg
+      #  uses: lukka/run-vcpkg@v11
+      #  with: 
+      #    runVcpkgInstall: true
          # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg
-          vcpkgArguments: 'install wxwidgets:x64-windows-static'
+         # vcpkgArguments: 'install wxwidgets:x64-windows-static'
           
     
       #- name: Setup VCPKG_ROOT
@@ -71,9 +71,9 @@ jobs:
           ls -R
           pwd
           #cmake -DCMAKE_TOOLCHAIN_FILE=C:\vcpkg\scripts\buildsystems\vcpkg.cmake -S .  -B .\build
-          cmake -DCMAKE_TOOLCHAIN_FILE= /home/runner/work/Calculator/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B .\build
-          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
+          #cmake -DCMAKE_TOOLCHAIN_FILE= /home/runner/work/Calculator/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B .\build
+          #cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=/home/runner/work/Calculator/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake
     
-      - name: Build
+      #- name: Build
 
-        run: cmake --build ./build --config Release
+        #run: cmake --build ./build --config Release
