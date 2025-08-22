@@ -2,10 +2,9 @@ cmake_minimum_required(VERSION 3.18)
 
 project(Calc_App)
 
-if (NOT DEFINED CMAKE_TOOLCHAIN_FILE)
-	set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystem/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
- 	message("toolchain set!")
-endif() 
+
+set(CMAKE_TOOLCHAIN_FILE "$ENV{VCPKG_ROOT}/scripts/buildsystem/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+message("toolchain set!")
 
 message("Looking for packages")
 find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
