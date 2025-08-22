@@ -71,16 +71,20 @@ jobs:
           sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
 
       - name: Checkout emsdk
-        run: git clone https://github.com/emscripten-core/emsdk.git /home/runner/work/Calculator/emsdk
+        run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
 
       - name: Configure Emscripten
         shell: bash
 
         # Change the directory to be emsdk instead of the project root
-        working-directory: /home/runner/work/Calculator/emsdk
+        #working-directory: /home/runner/work/Calculator/emsdk
         run: |
-          ./emsdk install latest
-          ./emsdk activate latest
+          ./emsdk/emsdk install latest
+          ./emsdk/emsdk activate latest
+          
+        working-directory: ${{ github.workspace }}
+      - name: Clean build directory
+        run: rm -rf ./build
 
       - name: Configure CMake
         run: |
