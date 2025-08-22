@@ -14,6 +14,13 @@ jobs:
      # VCPKG_ROOT: ${{ github.workspace }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Clean build directory
+        run: rm -rf ${{ github.workspace }}/build
+
+      - name: Create Build Directory
+        run: cmake -E make_directory ${{ github.workspace }}/build
+
       - name: Install vcpkg
         #working-directory: \home\runner\work\Calculator\
         run: |
@@ -56,12 +63,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Clean build directory
-        run: rm -rf ${{ github.workspace }}/build
-
-      - name: Create Build Directory
-        run: cmake -E make_directory ${{ github.workspace }}/build
 
       - name: Install Packages
         run: |
