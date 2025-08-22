@@ -84,6 +84,6 @@ jobs:
           cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
-      #- name: Build #wait until everything else is working
+      - name: Build 
 
-        #run: cmake --build ./build --config Release
+        run: cmake --build ./build --config Release
