@@ -25,7 +25,9 @@ jobs:
         uses: lukka/run-vcpkg@v11
         with: 
           runVcpkgInstall: true
+          vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg
           vcpkgArguments: 'install wxwidgets:x64-windows-static'
+          
     
       #- name: Setup VCPKG_ROOT
        # run: echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
