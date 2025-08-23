@@ -1,6 +1,7 @@
 //#include "../SWE_AppTests/pch.h"
 #include "CalculatorProcessor.h"
 #include <vector>
+#include <list>
 
 CalculatorProcessor::OperatorType CalculatorProcessor::CreateOperatorType(char symbol)
 {
