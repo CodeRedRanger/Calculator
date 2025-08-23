@@ -64,9 +64,9 @@ jobs:
           #cd ${{ github.workspace }}
           #vcpkg install
 
-      - name: Set up CMake toolchain file
-        run: |
-         echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
+      #- name: Set up CMake toolchain file
+       # run: |
+        # echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
         
 
       - name: Installs including wxWidgets via vcpkg
