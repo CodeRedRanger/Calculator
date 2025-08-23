@@ -42,7 +42,7 @@ jobs:
           sudo apt-get install libtool libltdl-dev
           libtoolize --force
           #aclocal
-          autoheader
+          #autoheader
           automake --add-missing --force-missing
           autoconf
 
