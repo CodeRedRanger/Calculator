@@ -13,14 +13,13 @@ if(wxWidgets_FOUND)
 
 	target_compile_definitions(Calc_App PRIVATE WXUSINGDLL)	
 
- 	if (EMSCRIPTEN)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
-    set(CMAKE_EXECUTABLE_SUFFIX ".html")
-	endif ()
-
 else()
 	message(FATAL_ERROR "wxWidgets not found!")
 endif()
 
+if (EMSCRIPTEN)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
+set(CMAKE_EXECUTABLE_SUFFIX ".html")
+endif ()
 
