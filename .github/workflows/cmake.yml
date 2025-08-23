@@ -89,7 +89,7 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_TOOLCHAIN_FILE=$ENV{VCPKG_ROOT}/vcpkg/scripts/buildsystems/vcpkg.cmake 
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake 
           #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
