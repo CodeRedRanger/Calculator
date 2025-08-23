@@ -53,6 +53,11 @@ jobs:
           #cd ${{ github.workspace }}
           #vcpkg install
 
+      - name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
+        uses: lukka/run-vcpkg@v11
+        with: 
+          runVcpkgInstall: true
+
       - name: Set up CMake toolchain file
         run: |
          echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" >> $GITHUB_ENV # -S .  -B ./build 
