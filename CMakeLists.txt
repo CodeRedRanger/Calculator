@@ -2,6 +2,10 @@ cmake_minimum_required(VERSION 3.18)
 
 project(Calc_App)
 
+set(VCPG_ROOT 
+          cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" #"-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" "-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+
+
 find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
 
 if(wxWidgets_FOUND)
