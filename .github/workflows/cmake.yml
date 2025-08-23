@@ -99,9 +99,9 @@ jobs:
       - name: Create Artifact
         run: |
           mkdir release
-          cp build/Main.html release/index.html
-          cp build/Main.js release/Main.js
-          cp build/Main.wasm release/Main.wasm
+          cp build/Calc_App.html release/index.html
+          cp build/Calc_App.js release/Main.js
+          cp build/Calc_App.wasm release/Main.wasm
 
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
