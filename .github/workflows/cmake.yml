@@ -72,7 +72,7 @@ jobs:
       - name: Installs including wxWidgets via vcpkg
         shell: pwsh
         run: |
-          ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
+          ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets --triplet=wasm32-emscripten # --recurse #   vcpkg install #--triplet=x64-linux
          
 
       - name: Integrate vcpkg
@@ -89,7 +89,7 @@ jobs:
 
       - name: Configure CMake
         run: |
-          cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+          cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" "-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
           #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
