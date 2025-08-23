@@ -24,6 +24,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VCPKG_ROOT: ${{ github.workspace }}
+      ACTIONS_STEP_DEBUG: true
 
     steps:
       - uses: actions/checkout@v4
