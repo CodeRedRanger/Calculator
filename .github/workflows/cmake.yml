@@ -94,7 +94,7 @@ jobs:
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
       - name: Build 
-        run: emcmake cmake --build ./build --config Release
+        run: cmake --build ./build --config Release
 
       - name: Create Artifact
         run: |
