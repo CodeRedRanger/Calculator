@@ -4,8 +4,6 @@ project(Calc_App)
 
 find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
 
-set(CMAKE_CXX_STANDARD 11)
-
 if(wxWidgets_FOUND)
 
 	add_executable(Calc_App SWE_App/App.cpp SWE_App/App.h SWE_App/ButtonFactory.cpp SWE_App/ButtonFactory.h SWE_App/CalculatorProcessor.cpp SWE_App/CalculatorProcessor.h 
