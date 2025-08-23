@@ -36,7 +36,6 @@ jobs:
           sudo apt-get update 
           sudo apt-get install -y libtool
 
-     
 
       - name: Clean build directory
         run: rm -f build/CMakeCache.txt
@@ -52,11 +51,6 @@ jobs:
           ./bootstrap-vcpkg.sh
           #cd ${{ github.workspace }}
           #vcpkg install
-
-      - name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
-        uses: lukka/run-vcpkg@v11
-        with: 
-          runVcpkgInstall: true
 
       - name: Set up CMake toolchain file
         run: |
