@@ -108,3 +108,25 @@ jobs:
         with:
           name: web-release
           path: release
+
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          ./butler -V
+
+      - name: Create release zip and run Butler
+
+        # Here we say that we will use the BUTLER_API_KEY as an environment variable
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          cd release
+          zip -r ../release.zip *
+          cd ..
+
+          # Butler will read the API key from the environment variable
+          ./butler login
+          ./butler push release.zip CodeRedRanger/Calc_App:html5
+          ./butler logout
