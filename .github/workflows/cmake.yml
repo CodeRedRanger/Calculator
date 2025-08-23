@@ -43,8 +43,8 @@ jobs:
           libtoolize --force
           #aclocal
           #autoheader
-          automake --add-missing --force-missing
-          autoconf
+          #automake --add-missing --force-missing
+          #autoconf
 
 
       - name: Clean build directory
