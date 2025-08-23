@@ -2,8 +2,7 @@
  "dependencies": [
 	 {
 		"name": "wxwidgets",
-		"host": true,
-		"platform": "linux"
+		"host": true
 	 }
   ]
 }
