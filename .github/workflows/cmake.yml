@@ -29,7 +29,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-            - name: Install Packages
+      - name: Install Packages
         run: |
           sudo apt-get update -qq
           sudo apt-get update 
