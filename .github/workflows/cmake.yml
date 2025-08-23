@@ -64,7 +64,7 @@ jobs:
       - name: Installs including wxWidgets via vcpkg
         shell: pwsh
         run: |
-          ${{ github.workspace }}/vcpkg/vcpkg install --recurse #   vcpkg install #--triplet=x64-linux
+          ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
          
 
       - name: Integrate vcpkg
