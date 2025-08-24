@@ -53,8 +53,8 @@ jobs:
           #automake --add-missing --force-missing
           #autoconf
 
-      - name: Compile GTK application
-        run: gcc `pkg-config --cflags gtk4` App.c -o Calc_App `pkg-config --libs gtk4`
+     # - name: Compile GTK application
+     #   run: gcc `pkg-config --cflags gtk4` App.c -o App `pkg-config --libs gtk4`
 
 
       - name: Clean build directory
