@@ -1,95 +1,30 @@
-name: Release Build
+name: Build wxWidgets-Wasm Application
 
 on:
   push:
     branches: [development]
   pull_request:
     branches: [development]
-    #types: [closed]
 
 jobs:
-
-      
-      #- name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
-      #  uses: lukka/run-vcpkg@v11
-      #  with: 
-      #    runVcpkgInstall: true
-         # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg #not needed
-       #   vcpkgArguments: 'install wxwidgets:x64-windows-static'
-          
-  
-
-  release_web:
-    name: Web Release
+  build:
     runs-on: ubuntu-latest
-    env:
+    #env:
       #VCPKG_ROOT: ${{ github.workspace }}
-      ACTIONS_STEP_DEBUG: true
+      #ACTIONS_STEP_DEBUG: true
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          submodules: "recursive"
-          
-      #- name: Install Packages
-       # run: |
-          #sudo apt-get update -qq
-          #sudo apt-get update 
-          #sudo apt-get install -y  gcc-multilib python3 curl zip unzip
-          #sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
-          #sudo apt-get install -y libtool
-          #sudo apt install -y build-essential #libwxgtk3.0-gtk3-dev 
-          #sudo apt install autoconf automake libtool
-          #sudo apt-get install -y build-essential cmake git curl unzip
-          #sudo apt-get install libtool libltdl-dev
-          #libtoolize --force
-          #sudo apt install libgtk-3-dev
-          #already commented out
-          #aclocal
-          #autoheader
-          #automake --add-missing --force-missing
-          #autoconf
-          
-     # - name: Clean build directory
-     #   run: rm -f build/CMakeCache.txt
-        #run: rm -rf ${{ github.workspace }}\build
+          submodules: 'recursive'
 
-     # - name: Create Build Directory
-     #   run: cmake -E make_directory ${{ github.workspace }}\build
-
-     # - name: Install vcpkg 
-      #  shell: pwsh
-       # run: |
-        #  git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
-         # cd ${{ github.workspace }}/vcpkg
-          #./bootstrap-vcpkg.sh
-          #already commented out
-          #cd ${{ github.workspace }}
-          #vcpkg install
-
-      #already commented out
-      #- name: Set up CMake toolchain file
-       # run: |
-        # echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
-        
-
-      #- name: Installs including wxWidgets via vcpkg
-       # shell: pwsh
-        #run: |
-         # ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
-         
-      #- name: Integrate vcpkg
-      #  run: vcpkg integrate install
-
-      #- name: Checkout emsdk
-      #  run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
-
-      - name: Install Emscripten
+      - name: Install Emscripten SDK
         run: |
           git clone https://github.com/emscripten-core/emsdk.git 
           cd emsdk
-          ./emsdk install 3.1.40 #latest
-          ./emsdk activate 3.1.40 #latest
+          ./emsdk install latest
+          ./emsdk activate latest #3.1.40
           source ./emsdk_env.sh
         shell: bash
 
@@ -98,24 +33,10 @@ jobs:
           source emsdk/emsdk_env.sh
         shell: bash
 
-        
-
-      #- name: Setup Emscripten SDK
-      #  uses: mymindstorm/setup-emsdk@v12
-      #  id: setup-emsdk
-      #  with:
-      #    version: 'latest'
-          #actions-cache-folder: 'emsdk-cache'
-
-      - name: Debug expat configure failure
-        if: failure()
-        run: |
-          cat wxWidgets-wasm/src/expat/expat/config.log
-
       - name: Clone and Build WxWidgets wasm
         run: |
           source emsdk/emsdk_env.sh
-          git clone https://github.com/CodeRedRanger/wxWidgets-wasm.git --recurse-submodules #http://github.com/ahilss/wxWidgets-wasm.git
+          git clone http://github.com/CodeRedRanger/wxWidgets-wasm.git --recurse-submodules #http://github.com/ahilss/wxWidgets-wasm.git
           cd wxWidgets-wasm
           git submodule update --init src/jpeg
           git submodule update --init 3rdparty/catch
@@ -123,16 +44,12 @@ jobs:
           #git submodule update --init src/png
           #git submodule update --init src/tiff
           #git submodule update --init src/expat
-          export CONFIGURE_ARGS=" --host=wasm64 --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
+          
+          export CONFIGURE_ARGS=" --host=emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
           emconfigure ./configure $CONFIGURE_ARGS
           emmake make -j$(nproc)
           cd ..
         shell: bash  
-        #uses: ahilss/wxWidgets-wasm@v12
-        #id: setup-wxwidgets-wasm
-        #with:
-        #  version: 'latest'
-        #  actions-cache-folder: 'wxWidgets-cache'
 
       - name: Build wxWidgets app
         run: |
