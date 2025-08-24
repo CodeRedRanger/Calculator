@@ -93,7 +93,7 @@ jobs:
       - name: Build wxWidgets with Emscripten
         if: steps.cache-wxwidgets.outputs.cache-hit != 'true'
         run: |
-          automake
+          autogen.sh
           autoreconf -i
           mkdir buildgtk
           cd buildgtk
