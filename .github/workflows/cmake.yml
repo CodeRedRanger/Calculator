@@ -33,6 +33,12 @@ jobs:
           cd wxWidgets-wasm
 
           git clean -dfx
+
+          curl -LO http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub
+          curl -LO http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess
+
+          find . -name "config.sub" -exec cp config.sub {} \;
+          find . -name "config.guess" -exec cp config.guess {} \;
           
           git submodule update --init src/jpeg
           git submodule update --init 3rdparty/catch
@@ -41,7 +47,7 @@ jobs:
           #git submodule update --init src/tiff
           #git submodule update --init src/expat
           
-          export CONFIGURE_ARGS=" --host=wasm32-unknown-emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
+          export CONFIGURE_ARGS=" --host=emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
           emconfigure ./configure $CONFIGURE_ARGS          
           emmake make -j$(nproc)
           cd .. 
