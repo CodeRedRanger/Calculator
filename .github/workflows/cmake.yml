@@ -92,7 +92,7 @@ jobs:
         run: |
           mkdir -p build/wxwidgets-wasm
           cd build/wxwidgets-wasm
-          emcake cmake ../../3rdparty/wxwidgets -G Ninja \
+          emcmake cmake ../../3rdparty/wxwidgets -G Ninja \
            -DwxBUILD_SAMPLES=NONE \
            -DwxBUILD_DEMOS=NONE \
            -DwxBUILD_TESTS=NONE \
