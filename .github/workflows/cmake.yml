@@ -31,6 +31,9 @@ jobs:
           
           git clone http://github.com/CodeRedRanger/wxWidgets-wasm.git --recurse-submodules #http://github.com/ahilss/wxWidgets-wasm.git
           cd wxWidgets-wasm
+
+          git clean -dfx
+          
           git submodule update --init src/jpeg
           git submodule update --init 3rdparty/catch
           #git submodule update --init src/zlib
@@ -39,13 +42,21 @@ jobs:
           #git submodule update --init src/expat
           
           export CONFIGURE_ARGS=" --host=wasm32-unknown-emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
-          emconfigure ./configure $CONFIGURE_ARGS
+          emconfigure ./configure $CONFIGURE_ARGS          
           emmake make -j$(nproc)
           cd .. 
           
           mkdir build && cd build
           emcmake cmake ..
           emmake make
+
+      - name: Debug configure failure
+        if: failure()
+        run: |
+          echo "--- Content of wxWidget-wasm/config.log ---"
+          cat wxWidgets-wasm/config.log
+          echo "--- Content of wxWidget-wasm/src/expat/expat/config.log
+          cat wxWidgets-wasm/src/expat/expat/config.log
           
       #- name: Configure CMake
       #  run: |
