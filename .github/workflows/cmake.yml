@@ -88,12 +88,12 @@ jobs:
         id: setup-emsdk
         with:
           version: 'latest'
-          actions-cache-folder: 'emsdk-cache'
+          #actions-cache-folder: 'emsdk-cache'
           
       - name: Configure CMake
         run: |
-          emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/build/emsdk-cache/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
-          #emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ steps.setup-emsdk.outputs.emscripten-path}}/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+          #emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/build/emsdk-cache/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+          emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ steps.setup-emsdk.outputs.emscripten-path}}/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
           #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
