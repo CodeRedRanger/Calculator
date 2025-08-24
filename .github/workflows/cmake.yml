@@ -93,6 +93,12 @@ jobs:
       - name: Build wxWidgets with Emscripten
         if: steps.cache-wxwidgets.outputs.cache-hit != 'true'
         run: |
+          mkdir buildgtk
+          cd buildgtk
+          ../configure --with-gtk
+          make
+          sudo make install
+          sudo ldconfig
           mkdir -p build/wxwidgets-wasm
           cd build/wxwidgets-wasm
           emcmake cmake ../../3rdparty/wxwidgets -G Ninja \
@@ -101,6 +107,13 @@ jobs:
            -DwxBUILD_TESTS=NONE \
            -DCMAKE_BUILD_TYPE=Release
           cmake --build .
+
+          $ mkdir buildgtk
+$ cd buildgtk
+$ ../configure --with-gtk
+$ make
+$ sudo make install
+$ sudo ldconfig
 
       - name: Set up cache for Project build
         id: cache-project
