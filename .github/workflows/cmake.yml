@@ -111,10 +111,10 @@ jobs:
           cd wxWidgets-wasm
           git submodule update --init src/jpeg
           git submodule update --init 3rdparty/catch
-          #git submodule update --init src/zlib
-          #git submodule update --init src/png
-          #git submodule update --init src/tiff
-          #git submodule update --init src/expat
+          git submodule update --init src/zlib
+          git submodule update --init src/png
+          git submodule update --init src/tiff
+          git submodule update --init src/expat
           export CONFIGURE_ARGS=" --host=emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
           emconfigure ./configure $CONFIGURE_ARGS
           emmake make -j$(nproc)
