@@ -93,9 +93,9 @@ jobs:
       - name: Build wxWidgets with Emscripten
         if: steps.cache-wxwidgets.outputs.cache-hit != 'true'
         run: |
+          autoreconf -i
           mkdir buildgtk
           cd buildgtk
-          autoconf
           ../configure --with-gtk
           make
           sudo make install
