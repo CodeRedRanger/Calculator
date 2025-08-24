@@ -114,7 +114,7 @@ jobs:
           git submodule update --init src/png
           git submodule update --init src/tiff
           git submodule update --init src/expat
-          export CONFIGURE_ARGS=" --host=emscripten --with-cxx=20 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64"
+          export CONFIGURE_ARGS=" --host=emscripten --with-cxx=17 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64"
           emconfigure ./configure $CONFIGURE_ARGS
           emmake make -j$(nproc)
           cd ..
