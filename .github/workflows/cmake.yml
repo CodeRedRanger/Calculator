@@ -49,20 +49,19 @@ jobs:
           
           export CONFIGURE_ARGS=" --host=emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
           emconfigure ./configure $CONFIGURE_ARGS          
-          emmake make -j$(nproc)
+          emmake make -j$(nproc) VERBOSE=1 > emmake_output.log 2>&1
           cd .. 
           
           mkdir build && cd build
           emcmake cmake ..
           emmake make
 
-      - name: Debug configure failure
+      - name: Debug make failure
         if: failure()
         run: |
-          echo "--- Content of wxWidget-wasm/config.log ---"
-          cat wxWidgets-wasm/config.log
-          echo "--- Content of wxWidget-wasm/src/expat/expat/config.log
-          cat wxWidgets-wasm/src/expat/expat/config.log
+          echo "---Last 200 lines of build output --"
+          tail -n 200 emmake_output.log 
+          
           
       #- name: Configure CMake
       #  run: |
