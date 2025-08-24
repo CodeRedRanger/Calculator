@@ -34,8 +34,8 @@ jobs:
 
           git clean -dfx
 
-          curl -LO http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub
-          curl -LO http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess
+          curl -L0 http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub
+          curl -L0 http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess
 
           find . -name "config.sub" -exec cp config.sub {} \;
           find . -name "config.guess" -exec cp config.guess {} \;
