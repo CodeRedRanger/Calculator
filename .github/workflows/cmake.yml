@@ -24,7 +24,7 @@ jobs:
           git clone https://github.com/emscripten-core/emsdk.git 
           cd emsdk
           ./emsdk install latest
-          ./emsdk activate latest #3.1.40
+          ./emsdk activate latest
           source ./emsdk_env.sh
  
           cd ..
@@ -47,7 +47,7 @@ jobs:
           #git submodule update --init src/tiff
           #git submodule update --init src/expat
           
-          export CONFIGURE_ARGS=" --host=emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64" 
+          export CONFIGURE_ARGS=" --host=wasm32-unknown-emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64" 
           emconfigure ./configure $CONFIGURE_ARGS          
           emmake make -j$(nproc) VERBOSE=1 > emmake_output.log 2>&1
           emmake make install
@@ -56,6 +56,10 @@ jobs:
           mkdir build && cd build
           emcmake cmake ..
           emmake make
+
+          if: failure()
+          echo "---Contents of emmake_output.log --"
+          cat emmake_output.log
 
       - name: Debug make failure
         if: failure()
