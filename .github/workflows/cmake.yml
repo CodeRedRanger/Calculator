@@ -55,7 +55,7 @@ jobs:
           #autoconf
 
       - name: Compile GTK application
-        run: gcc `pkg-config --cflags gtk3` App.cpp -o App `pkg-config --libs gtk3`
+        run: gcc `pkg-config --cflags gtk3` /usr/bin/pkg-config `pkg-config --libs gtk3`
 
 
       - name: Clean build directory
