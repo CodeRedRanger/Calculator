@@ -114,7 +114,7 @@ jobs:
           git submodule update --init src/png
           git submodule update --init src/tiff
           git submodule update --init src/expat
-          export CONFIGURE_ARGS=" --host=wasm32 --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
+          export CONFIGURE_ARGS=" --host=wasm32 --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-x11" 
           emconfigure ./configure $CONFIGURE_ARGS
           emmake make -j$(nproc)
           cd ..
