@@ -28,6 +28,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Install Packages
         run: |
@@ -55,37 +57,86 @@ jobs:
       - name: Create Build Directory
         run: cmake -E make_directory ${{ github.workspace }}\build
 
-      - name: Install vcpkg 
-        shell: pwsh
-        run: |
-          git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
-          cd ${{ github.workspace }}/vcpkg
-          ./bootstrap-vcpkg.sh
+      #- name: Install vcpkg 
+      #  shell: pwsh
+       # run: |
+        #  git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
+         # cd ${{ github.workspace }}/vcpkg
+          #./bootstrap-vcpkg.sh
+          #already commented out below
           #cd ${{ github.workspace }}
           #vcpkg install
 
       #- name: Set up CMake toolchain file
        # run: |
         # echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
-        
 
-      - name: Installs including wxWidgets via vcpkg
-        shell: pwsh
+        #new
+      - name: Setup Emscripten SDK
+        uses: mymindstorm/setup-emsdk@v12
+        id: setup-emsdk
+        with:
+          version: 'latest'
+
+      - name: Set up cache for wxWidgets build
+        id: cache-wxwidgets
+        uses: actions/cache@v4
+        with:
+          path: ./build/wxwidgets-wasm
+          key: ${{ runner.os }}-wxwidgets-${{ hashFiles('3rdparty/wxwidgets/.git/index') }}
+          restore-keys: |
+            ${{ runner.os }}-wxwidgets-
+
+      - name: Build wxWidgets with Emscripten
+        if: steps.cache-wxwidgets.outputs.cache-hit != 'true'
         run: |
-          ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets:wasm-emscripten #--triplet wasm32-emscripten # --recurse #   vcpkg install #--triplet=x64-linux
+          mkdir -p build/wxwidgets-wasm
+          cd build/wxwidgets-wasm
+          emcake cmake ../../3rdparty/wxwidgets -G Ninja \
+           -DwxBUILD_SAMPLES=NONE \
+           -DwxBUILD_DEMOS=NONE \
+           -DwxBUILD_TESTS=NONE \
+           -DCMAKE_BUILD_TYPE=Release
+          cmake --build .
+
+      - name: Set up cache for Project build
+        id: cache-project
+        uses: actions/cache@v4
+        with:
+          path: ./build/wasm
+          key: ${{ runner.os }}-wasm-${{ hashFiles('CMakeLists.txt', '**/*.cpp', '**/*.h') }}-$ {{ github.sha }}
+
+      - name: Configure and Build Project for WebAssembly
+        run: |
+         mkdir -p build/wasm
+         cd build/wasm
+         emcmake cmake ../.. -G Ninja \
+           -DCMAKE_BUILD_TYPE=Release
+         cmake --build .
+
+      - name: Upload WebAssembly build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm-build
+          path: build/wasm/*.wasm
+
+      #- name: Installs wxWidgets #including wxWidgets via vcpkg
+       # shell: pwsh
+        #run: |
+         # ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets:wasm-emscripten #--triplet wasm32-emscripten # --recurse #   vcpkg install #--triplet=x64-linux
          
 
-      - name: Integrate vcpkg
-        run: vcpkg integrate install
+      #- name: Integrate vcpkg
+      #  run: vcpkg integrate install
 
-      - name: Checkout emsdk
-        run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
+      #- name: Checkout emsdk
+      #  run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
 
-      - name: Configure Emscripten
-        shell: bash
-        run: |
-          ./emsdk/emsdk install latest
-          ./emsdk/emsdk activate latest
+      #- name: Configure Emscripten
+      #  shell: bash
+      #  run: |
+       #   ./emsdk/emsdk install latest
+       #   ./emsdk/emsdk activate latest
 
       - name: Configure CMake
         run: |
