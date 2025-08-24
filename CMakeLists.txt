@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.18)
 
 project(Calc_App)
 
+
+set(VCPKG_ROOT "/home/runner/work/Calculator/Calculator")
+set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/vcpkg/scripts/buildsystems/vcpkg.cmake")
+set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "${VCPKG_ROOT}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake")
+          
 find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
 
 if(wxWidgets_FOUND)
@@ -13,13 +18,13 @@ if(wxWidgets_FOUND)
 
 	target_compile_definitions(Calc_App PRIVATE WXUSINGDLL)	
 
-
 else()
 	message(FATAL_ERROR "wxWidgets not found!")
 endif()
 
 if (EMSCRIPTEN)
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
-    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s USE_GLFW=3 -s ASSERTIONS=1 -s WASM=1 -s ASYNCIFY")
+set(CMAKE_EXECUTABLE_SUFFIX ".html")
 endif ()
+
