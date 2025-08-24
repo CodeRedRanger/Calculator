@@ -5,7 +5,7 @@ on:
     branches: [development]
   pull_request:
     branches: [development]
-    types: [closed]
+    #types: [closed]
 
 jobs:
 
@@ -28,7 +28,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-
+        with:
+          submodules: "recursive"
       - name: Install Packages
         run: |
           #sudo apt-get update -qq
@@ -85,8 +86,8 @@ jobs:
         run: |
           git clone https://github.com/emscripten-core/emsdk.git 
           cd emsdk
-          ./emsdk install latest
-          ./emsdk activate latest
+          ./emsdk install 3.1.40 #latest
+          ./emsdk activate 3.1.40 #latest
           source ./emsdk_env.sh
         shell: bash
 
@@ -104,10 +105,15 @@ jobs:
       #    version: 'latest'
           #actions-cache-folder: 'emsdk-cache'
 
+      - name: Debug expat configure failure
+        if: failure()
+        run: |
+          cat wxWidgets-wasm/src/expat/config.log
+
       - name: Clone and Build WxWidgets wasm
         run: |
           source emsdk/emsdk_env.sh
-          git clone https://github.com/CodeRedRanger/wxWidgets-wasm.git #http://github.com/ahilss/wxWidgets-wasm.git
+          git clone https://github.com/CodeRedRanger/wxWidgets-wasm.git --recurse-submodules #http://github.com/ahilss/wxWidgets-wasm.git
           cd wxWidgets-wasm
           git submodule update --init src/jpeg
           git submodule update --init 3rdparty/catch
