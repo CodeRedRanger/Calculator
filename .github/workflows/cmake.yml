@@ -77,15 +77,17 @@ jobs:
       #- name: Integrate vcpkg
       #  run: vcpkg integrate install
 
-      - name: Checkout emsdk
-        run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
+      #- name: Checkout emsdk
+      #  run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
 
-      - name: Configure Emscripten
-        shell: bash
+      - name: Install Emscripten
         run: |
+          git clone https://github.com/emscripten-core/emsdk.git 
+          cd emsdk
           ./emsdk/emsdk install latest
           ./emsdk/emsdk activate latest
           source ./emsdk_env.sh
+        shell: bash
 
       - name: Configure Emscripten environment
         run: |
