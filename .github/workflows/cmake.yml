@@ -23,15 +23,16 @@ jobs:
     name: Web Release
     runs-on: ubuntu-latest
     env:
-      VCPKG_ROOT: ${{ github.workspace }}
+      #VCPKG_ROOT: ${{ github.workspace }}
       ACTIONS_STEP_DEBUG: true
 
     steps:
       - uses: actions/checkout@v4
         with:
           submodules: "recursive"
-      - name: Install Packages
-        run: |
+          
+      #- name: Install Packages
+       # run: |
           #sudo apt-get update -qq
           #sudo apt-get update 
           #sudo apt-get install -y  gcc-multilib python3 curl zip unzip
@@ -48,6 +49,7 @@ jobs:
           #autoheader
           #automake --add-missing --force-missing
           #autoconf
+          
      # - name: Clean build directory
      #   run: rm -f build/CMakeCache.txt
         #run: rm -rf ${{ github.workspace }}\build
