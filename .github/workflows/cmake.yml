@@ -83,7 +83,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ./build/wxwidgets-wasm
-          key: ubuntu-latest-wxwidgets-${{ hashFiles('3rdparty/wxwidgets/.git/index') }}
+          key: ubuntu-latest-wxwidgets-${{ hashFiles('3rdparty/wxwidgets/'.git'/index') }}
           restore-keys: |
             ubuntu-latest-wxwidgets-
 
