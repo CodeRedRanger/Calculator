@@ -95,7 +95,8 @@ jobs:
         run: |
           mkdir buildgtk
           cd buildgtk
-          ../ configure --with-gtk
+          autoconfig
+          ../configure --with-gtk
           make
           sudo make install
           sudo ldconfig
