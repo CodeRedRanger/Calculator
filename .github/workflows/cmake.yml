@@ -110,7 +110,7 @@ jobs:
       - name: Debug expat configure failure
         if: failure()
         run: |
-          cat wxWidgets-wasm/src/expat/config.log
+          cat wxWidgets-wasm/src/expat/expat/config.log
 
       - name: Clone and Build WxWidgets wasm
         run: |
