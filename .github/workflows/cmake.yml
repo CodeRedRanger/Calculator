@@ -47,9 +47,10 @@ jobs:
           #git submodule update --init src/tiff
           #git submodule update --init src/expat
           
-          export CONFIGURE_ARGS=" --host=emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale" 
+          export CONFIGURE_ARGS=" --host=emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64" 
           emconfigure ./configure $CONFIGURE_ARGS          
           emmake make -j$(nproc) VERBOSE=1 > emmake_output.log 2>&1
+          emmake make install
           cd .. 
           
           mkdir build && cd build
@@ -59,8 +60,8 @@ jobs:
       - name: Debug make failure
         if: failure()
         run: |
-          echo "---Last 200 lines of build output --"
-          tail -n 200 emmake_output.log 
+          echo "---Contents of emmake_output.log --"
+          cat emmake_output.log
           
           
       #- name: Configure CMake
