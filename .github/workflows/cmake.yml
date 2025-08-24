@@ -92,7 +92,7 @@ jobs:
       - name: Configure Emscripten environment
         run: |
           source emsdk/emsdk_env.sh
-          shell: bash
+        shell: bash
 
         
 
