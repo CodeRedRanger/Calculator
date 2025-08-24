@@ -95,7 +95,7 @@ jobs:
         run: |
           mkdir buildgtk
           cd buildgtk
-          autoconfig
+          autoconf
           ../configure --with-gtk
           make
           sudo make install
