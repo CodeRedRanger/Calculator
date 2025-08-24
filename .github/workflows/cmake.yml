@@ -53,52 +53,88 @@ jobs:
       - name: Create Build Directory
         run: cmake -E make_directory ${{ github.workspace }}\build
 
-      - name: Install vcpkg 
-        shell: pwsh
-        run: |
-          git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
-          cd ${{ github.workspace }}/vcpkg
-          ./bootstrap-vcpkg.sh
+     # - name: Install vcpkg 
+      #  shell: pwsh
+       # run: |
+        #  git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
+         # cd ${{ github.workspace }}/vcpkg
+          #./bootstrap-vcpkg.sh
+          #already commented out
           #cd ${{ github.workspace }}
           #vcpkg install
+
+      #already commented out
       #- name: Set up CMake toolchain file
        # run: |
         # echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
         
 
-      - name: Installs including wxWidgets via vcpkg
-        shell: pwsh
-        run: |
-          ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
+      #- name: Installs including wxWidgets via vcpkg
+       # shell: pwsh
+        #run: |
+         # ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
          
-      - name: Integrate vcpkg
-        run: vcpkg integrate install
+      #- name: Integrate vcpkg
+      #  run: vcpkg integrate install
 
-      #- name: Checkout emsdk
-       # run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
+      - name: Checkout emsdk
+        run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
 
-      #- name: Configure Emscripten
-      #  shell: bash
-      #  run: |
-     #     ./emsdk/emsdk install latest
-      #    ./emsdk/emsdk activate latest
-
-      - name: Setup Emscripten SDK
-        uses: mymindstorm/setup-emsdk@v12
-        id: setup-emsdk
-        with:
-          version: 'latest'
-          #actions-cache-folder: 'emsdk-cache'
-          
-      - name: Configure CMake
+      - name: Configure Emscripten
+        shell: bash
         run: |
-          #emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/build/emsdk-cache/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
-          emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ steps.setup-emsdk.outputs.emscripten-path}}/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+          ./emsdk/emsdk install latest
+          ./emsdk/emsdk activate latest
+          source ./emsdk_env.sh
+
+      - name: Configure Emscripten environment
+        run: |
+          source emsdk/emsdk_env.sh
+          shell: bash
+
+        
+
+      #- name: Setup Emscripten SDK
+      #  uses: mymindstorm/setup-emsdk@v12
+      #  id: setup-emsdk
+      #  with:
+      #    version: 'latest'
+          #actions-cache-folder: 'emsdk-cache'
+
+      - name: Clone and Build WxWidgets wasm
+        run: |
+          source emsdk/emsdk_env.sh
+          git clone http://github.com/ahilss/wxWidgets-wasm.git
+          cd wxWidgets-wasm
+          git submodule update --init src/jpeg
+          git submodule update --init 3rdparty/catch
+          export CONFIGURE_ARGS=" --host=emscripten --with-cxx=14 --enable-utf8 --enable-universal--disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale"
+          emconfigure ./configure $CONFIGURE_ARGS
+          emmake make -j$(nproc)
+          cd ..
+        shell: bash  
+        #uses: ahilss/wxWidgets-wasm@v12
+        #id: setup-wxwidgets-wasm
+        #with:
+        #  version: 'latest'
+        #  actions-cache-folder: 'wxWidgets-cache'
+
+      - name: Build wxWidgets app
+        run: |
+          source emsdk/emsdk_env.sh
+          mkdir build && cd build
+          emcmake cmake ..
+          emmake make
+          
+      #- name: Configure CMake
+      #  run: |
+      #    emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/build/emsdk-cache/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+      #    emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ steps.setup-emsdk.outputs.emscripten-path}}/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/build/wxWidgets-cache/cmake/Modules/Platform/Emscripten.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
           #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
-      - name: Build 
-        run: cmake --build build #./build --config Release
+     # - name: Build 
+      #  run: cmake --build build #./build --config Release
 
       - name: Create Artifact
         run: |
