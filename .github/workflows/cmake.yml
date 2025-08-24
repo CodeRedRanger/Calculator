@@ -82,9 +82,16 @@ jobs:
         run: |
           ./emsdk/emsdk install latest
           ./emsdk/emsdk activate latest
+
+      - name: Setup Emscripten SDK
+        uses: mymindstorm/setup-emsdk@v12
+        id: setup-emsdk
+        with:
+          version: 'latest'
+          
       - name: Configure CMake
         run: |
-          cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" "-DCMAKE_TOOLCHAIN_FILE= ${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+          emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" "-DCMAKE_TOOLCHAIN_FILE= ${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
           #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
