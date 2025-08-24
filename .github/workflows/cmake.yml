@@ -111,9 +111,9 @@ jobs:
           mkdir -p build/wxwidgets-wasm
           cd build/wxwidgets-wasm
           emcmake cmake ../../3rdparty/wxwidgets -G Ninja \
-           -DwxBUILD_SAMPLES=NONE \
-           -DwxBUILD_DEMOS=NONE \
-           -DwxBUILD_TESTS=NONE \
+           #-DwxBUILD_SAMPLES=NONE \
+           #-DwxBUILD_DEMOS=NONE \
+           #-DwxBUILD_TESTS=NONE \
            -DCMAKE_BUILD_TYPE=Release
           cmake --build .
 
