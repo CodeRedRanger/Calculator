@@ -57,13 +57,10 @@ jobs:
           emcmake cmake ..
           emmake make
 
-          if: failure()
-          echo "---Contents of emmake_output.log --"
-          cat emmake_output.log
-
       - name: Debug make failure
         if: failure()
         run: |
+          cd wxWidgets-wasm
           echo "---Contents of emmake_output.log --"
           cat emmake_output.log
           
