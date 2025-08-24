@@ -119,6 +119,7 @@ jobs:
         with:
           name: wasm-build
           path: build/wasm/*.wasm
+      
 
       #- name: Installs wxWidgets #including wxWidgets via vcpkg
        # shell: pwsh
@@ -138,14 +139,15 @@ jobs:
        #   ./emsdk/emsdk install latest
        #   ./emsdk/emsdk activate latest
 
-      - name: Configure CMake
-        run: |
-          cmake -S . -B build "-DCMAKE_BUILD_TYPE=Release" "-Wno-dev" "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" "-DVCPKG_TARGET_TRIPLET=wasm-emscripten" 
+      #- name: Configure CMake
+      #  run: |
+      #    cmake -S . -B build "-DCMAKE_BUILD_TYPE=Release" "-Wno-dev" "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" "-DVCPKG_TARGET_TRIPLET=wasm-emscripten" 
+          #already commented out
           #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
-      - name: Build 
-        run: cmake --build build #./build --config Release
+      #- name: Build 
+      #  run: cmake --build build #./build --config Release
 
       - name: Create Artifact
         run: |
