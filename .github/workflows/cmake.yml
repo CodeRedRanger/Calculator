@@ -47,10 +47,11 @@ jobs:
           #git submodule update --init src/tiff
           #git submodule update --init src/expat
 
-          cd src/zlib
+          #cd src/zlib
           echo "Applying patch for zlib"
-          git apply ../../../patches/fix_zlib.patch
+          #git apply ../../../patches/fix_zlib.patch
           #git apply --directory . ../../../patches/fix_zlib.patch
+          git apply ../patches/fix_zlib.patch
          
           #cd wxWidgets-wasm
           cd ../..
