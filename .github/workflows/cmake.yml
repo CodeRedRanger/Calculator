@@ -48,8 +48,6 @@ jobs:
           #git submodule update --init src/expat
 
           git submodule update --init --recursive
-
-          dos2unix ../patches/fix_zlib.patch
           
           #cd src/zlib
           echo "Applying patch for zlib"
