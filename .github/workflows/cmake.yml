@@ -70,7 +70,7 @@ jobs:
           
       - name: Installs including wxWidgets via vcpkg
         run: |
-          ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
+          ${{ github.workspace }}/vcpkg/vcpkg install #wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
         # look at prior build to see how environment was set up
         shell: bash
         # shell: pwsh
