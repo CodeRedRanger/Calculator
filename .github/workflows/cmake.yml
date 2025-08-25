@@ -51,8 +51,12 @@ jobs:
           cd src/zlib
           echo "Applying patch for zlib"
           git apply --directory . ../../../patches/fix_zlib.patch
+          cd ../../../
+          pwd
+          ls -R
 
-          cd ../..
+          #cd ../..
+          cd wxWidgets-wasm
           export CONFIGURE_ARGS=" --host=wasm32-unknown-emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64" 
           #export EMMAKEN_CFLAGS="-s USE_ZLIB=1"
           emconfigure ./configure $CONFIGURE_ARGS          
