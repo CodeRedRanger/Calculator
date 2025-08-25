@@ -33,7 +33,7 @@ jobs:
           cd wxWidgets-wasm
 
           echo "Applying patch for zlib"
-          git apply patches/fix_zlib.patch
+          git apply ../patches/fix_zlib.patch
 
           git clean -dfx
 
