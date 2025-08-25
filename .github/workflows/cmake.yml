@@ -32,7 +32,6 @@ jobs:
           git clone http://github.com/CodeRedRanger/wxWidgets-wasm.git --recurse-submodules #http://github.com/ahilss/wxWidgets-wasm.git
           cd wxWidgets-wasm
 
-
           git clean -dfx
 
           curl -L0 http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub
@@ -50,13 +49,11 @@ jobs:
 
           cd src/zlib
           echo "Applying patch for zlib"
-          git apply --directory . ../../../patches/fix_zlib.patch
-          cd ../../../
-          pwd
-          ls -R
-
-          #cd ../..
-          cd wxWidgets-wasm
+          git apply ../../../patches/fix_zlib.patch
+          #git apply --directory . ../../../patches/fix_zlib.patch
+         
+          #cd wxWidgets-wasm
+          cd ../..
           export CONFIGURE_ARGS=" --host=wasm32-unknown-emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64" 
           #export EMMAKEN_CFLAGS="-s USE_ZLIB=1"
           emconfigure ./configure $CONFIGURE_ARGS          
