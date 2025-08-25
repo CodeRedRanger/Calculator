@@ -62,7 +62,7 @@ jobs:
           cd vcpkg
           ./bootstrap-vcpkg.sh
           echo "VCPKG_ROOT=$(pwd)" >> $GITHUB_ENV
-          echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "{{ env.VCPKG_ROOT }}/triplets/wasm32-emscripten.cmake" 
+          echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "{{ env.VCPKG_ROOT }}/triplets/community/wasm32-emscripten.cmake" 
           
       - name: Installs including wxWidgets via vcpkg
         run: |
