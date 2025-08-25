@@ -49,12 +49,14 @@ jobs:
 
           git submodule update --init --recursive
 
+          dos2unix ../patches/fix_zlib.patch
+          
           #cd src/zlib
           echo "Applying patch for zlib"
           #git apply ../../../patches/fix_zlib.patch
           #git apply --directory . ../../../patches/fix_zlib.patch
           #git apply ../patches/fix_zlib.patch
-          git apply --directory=src/zlib/ ../patches/fix_zlib.patch
+          git apply --verbose -- reject --directory=src/zlib/ ../patches/fix_zlib.patch
          
           #cd wxWidgets-wasm
           #cd ../..
