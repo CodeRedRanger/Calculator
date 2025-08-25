@@ -54,7 +54,7 @@ jobs:
           #git apply ../../../patches/fix_zlib.patch
           #git apply --directory . ../../../patches/fix_zlib.patch
           #git apply ../patches/fix_zlib.patch
-          git apply --ignore-space-change --verbose --reject --directory=src/zlib/ ../patches/fix_zlib.patch
+          git apply --ignore-space-change --verbose --reject --directory=src/zlib/ ../patches/fix_zlib.patch #--allow-empty 
          
           #cd wxWidgets-wasm
           #cd ../..
