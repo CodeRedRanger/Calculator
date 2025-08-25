@@ -11,16 +11,6 @@ on:
 
 jobs:
 
-      
-      #- name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
-      #  uses: lukka/run-vcpkg@v11
-      #  with: 
-      #    runVcpkgInstall: true
-         # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg #not needed
-       #   vcpkgArguments: 'install wxwidgets:x64-windows-static'
-          
-  
-
   release_web:
     name: Web Release
     runs-on: ubuntu-latest
@@ -29,7 +19,8 @@ jobs:
       ACTIONS_STEP_DEBUG: true
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
       - name: Install Packages
         run: |
@@ -48,6 +39,7 @@ jobs:
           #autoheader
           #automake --add-missing --force-missing
           #autoconf
+          
       - name: Clean build directory
         run: rm -f build/CMakeCache.txt
         #run: rm -rf ${{ github.workspace }}\build
@@ -55,51 +47,64 @@ jobs:
       - name: Create Build Directory
         run: cmake -E make_directory ${{ github.workspace }}\build
 
+      - name: Checkout emsdk and configure
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk 
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          echo "EMSDK=$(pwd)" >> $GITHUB_ENV
+          source ./emsdk_env.sh
+        shell: bash
+
       - name: Install vcpkg 
-        shell: pwsh
         run: |
-          git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
-          cd ${{ github.workspace }}/vcpkg
+          git clone https://github.com/microsoft/vcpkg.git  #${{ github.workspace }}/vcpkg
+          cd vcpkg
           ./bootstrap-vcpkg.sh
-          #cd ${{ github.workspace }}
-          #vcpkg install
-      - name: Set up CMake toolchain file
+          echo "VCPKG_ROOT=$(pwd)" >> $GITHUB_ENV
+          #vcpkg install #use with json file
+        shell: bash #pwsh
+
+      - name: Create vcpkg custom triplet for Emscripten
         run: |
-         echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
-        
+          echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "{{ env.VCPKG_ROOT }}/triplets/wasm32-emscripten.cmake" 
+          
       - name: Installs including wxWidgets via vcpkg
-        shell: pwsh
         run: |
           ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
-         
-      - name: Integrate vcpkg
-        run: vcpkg integrate install
-
-      - name: Checkout emsdk
-        run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
-
-      - name: Configure Emscripten
+        # look at prior build to see how environment was set up
         shell: bash
+        # shell: pwsh
+         
+      #- name: Integrate vcpkg
+      #  run: vcpkg integrate install
+
+      - name: Configure CMake with chained toolchains
         run: |
-          ./emsdk/emsdk install latest
-          ./emsdk/emsdk activate latest
-      - name: Configure CMake
+          mkdir build
+          cd build
+          emcmake cmake .. \
+            -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=$(( env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake \#-S .  -B ./build 
+            -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ env.EMSDK }}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake \
+            -DVCPKG_TARGET_TRIPLET=wasm32-emscripten
+           shell: bash 
+           
+      - name: Build project with Emscripten
         run: |
-          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake 
-          #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
-          #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
-    
-      - name: Build 
-        run: cmake --build ./build --config Release
+         cd build
+         emmake make
+        shell: bash 
+        
+        #cmake --build ./build --config Release
 
       - name: Create Artifact
         run: |
           mkdir release
-          pwd
-          ls -R
           cp build/Calc_App.html release/index.html
           cp build/Calc_App.js release/Main.js
           cp build/Calc_App.wasm release/Main.wasm
+          
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -126,10 +131,5 @@ jobs:
           ./butler push release.zip CodeRedRanger/Calc_App:html5
           ./butler logout
           
-    #  - name: Configure CMake
-     #   run: |
-          #emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/build/emsdk-cache/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
-       #   emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ steps.setup-emsdk.outputs.emscripten-path}}/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
-          #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
