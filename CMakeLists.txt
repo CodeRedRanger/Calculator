@@ -1,11 +1,6 @@
 cmake_minimum_required(VERSION 3.18)
 
 project(Calc_App)
-
-
-set(VCPKG_ROOT "/home/runner/work/Calculator/Calculator")
-set(CMAKE_TOOLCHAIN_FILE "${VCPKG_ROOT}/vcpkg/scripts/buildsystems/vcpkg.cmake")
-set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "${VCPKG_ROOT}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake")
           
 find_package(wxWidgets CONFIG REQUIRED COMPONENTS net core base)
 

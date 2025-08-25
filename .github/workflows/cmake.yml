@@ -1,152 +1,82 @@
-name: Release Build
+name: Build wxWidgets-Wasm Application
 
 on:
   push:
     branches: [development]
   pull_request:
     branches: [development]
-    types: [closed]
 
 jobs:
-
-      
-      #- name: Install wxWidgets with vcpkg #can't get this to work without json file configed properly
-      #  uses: lukka/run-vcpkg@v11
-      #  with: 
-      #    runVcpkgInstall: true
-         # vcpkgJsonGlob: /home/runner/work/Calculator/vcpkg #not needed
-       #   vcpkgArguments: 'install wxwidgets:x64-windows-static'
-          
-  
-
-  release_web:
-    name: Web Release
+  build:
     runs-on: ubuntu-latest
-    env:
-      VCPKG_ROOT: ${{ github.workspace }}
-      ACTIONS_STEP_DEBUG: true
+    #env:
+      #VCPKG_ROOT: ${{ github.workspace }}
+      #ACTIONS_STEP_DEBUG: true
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: 'recursive'
 
-      - name: Install Packages
+      - name: Install Emscripten SDK
         run: |
-          sudo apt-get update -qq
-          sudo apt-get update 
-          sudo apt-get install -y  gcc-multilib python3 curl zip unzip
-          #sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
-          sudo apt-get install -y libtool
-          sudo apt install -y build-essential #libwxgtk3.0-gtk3-dev 
-          sudo apt install autoconf automake libtool
-          sudo apt-get install -y build-essential cmake git curl unzip
-          sudo apt-get install libtool libltdl-dev
-          libtoolize --force
-          sudo apt install libgtk-3-dev
-          #aclocal
-          #autoheader
-          #automake --add-missing --force-missing
-          #autoconf
+          git clone https://github.com/emscripten-core/emsdk.git 
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          source ./emsdk_env.sh
+ 
+          cd ..
+          
+          git clone http://github.com/CodeRedRanger/wxWidgets-wasm.git --recurse-submodules #http://github.com/ahilss/wxWidgets-wasm.git
+          cd wxWidgets-wasm
 
+          echo "Applying patch for zlib"
+          git apply patches/fix_zlib.patch
 
-      - name: Clean build directory
-        run: rm -f build/CMakeCache.txt
-        #run: rm -rf ${{ github.workspace }}\build
+          git clean -dfx
 
-      - name: Create Build Directory
-        run: cmake -E make_directory ${{ github.workspace }}\build
+          curl -L0 http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub
+          curl -L0 http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess
 
-      #- name: Install vcpkg 
-      #  shell: pwsh
-       # run: |
-        #  git clone https://github.com/microsoft/vcpkg.git ${{ github.workspace }}/vcpkg
-         # cd ${{ github.workspace }}/vcpkg
-          #./bootstrap-vcpkg.sh
-          #already commented out below
-          #cd ${{ github.workspace }}
-          #vcpkg install
+          find . -name "config.sub" -exec cp config.sub {} \;
+          find . -name "config.guess" -exec cp config.guess {} \;
+          
+          git submodule update --init src/jpeg
+          git submodule update --init 3rdparty/catch
+          #git submodule update --init src/zlib
+          #git submodule update --init src/png
+          #git submodule update --init src/tiff
+          #git submodule update --init src/expat
+          
+          export CONFIGURE_ARGS=" --host=wasm32-unknown-emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64" 
+          #export EMMAKEN_CFLAGS="-s USE_ZLIB=1"
+          emconfigure ./configure $CONFIGURE_ARGS          
+          emmake make -j$(nproc) VERBOSE=1 > emmake_output.log 2>&1 #-DCMAKE_EXE_LINKER_FLAGS="-s USE_ZLIB=1"
+          emmake make install
+          cd .. 
+          
+          mkdir build && cd build
+          emcmake cmake ..
+          emmake make
 
-      #- name: Set up CMake toolchain file
-       # run: |
-        # echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
-
-        #new
-      - name: Setup Emscripten SDK
-        uses: mymindstorm/setup-emsdk@v12
-        id: setup-emsdk
-        with:
-          version: 'latest'
-
-      - name: Set up cache for wxWidgets build
-        id: cache-wxwidgets
-        uses: actions/cache@v4
-        with:
-          path: ./build/wxwidgets-wasm
-          key: ${{ runner.os }}-wxwidgets-${{ hashFiles('3rdparty/wxwidgets/.git/index') }}
-          restore-keys: |
-            ${{ runner.os }}-wxwidgets-
-
-      - name: Build wxWidgets with Emscripten
-        if: steps.cache-wxwidgets.outputs.cache-hit != 'true'
+      - name: Debug make failure
+        if: failure()
         run: |
-          mkdir -p build/wxwidgets-wasm
-          cd build/wxwidgets-wasm
-          emcmake cmake ../../3rdparty/wxwidgets -G Ninja \
-           -DwxBUILD_SAMPLES=NONE \
-           -DwxBUILD_DEMOS=NONE \
-           -DwxBUILD_TESTS=NONE \
-           -DCMAKE_BUILD_TYPE=Release
-          cmake --build .
-
-      - name: Set up cache for Project build
-        id: cache-project
-        uses: actions/cache@v4
-        with:
-          path: ./build/wasm
-          key: ${{ runner.os }}-wasm-${{ hashFiles('CMakeLists.txt', '**/*.cpp', '**/*.h') }}-$ {{ github.sha }}
-
-      - name: Configure and Build Project for WebAssembly
-        run: |
-         mkdir -p build/wasm
-         cd build/wasm
-         emcmake cmake ../.. -G Ninja \
-           -DCMAKE_BUILD_TYPE=Release
-         cmake --build .
-
-      - name: Upload WebAssembly build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: wasm-build
-          path: build/wasm/*.wasm
-      
-
-      #- name: Installs wxWidgets #including wxWidgets via vcpkg
-       # shell: pwsh
-        #run: |
-         # ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets:wasm-emscripten #--triplet wasm32-emscripten # --recurse #   vcpkg install #--triplet=x64-linux
-         
-
-      #- name: Integrate vcpkg
-      #  run: vcpkg integrate install
-
-      #- name: Checkout emsdk
-      #  run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
-
-      #- name: Configure Emscripten
-      #  shell: bash
-      #  run: |
-       #   ./emsdk/emsdk install latest
-       #   ./emsdk/emsdk activate latest
-
+          cd wxWidgets-wasm
+          echo "---Contents of emmake_output.log --"
+          cat emmake_output.log
+          
+          
       #- name: Configure CMake
       #  run: |
-      #    cmake -S . -B build "-DCMAKE_BUILD_TYPE=Release" "-Wno-dev" "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" "-DVCPKG_TARGET_TRIPLET=wasm-emscripten" 
-          #already commented out
+      #    emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/build/emsdk-cache/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+      #    emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ steps.setup-emsdk.outputs.emscripten-path}}/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/build/wxWidgets-cache/cmake/Modules/Platform/Emscripten.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
           #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
-      #- name: Build 
+     # - name: Build 
       #  run: cmake --build build #./build --config Release
 
       - name: Create Artifact
@@ -157,7 +87,6 @@ jobs:
           cp build/Calc_App.html release/index.html
           cp build/Calc_App.js release/Main.js
           cp build/Calc_App.wasm release/Main.wasm
-
       - name: Publish Artifact
         uses: actions/upload-artifact@v4
         with:
@@ -170,7 +99,6 @@ jobs:
           unzip butler.zip
           chmod +x butler
           ./butler -V
-
       - name: Create release zip and run Butler
 
         # Here we say that we will use the BUTLER_API_KEY as an environment variable
@@ -180,7 +108,6 @@ jobs:
           cd release
           zip -r ../release.zip *
           cd ..
-
           # Butler will read the API key from the environment variable
           ./butler login
           ./butler push release.zip CodeRedRanger/Calc_App:html5
