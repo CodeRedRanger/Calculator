@@ -63,11 +63,10 @@ jobs:
           ./bootstrap-vcpkg.sh
           #cd ${{ github.workspace }}
           #vcpkg install
-      #- name: Set up CMake toolchain file
-       # run: |
-        # echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
+      - name: Set up CMake toolchain file
+        run: |
+         echo "CMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=x64-linux #>> $GITHUB_ENV # -S .  -B ./build 
         
-
       - name: Installs including wxWidgets via vcpkg
         shell: pwsh
         run: |
@@ -76,31 +75,22 @@ jobs:
       - name: Integrate vcpkg
         run: vcpkg integrate install
 
-      #- name: Checkout emsdk
-       # run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
+      - name: Checkout emsdk
+        run: git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk
 
-      #- name: Configure Emscripten
-      #  shell: bash
-      #  run: |
-     #     ./emsdk/emsdk install latest
-      #    ./emsdk/emsdk activate latest
-
-      - name: Setup Emscripten SDK
-        uses: mymindstorm/setup-emsdk@v12
-        id: setup-emsdk
-        with:
-          version: 'latest'
-          #actions-cache-folder: 'emsdk-cache'
-          
+      - name: Configure Emscripten
+        shell: bash
+        run: |
+          ./emsdk/emsdk install latest
+          ./emsdk/emsdk activate latest
       - name: Configure CMake
         run: |
-          #emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/build/emsdk-cache/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
-          emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ steps.setup-emsdk.outputs.emscripten-path}}/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+          cmake -S ./ -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake 
           #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
           #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
     
       - name: Build 
-        run: cmake --build build #./build --config Release
+        run: cmake --build ./build --config Release
 
       - name: Create Artifact
         run: |
@@ -135,3 +125,11 @@ jobs:
           ./butler login
           ./butler push release.zip CodeRedRanger/Calc_App:html5
           ./butler logout
+          
+    #  - name: Configure CMake
+     #   run: |
+          #emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/build/emsdk-cache/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+       #   emcmake cmake -S . -B build "-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ steps.setup-emsdk.outputs.emscripten-path}}/cmake/Modules/Platform/Emscripten.cmake" "-DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" #"-DVCPKG_TARGET_TRIPLET=wasm32-emscripten"
+          #cmake -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -S .  -B ./build 
+          #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
+    
