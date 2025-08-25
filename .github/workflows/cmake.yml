@@ -47,9 +47,9 @@ jobs:
           #git submodule update --init src/tiff
           #git submodule update --init src/expat
           
-          export CONFIGURE_ARGS=" --host=wasm32-unknown-emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64" 
+          export CONFIGURE_ARGS=" --host=wasm32-unknown-emscripten --with-cxx=14 --enable-utf8 --enable-universal --disable-shared --disable-exceptions --disable-richtext --without-libtiff --without-zlib --disable-xlocale --disable-dependency-tracking --enable-dynamicloader=no --prefix=$(pwd)/install --libdir=$(pwd)/install/lib64" 
           emconfigure ./configure $CONFIGURE_ARGS          
-          emmake make -j$(nproc) VERBOSE=1 > emmake_output.log 2>&1
+          emmake make -j$(nproc) -DCMAKE_EXE_LINKER_FLAGS="-s USE_ZLIB=1" VERBOSE=1 > emmake_output.log 2>&1
           emmake make install
           cd .. 
           
