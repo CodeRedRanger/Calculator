@@ -54,7 +54,7 @@ jobs:
           #git apply ../../../patches/fix_zlib.patch
           #git apply --directory . ../../../patches/fix_zlib.patch
           #git apply ../patches/fix_zlib.patch
-          git apply --directory=src/zlib/ ../../patches/fix_zlib.patch
+          git apply --directory=src/zlib/ ../patches/fix_zlib.patch
          
           #cd wxWidgets-wasm
           #cd ../..
