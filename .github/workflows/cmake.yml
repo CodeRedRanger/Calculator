@@ -49,33 +49,25 @@ jobs:
       - name: Create Build Directory
         run: cmake -E make_directory ${{ github.workspace }}\build
 
-      - name: Checkout emsdk and configure
+      - name: Checkout emsdk and configure, install vcpkg and create triplet
         run: |
-          git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk 
+          git clone https://github.com/emscripten-core/emsdk.git
           cd emsdk
           ./emsdk install latest
           ./emsdk activate latest
           echo "EMSDK=$(pwd)" >> $GITHUB_ENV
           source ./emsdk_env.sh
-        shell: bash
-
-      - name: Install vcpkg 
-        run: |
-          git clone https://github.com/microsoft/vcpkg.git  #${{ github.workspace }}/vcpkg
+          cd ../
+          git clone https://github.com/microsoft/vcpkg.git  
           cd vcpkg
           ./bootstrap-vcpkg.sh
           echo "VCPKG_ROOT=$(pwd)" >> $GITHUB_ENV
-          #vcpkg install #use with json file
-        shell: bash #pwsh
-
-      - name: Create vcpkg custom triplet for Emscripten
-        run: |
           echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "{{ env.VCPKG_ROOT }}/triplets/wasm32-emscripten.cmake" 
           
       - name: Installs including wxWidgets via vcpkg
         run: |
           ${{ github.workspace }}/vcpkg/vcpkg install wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
-        # look at prior build to see how environment was set up
+          # look at prior build to see how environment was set up
         shell: bash
         # shell: pwsh
          
