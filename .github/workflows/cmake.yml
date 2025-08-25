@@ -32,6 +32,9 @@ jobs:
           git clone http://github.com/CodeRedRanger/wxWidgets-wasm.git --recurse-submodules #http://github.com/ahilss/wxWidgets-wasm.git
           cd wxWidgets-wasm
 
+          echo "Applying patch for zlib"
+          git apply ../patches/fix_zlib.patch
+
           git clean -dfx
 
           curl -L0 http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub
