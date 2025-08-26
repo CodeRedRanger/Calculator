@@ -41,20 +41,17 @@ jobs:
         run: cmake -E make_directory ${{ github.workspace }}/build
 
       - name: Checkout emsdk and configure
-        uses: mymindstorm/setup-emsdk@v12
-       # run: |
-       #   git clone https://github.com/emscripten-core/emsdk.git # ${{ github.workspace }}/emsdk 
-       #   cd emsdk
-       #   ./emsdk install latest
-       #   ./emsdk activate latest
-          
-          #echo "EMSDK=$(pwd)" >> $GITHUB_ENV
-          
-       #   source ./emsdk_env.sh
-      - name: install vcpkg
+        #uses: mymindstorm/setup-emsdk@v12
         run: |
-          #cd ..
+          git clone https://github.com/emscripten-core/emsdk.git # ${{ github.workspace }}/emsdk 
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          #echo "EMSDK=$(pwd)" >> $GITHUB_ENV  
+          source ./emsdk_env.sh
           
+          cd ..
+
           git clone https://github.com/microsoft/vcpkg.git 
           cd vcpkg
           ./bootstrap-vcpkg.sh
