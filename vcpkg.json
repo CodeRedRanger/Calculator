@@ -2,8 +2,9 @@
  "dependencies": [
 	{
 		"name": "wxwidgets",
+		"default-features": false,
 		"features": [
-			"core",
+			"webview",
 			"net",
 			"xml"
   		]
