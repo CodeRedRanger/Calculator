@@ -62,8 +62,8 @@ jobs:
           echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${{ github.workspace }}/vcpkg/triplets/community/wasm32-emscripten.cmake" 
 
           #cd "${VCPKG_ROOT_PATH}"
-          #vcpkg install #--triplet=wasm32-emscriptem  #use with json file
-          #vcpkg integrate install 
+          vcpkg install #--triplet=wasm32-emscriptem  #use with json file
+          vcpkg integrate install 
           #cd ..
 
           #cd build
