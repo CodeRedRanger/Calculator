@@ -3,6 +3,13 @@
 	{
 		"name": "wxwidgets",
 		"default-features": false
+		"features": []
 	}
- ]
+ ],
+  "overrides": [
+	{
+	  "name": "libwebp",
+	  "version": "0.0.0"
+	} 
+  ]
 }
