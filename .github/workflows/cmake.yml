@@ -62,10 +62,10 @@ jobs:
           #mkdir -p "${VCPKG_ROOT_PATH}/triplets" 
           echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${{ env.VCPKG_ROOT }}/triplets/community/wasm32-emscripten.cmake" 
 
-          cd "${VCPKG_ROOT_PATH}"
-          vcpkg install #--triplet=wasm32-emscriptem  #use with json file
-          vcpkg integrate install 
-          cd ..
+          #cd "${VCPKG_ROOT_PATH}"
+          #vcpkg install #--triplet=wasm32-emscriptem  #use with json file
+          #vcpkg integrate install 
+          #cd ..
           
           cd build
           emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ env.EMSDK }}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DVCPKG_TARGET_TRIPLET=wasm32-emscripten
