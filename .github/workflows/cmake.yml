@@ -57,7 +57,7 @@ jobs:
           cd vcpkg
           ./bootstrap-vcpkg.sh
           VCPKG_ROOT=$(pwd) # >> $GITHUB_ENV
-          cd ..
+          #cd ..
 
           #mkdir -p "${VCPKG_ROOT_PATH}/triplets" 
           echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${{ env.VCPKG_ROOT }}/triplets/community/wasm32-emscripten.cmake" 
