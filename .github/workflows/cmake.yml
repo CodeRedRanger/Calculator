@@ -51,7 +51,9 @@ jobs:
           #echo "EMSDK=$(pwd)" >> $GITHUB_ENV
           
        #   source ./emsdk_env.sh
-          cd ..
+      - name: install vcpkg
+        run: |
+          #cd ..
           
           git clone https://github.com/microsoft/vcpkg.git 
           cd vcpkg
