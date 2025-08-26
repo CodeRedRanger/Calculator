@@ -4,8 +4,7 @@
 		"name": "wxwidgets",
 		"default-features": false,
 		"features": [
-			"webview",
-			"xrc"
+			"webview"
   		]
 	}
  ]
