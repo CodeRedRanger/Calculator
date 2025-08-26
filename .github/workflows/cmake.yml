@@ -71,11 +71,8 @@ jobs:
 
           #cd build
           #-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE="${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
-          
-          emcmake cmake -S .  -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev \
-          -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" \
-          -DVCPKG_TARGET_TRIPLET=wasm32-emscripten \
-          -DVCPKG_OVERLAY_TRIPLETS="${CUSTOM_TRIPLET_DIR}"
+      
+          emcmake cmake -S .  -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=wasm32-emscripten -DVCPKG_OVERLAY_TRIPLETS="${CUSTOM_TRIPLET_DIR}"
           emmake make
         shell: bash 
            
