@@ -39,7 +39,7 @@ jobs:
         run: rm -rf ${{ github.workspace }}/build
 
       - name: Create Build Directory
-        run: cmake -E make_directory ${{ github.workspace }}\build
+        run: cmake -E make_directory ${{ github.workspace }}/build
 
       - name: Checkout emsdk and configure
        # uses: mymindstorm/setup-emsdk@v12
@@ -68,7 +68,7 @@ jobs:
 
           pwd
           ls -R
-          cd build
+          #cd build
           emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DVCPKG_TARGET_TRIPLET=wasm32-emscripten
           emmake make
         shell: bash 
