@@ -56,12 +56,13 @@ jobs:
           cd vcpkg
           ./bootstrap-vcpkg.sh
           #echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
-          CUSTOM_TRIPLET_DIR="${{ github.workspace }}/vcpkg/community"
+          CUSTOM_TRIPLET_DIR="${{ github.workspace }}/vcpkg/triplets/community"          
+        
           cd ..
-
           
           #mkdir -p "${VCPKG_ROOT}/triplets" 
-          echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${{ github.workspace }}/vcpkg/triplets/community/wasm32-emscripten.cmake" 
+          echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${CUSTOM_TRIPLET_DIR}/wasm32-emscripten.cmake" 
+          echo "set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE \"${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake\")" >> "${CUSTOM_TRIPLET_DIR}/wasm32-emscripten.cmake"
 
           #cd "${VCPKG_ROOT_PATH}"
           #vcpkg install #--triplet=wasm32-emscriptem  #use with json file
@@ -71,7 +72,7 @@ jobs:
           #cd build
           emcmake cmake -S .  -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev \
           -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" \
-          -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE="${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
+          #-DVCPKG_CHAINLOAD_TOOLCHAIN_FILE="${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake" \
           -DVCPKG_TARGET_TRIPLET=wasm32-emscripten \
           -DVCPKG_OVERLAY_TRIPLETS="${CUSTOM_TRIPLET_DIR}"
           emmake make
