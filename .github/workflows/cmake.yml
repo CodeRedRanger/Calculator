@@ -66,8 +66,6 @@ jobs:
           #vcpkg integrate install 
           #cd ..
 
-          pwd
-          ls -R
           #cd build
           emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DVCPKG_TARGET_TRIPLET=wasm32-emscripten
           emmake make
