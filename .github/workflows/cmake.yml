@@ -13,7 +13,6 @@ jobs:
     name: Web Release
     runs-on: ubuntu-latest
     env:
-      #VCPKG_ROOT: ${{ github.workspace }}
       ACTIONS_STEP_DEBUG: true
 
     steps:
@@ -56,11 +55,11 @@ jobs:
           git clone https://github.com/microsoft/vcpkg.git 
           cd vcpkg
           ./bootstrap-vcpkg.sh
-          echo "VCPKG_ROOT=$(pwd)" >> $GITHUB_ENV
+          #echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
           cd ..
 
           #mkdir -p "${VCPKG_ROOT}/triplets" 
-          echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${{ env.VCPKG_ROOT }}/triplets/community/wasm32-emscripten.cmake" 
+          echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${{ github.workspace }}/vcpkg/triplets/community/wasm32-emscripten.cmake" 
 
           #cd "${VCPKG_ROOT_PATH}"
           #vcpkg install #--triplet=wasm32-emscriptem  #use with json file
@@ -68,7 +67,7 @@ jobs:
           #cd ..
           
           cd build
-          emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ env.EMSDK }}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DVCPKG_TARGET_TRIPLET=wasm32-emscripten
+          emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DVCPKG_TARGET_TRIPLET=wasm32-emscripten
           emmake make
         shell: bash 
            
