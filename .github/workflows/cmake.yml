@@ -45,57 +45,33 @@ jobs:
       - name: Checkout emsdk and configure
        # uses: mymindstorm/setup-emsdk@v12
         run: |
-          git clone https://github.com/emscripten-core/emsdk.git ${{ github.workspace }}/emsdk 
+          git clone https://github.com/emscripten-core/emsdk.git # ${{ github.workspace }}/emsdk 
           cd emsdk
           ./emsdk install latest
           ./emsdk activate latest
           #echo "EMSDK=$(pwd)" >> $GITHUB_ENV
           source ./emsdk_env.sh
           cd ..
-     #   shell: bash
+          
+          git clone https://github.com/microsoft/vcpkg.git 
+          cd vcpkg
+          ./bootstrap-vcpkg.sh
+          VCPKG_ROOT=$(pwd) # >> $GITHUB_ENV
+          cd ..
 
-     # - name: Install vcpkg 
-     #   run: |
-        git clone https://github.com/microsoft/vcpkg.git  #${{ github.workspace }}/vcpkg
-        cd vcpkg
-        ./bootstrap-vcpkg.sh
-        #echo 
-        VCPKG_ROOT=$(pwd) # >> $GITHUB_ENV
-        vcpkg install #use with json file
-        vcpkg integrate install
-        cd ..
-        #shell: bash #pwsh
-
-      #- name: Create vcpkg custom triplet for Emscripten
-      #  run: |
           #mkdir -p "${VCPKG_ROOT_PATH}/triplets" 
           echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${{ env.VCPKG_ROOT }}/triplets/community/wasm32-emscripten.cmake" 
-          
-      #- name: Installs including wxWidgets via vcpkg
-      #  run: |
-      #    ${{ github.workspace }}/vcpkg/vcpkg install #wxwidgets # --recurse #   vcpkg install #--triplet=x64-linux
-        # look at prior build to see how environment was set up
-      #  shell: bash
-        # shell: pwsh
-         
-      #- name: Integrate vcpkg
-      #  run: vcpkg integrate install
 
-      #- name: Configure CMake with chained toolchains and build
-      #  run: |
+          cd "${VCPKG_ROOT_PATH}"
+          vcpkg install --triplet=wasm32-emscriptem  #use with json file
+          vcpkg integrate install 
+          cd ..
+          
           cd build
           emcmake cmake .. -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ env.EMSDK }}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake -DVCPKG_TARGET_TRIPLET=wasm32-emscripten
           emmake make
         shell: bash 
            
-      #- name: Build project with Emscripten
-      #  run: |
-      #   cd build
-      #   emmake make
-      #  shell: bash 
-        
-        #cmake --build ./build --config Release
-
       - name: Create Artifact
         run: |
           mkdir release
