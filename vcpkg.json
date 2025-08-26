@@ -1,7 +1,12 @@
 {
  "dependencies": [
-	
-	"wxwidgets"
-	
-  ]
+	{
+		"wxwidgets",
+		"features": [
+			"core",
+			"net",
+			"xml"
+  		]
+	}
+ ]
 }
