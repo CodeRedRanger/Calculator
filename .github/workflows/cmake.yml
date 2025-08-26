@@ -82,7 +82,7 @@ jobs:
         run: |
           cd build
           emcmake cmake .. \
-            -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=$(( env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake \#-S .  -B ./build 
+            -DCMAKE_BUILD_TYPE=Release -Wno-dev TOOLCHAIN_FILE=${{ env.VCPKG_ROOT }}/scripts/buildsystems/vcpkg.cmake \#-S .  -B ./build 
             -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=${{ env.EMSDK }}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake \
             -DVCPKG_TARGET_TRIPLET=wasm32-emscripten
            shell: bash 
