@@ -56,6 +56,20 @@ jobs:
           cd vcpkg
           ./bootstrap-vcpkg.sh
           #echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
+
+          cd..
+          OVERLAY_PORTS_DIR="${{ github.workspace }}/vcpkg_overlay_ports"
+          mkdir -p "${OVERLAY_PORTS_DIR}/libwebp"
+          cp "${{ github.workspace }}/vcpkg/ports/libwebp/portfile.cmake" "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
+
+          echo '
+            if(VCPKG_CMAKE_SYSTEM_NAME MATCHES "Emscripten")
+              set(WEBP_ENABLE_SIMD OFF)
+            endif()
+          ' >> "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
+
+          echo "VCPKG_OVERLAY_PORTS=${OVERLAY_PORTS_DIR}" >> "SGITHUB_ENV"
+          
           CUSTOM_TRIPLET_DIR="${{ github.workspace }}/vcpkg/triplets/community"          
         
           cd ..
