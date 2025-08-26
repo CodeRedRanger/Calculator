@@ -5,8 +5,7 @@
 		"default-features": false,
 		"features": [
 			"webview",
-			"xrc",
-			"xml"
+			"xrc"
   		]
 	}
  ]
