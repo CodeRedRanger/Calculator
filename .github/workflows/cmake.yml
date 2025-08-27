@@ -112,7 +112,28 @@ jobs:
           #cd build
           emcmake cmake -S .  -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=wasm32-emscripten -DVCPKG_OVERLAY_TRIPLETS="${CUSTOM_TRIPLET_DIR}"
           emmake make
+        id: build-step # Assign an ID to this step
+        continue-on-error: true 
         shell: bash 
+
+      - name: Capture vcpkg logs on failure
+        if: failure() # This step will only run if a previous step failed
+        run: |
+          # This path is where vcpkg stores build logs
+          vcpkg_logs_path="/home/runner/work/Calculator/Calculator/vcpkg/buildtrees/libwebp"
+    
+          # Check if the directory exists before trying to archive it
+          if [ -d "$vcpkg_logs_path" ]; then
+            tar -czf vcpkg_libwebp_logs.tar.gz "$vcpkg_logs_path"
+          fi
+        id: log-capture
+
+      - name: Upload vcpkg logs as artifact
+        if: failure() || steps.log-capture.outcome == 'success' # Upload if the build failed OR if the log-capture was successful
+        uses: actions/upload-artifact@v4
+        with:
+          name: vcpkg-libwebp-logs
+          path: vcpkg_libwebp_logs.tar.gz
            
       - name: Create Artifact
         run: |
