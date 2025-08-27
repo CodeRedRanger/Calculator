@@ -1,10 +1,5 @@
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-  "builtin-baseline": "6603e6392c5a1474ce2d7d0574eb774ab43a3236",
   "dependencies": [
-    {
-      "name": "wxwidgets",
-      "default-features": false
-    }
+      "wxwidgets"
   ]
 }
