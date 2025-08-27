@@ -59,35 +59,36 @@ jobs:
 
           cd ..
           OVERLAY_PORTS_DIR="${{ github.workspace }}/vcpkg_overlay_ports"
-          mkdir -p "${OVERLAY_PORTS_DIR}/libwebp"
+          mkdir -p "${OVERLAY_PORTS_DIR}/wxwidgets"
           
           #cp "${{ github.workspace }}/vcpkg/ports/libwebp/portfile.cmake" "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
 
           echo '
             include(vcpkg_common_functions)
             vcpkg_from_github(
-                REPO webmproject/libwebp
-                REF v1.3.1
-                SHA512 878f9f7400d46b72a441df807357d727b14d852a3b04c0df21d51a704e6c3822165243e8d9d20c326d97c7b8098c4a4a174c83f3f338d4a9603f90547eb021e1
-                HEAD_REF main
-
+                OUT_SOURCE_PATH SOURCE_PATH
+                REPO wxWidgets/wxWidgets
+                REF v3.2.4
+                SHA512 d5053e1a0b51a56641477174620612c62c2f7041285223e72251a7071e6261546747b2c938b8eb30091807d9b71e16f731c360a711d9435b6a7a00f2e02d8b13
+                HEAD_REF master
+                PATCHES
+                    disable-webp.patch
             )
 
+            file(WRITE "${SOURCE_PATH}/disable-webp.patch" "--- a/CMakeLists.txt\n+++ b/CMakeLists.txt\n@@ -253,3 +253,5 @@\n find_package(libwebp CONFIG)\n+if(FALSE)\n+  find_package(libwebp CONFIG)\n+endif()\n\n")
+            
             vcpkg_configure_cmake(
-                SOURCE_PATH ${SOURCE_PATH}
+                SOURCE_PATH "${SOURCE_PATH}"
                 PREFER_NINJA
                 OPTIONS
-                    -DWEBP_ENABLE_SIMD=OFF
-                    -DWEBP_ENABLE_SWAP_16BIT_CSP=OFF
-                    -DWEBP_ENABLE_TOOLS=OFF
-                    -DWEBP_ENABLE_ANIM_UTIL=OFF
+                    -DwxUSE_LIBWEBP=OFF
             )
 
             vcpkg_install_cmake()
             vcpkg_fixup_cmake_targets()
             file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
             file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/share/man")
-          ' > "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
+          ' > "${OVERLAY_PORTS_DIR}/wxwidgets/portfile.cmake"
 
           echo "VCPKG_OVERLAY_PORTS=${OVERLAY_PORTS_DIR}" >> "$GITHUB_ENV"
           
