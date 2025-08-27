@@ -66,6 +66,9 @@ jobs:
           echo '
             if(VCPKG_CMAKE_SYSTEM_NAME MATCHES "Emscripten")
               set(WEBP_ENABLE_SIMD OFF)
+              set(WEBP_ENABLE_SWAP_16BIT_CSP OFF)
+              set(WEBP_ENABLE_TOOLS OFF)
+              set(WEBP_ENABLE_ANIM_UTIL OFF)
             endif()
           ' >> "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
 
