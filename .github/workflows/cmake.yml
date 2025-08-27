@@ -57,7 +57,7 @@ jobs:
           ./bootstrap-vcpkg.sh
           #echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
 
-          cd..
+          cd ..
           OVERLAY_PORTS_DIR="${{ github.workspace }}/vcpkg_overlay_ports"
           mkdir -p "${OVERLAY_PORTS_DIR}/libwebp"
           
