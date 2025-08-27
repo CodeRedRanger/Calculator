@@ -60,6 +60,7 @@ jobs:
           cd..
           OVERLAY_PORTS_DIR="${{ github.workspace }}/vcpkg_overlay_ports"
           mkdir -p "${OVERLAY_PORTS_DIR}/libwebp"
+          
           cp "${{ github.workspace }}/vcpkg/ports/libwebp/portfile.cmake" "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
 
           echo '
@@ -68,7 +69,7 @@ jobs:
             endif()
           ' >> "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
 
-          echo "VCPKG_OVERLAY_PORTS=${OVERLAY_PORTS_DIR}" >> "SGITHUB_ENV"
+          echo "VCPKG_OVERLAY_PORTS=${OVERLAY_PORTS_DIR}" >> "$GITHUB_ENV"
           
           CUSTOM_TRIPLET_DIR="${{ github.workspace }}/vcpkg/triplets/community"          
         
