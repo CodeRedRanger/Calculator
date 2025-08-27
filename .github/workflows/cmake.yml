@@ -61,16 +61,33 @@ jobs:
           OVERLAY_PORTS_DIR="${{ github.workspace }}/vcpkg_overlay_ports"
           mkdir -p "${OVERLAY_PORTS_DIR}/libwebp"
           
-          cp "${{ github.workspace }}/vcpkg/ports/libwebp/portfile.cmake" "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
+          #cp "${{ github.workspace }}/vcpkg/ports/libwebp/portfile.cmake" "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
 
           echo '
-            if(VCPKG_CMAKE_SYSTEM_NAME MATCHES "Emscripten")
-              set(WEBP_ENABLE_SIMD OFF)
-              set(WEBP_ENABLE_SWAP_16BIT_CSP OFF)
-              set(WEBP_ENABLE_TOOLS OFF)
-              set(WEBP_ENABLE_ANIM_UTIL OFF)
-            endif()
-          ' >> "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
+            include(vcpkg_common_functions)
+            vcpkg_from_github(
+                REPO webmproject/libwebp
+                REF v1.3.1
+                SHA512 878f9f7400d46b72a441df807357d727b14d852a3b04c0df21d51a704e6c3822165243e8d9d20c326d97c7b8098c4a4a174c83f3f338d4a9603f90547eb021e1
+                HEAD_REF main
+
+            )
+
+            vcpkg_configure_cmake(
+                SOURCE_PATH ${SOURCE_PATH}
+                PREFER_NINJA
+                OPTIONS
+                    -DWEBP_ENABLE_SIMD=OFF
+                    -DWEBP_ENABLE_SWAP_16BIT_CSP=OFF
+                    -DWEBP_ENABLE_TOOLS=OFF
+                    -DWEBP_ENABLE_ANIM_UTIL=OFF
+            )
+
+            vcpkg_install_cmake()
+            vcpkg_fixup_cmake_targets()
+            file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/debug/share")
+            file(REMOVE_RECURSE "${CURRENT_PACKAGES_DIR}/share/man")
+          ' > "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
 
           echo "VCPKG_OVERLAY_PORTS=${OVERLAY_PORTS_DIR}" >> "$GITHUB_ENV"
           
