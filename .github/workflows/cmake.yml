@@ -63,15 +63,35 @@ jobs:
           
           #cp "${{ github.workspace }}/vcpkg/ports/libwebp/portfile.cmake" "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
 
-          echo '
-            message("Using dummy libwebp port.")
-          ' > "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
+          # Get base portfile from vcpkg to work from
+          cp "${{ github.workspace }}/vcpkg/ports/wxwidgets/portfile.cmake" "${OVERLAY_PORTS_DIR}/wxwidgets/portfile.cmake"
 
+          # Create patch to remove libwebp from build system
           echo '
-            Source: libwebp
-            Version: 1.3.2
-            Build-Depends:
-          ' > "${OVERLAY_PORTS_DIR}/libwebp/CONTROL"
+            --- a/portfile.cmake
+            +++ b/portfile.cmake
+            @@ -46,7 +46,7 @@
+             set(DEPENDS
+                 ${VCPKG_POLICY_EMPTY_PACKAGE_IS_NULL}
+                 gdiplus
+            -    libwebp
+            -    libtiff
+            -    libjpeg-turbo
+            -    libpng
+            -    zlib
+            +    #libwebp
+            +    #libtiff
+            +    #libjpeg-turbo
+            +    #libpng
+            +    #zlib
+                 minizip
+                 pcre2
+                 pugixml
+            ' > "${OVERLAY_PORTS_DIR}/wxwidgets/remove-webp.patch"
+
+          # Patch the portfile to remove libwebp
+          sed -i 's/vcpkg_from_github(/vcpkg_from_github(\n    PATCHES remove-webp.patch/' "${OVERLAY_PORTS_DIR}/wxwidgets/portfile.cmake"
+          sed -i '/libwebp/d' "${OVERLAY_PORTS_DIR}/wxwidgets/portfile.cmake"
 
           echo "VCPKG_OVERLAY_PORTS=${OVERLAY_PORTS_DIR}" >> "$GITHUB_ENV"
           
