@@ -73,7 +73,7 @@ jobs:
           
           CUSTOM_TRIPLET_DIR="${{ github.workspace }}/vcpkg/triplets/community"          
         
-          cd ..
+          #cd ..
           
           #mkdir -p "${VCPKG_ROOT}/triplets" 
           echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${CUSTOM_TRIPLET_DIR}/wasm32-emscripten.cmake" 
