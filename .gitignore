@@ -363,7 +363,7 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # VCPKG
-/vcpkg/
+#/vcpkg/
 
 #Cmake build
-/build/
+#/build/
