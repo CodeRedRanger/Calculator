@@ -16,9 +16,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: action/checkout@v4
-      with: 
-        submodules: true #Needed to fetch the vcpkg submodule
+      uses: action/checkout@v2
+#      with: 
+#        submodules: true #Needed to fetch the vcpkg submodule
 
 #    - name: Bootstrap vcpkg
 #      run: ./vcpkg/bootstrap-vcpkg.sh
