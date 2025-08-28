@@ -27,13 +27,13 @@ jobs:
       - name: Create Build Directory
         run: cmake -E make_directory ${{ github.workspace }}/build
 
-      - name: Bootstrap vcpkg
-        run: ./vcpkg/bootstrap-vcpkg.sh
+      #- name: Bootstrap vcpkg
+      #  run: ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Restore vcpkg cache
         uses: lukka/run-vcpkg@v11
-        with:
-          doNotRunVcpkgInstall: true # Let CMake do the install
+    #    with:
+    #      doNotRunVcpkgInstall: true # Let CMake do the install
 
       - name: Configure and build with CMake
         uses: lukka/run-cmake@v10
