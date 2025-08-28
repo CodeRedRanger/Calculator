@@ -1,6 +1,6 @@
 #Stage 1: Build environment
 # Use a base image with a recent C++ compiler and build tools
-FROM debian:stable-slim AS builder
+FROM: debian:stable-slim AS builder
 
 #Install build dependencies
 # For Linux (GTK), you can install the required packages
