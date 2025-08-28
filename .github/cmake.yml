@@ -1,0 +1,171 @@
+name: Release Build
+
+on:
+  push:
+    branches: [development]
+  pull_request:
+    branches: [development]
+    types: [closed]
+
+jobs:
+
+  release_web:
+    name: Web Release
+    runs-on: ubuntu-latest
+    env:
+      ACTIONS_STEP_DEBUG: true
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Packages
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get update 
+          sudo apt-get install -y  gcc-multilib python3 curl zip unzip
+          #sudo apt-get install -y --no-install-recommends libx11-dev libxcursor-dev libxrandr-dev libxinerama-dev libxi-dev libxext-dev libxfixes-dev libgl1-mesa-dev
+          sudo apt-get install -y libtool
+          sudo apt install -y build-essential #libwxgtk3.0-gtk3-dev 
+          sudo apt install autoconf automake libtool
+          sudo apt-get install -y build-essential cmake git curl unzip
+          sudo apt-get install libtool libltdl-dev
+          libtoolize --force
+          sudo apt install libgtk-3-dev
+          
+      - name: Clean build directory
+     #   run: rm -f build/CMakeCache.txt
+        run: rm -rf ${{ github.workspace }}/build
+
+      - name: Create Build Directory
+        run: cmake -E make_directory ${{ github.workspace }}/build
+
+      - name: Checkout emsdk and configure
+        #uses: mymindstorm/setup-emsdk@v12
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git # ${{ github.workspace }}/emsdk 
+          cd emsdk
+          ./emsdk install latest
+          ./emsdk activate latest
+          #echo "EMSDK=$(pwd)" >> $GITHUB_ENV  
+          source ./emsdk_env.sh
+          
+          cd ..
+
+          git clone https://github.com/microsoft/vcpkg.git 
+          cd vcpkg
+          ./bootstrap-vcpkg.sh
+          #echo "VCPKG_ROOT=${{ github.workspace }}/vcpkg" >> $GITHUB_ENV
+
+          cd ..
+          OVERLAY_PORTS_DIR="${{ github.workspace }}/vcpkg_overlay_ports"
+          mkdir -p "${OVERLAY_PORTS_DIR}/libwebp"
+          
+          #cp "${{ github.workspace }}/vcpkg/ports/libwebp/portfile.cmake" "${OVERLAY_PORTS_DIR}/libwebp/portfile.cmake"
+
+          # Get base portfile from vcpkg to work from
+          cp "${{ github.workspace }}/vcpkg/ports/wxwidgets/portfile.cmake" "${OVERLAY_PORTS_DIR}/wxwidgets/portfile.cmake"
+
+          # Create patch to remove libwebp from build system
+          echo '
+            --- a/portfile.cmake
+            +++ b/portfile.cmake
+            @@ -46,7 +46,7 @@
+             set(DEPENDS
+                 ${VCPKG_POLICY_EMPTY_PACKAGE_IS_NULL}
+                 gdiplus
+            -    libwebp
+            -    libtiff
+            -    libjpeg-turbo
+            -    libpng
+            -    zlib
+            +    #libwebp
+            +    #libtiff
+            +    #libjpeg-turbo
+            +    #libpng
+            +    #zlib
+                 minizip
+                 pcre2
+                 pugixml
+            ' > "${OVERLAY_PORTS_DIR}/wxwidgets/remove-webp.patch"
+
+          # Patch the portfile to remove libwebp
+          sed -i 's/vcpkg_from_github(/vcpkg_from_github(\n    PATCHES remove-webp.patch/' "${OVERLAY_PORTS_DIR}/wxwidgets/portfile.cmake"
+          sed -i '/libwebp/d' "${OVERLAY_PORTS_DIR}/wxwidgets/portfile.cmake"
+
+          echo "VCPKG_OVERLAY_PORTS=${OVERLAY_PORTS_DIR}" >> "$GITHUB_ENV"
+          
+          CUSTOM_TRIPLET_DIR="${{ github.workspace }}/vcpkg/triplets/community"          
+        
+          #cd ..
+          
+          #mkdir -p "${VCPKG_ROOT}/triplets" 
+          echo "set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)" > "${CUSTOM_TRIPLET_DIR}/wasm32-emscripten.cmake" 
+          echo "set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE \"${{ github.workspace }}/emsdk/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake\")" >> "${CUSTOM_TRIPLET_DIR}/wasm32-emscripten.cmake"
+          echo "set(VCPKG_LIBRARY_LINKAGE static)" >> "${CUSTOM_TRIPLET_DIR}/wasm32-emscripten.cmake"
+          echo "set(VCPKG_CRT_LINKAGE static)" >> "${CUSTOM_TRIPLET_DIR}/wasm32-emscripten.cmake"
+
+          #cd "${VCPKG_ROOT_PATH}"
+          #vcpkg install #--triplet=wasm32-emscriptem  #use with json file
+          #vcpkg integrate install 
+          #cd ..
+          #cd build
+          emcmake cmake -S .  -B ./build -DCMAKE_BUILD_TYPE=Release -Wno-dev -DCMAKE_TOOLCHAIN_FILE="${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" -DVCPKG_TARGET_TRIPLET=wasm32-emscripten -DVCPKG_OVERLAY_TRIPLETS="${CUSTOM_TRIPLET_DIR}"
+          emmake make
+        id: build-step # Assign an ID to this step
+        continue-on-error: true 
+        shell: bash 
+
+      - name: Capture vcpkg logs on failure
+        if: failure() # This step will only run if a previous step failed
+        run: |
+          # This path is where vcpkg stores build logs
+          vcpkg_logs_path="/home/runner/work/Calculator/Calculator/vcpkg/buildtrees/libwebp"
+    
+          # Check if the directory exists before trying to archive it
+          if [ -d "$vcpkg_logs_path" ]; then
+            tar -czf vcpkg_libwebp_logs.tar.gz "$vcpkg_logs_path"
+          fi
+        id: log-capture
+
+      - name: Upload vcpkg logs as artifact
+        if: failure() || steps.log-capture.outcome == 'success' # Upload if the build failed OR if the log-capture was successful
+        uses: actions/upload-artifact@v4
+        with:
+          name: vcpkg-libwebp-logs
+          path: vcpkg_libwebp_logs.tar.gz
+           
+      - name: Create Artifact
+        run: |
+          mkdir release
+          cp build/Calc_App.html release/index.html
+          cp build/Calc_App.js release/Main.js
+          cp build/Calc_App.wasm release/Main.wasm
+          
+      - name: Publish Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-release
+          path: release
+
+      - name: Install Butler
+        run: |
+          curl -L -o butler.zip https://broth.itch.ovh/butler/linux-amd64/LATEST/archive/default
+          unzip butler.zip
+          chmod +x butler
+          ./butler -V
+      - name: Create release zip and run Butler
+
+        # Here we say that we will use the BUTLER_API_KEY as an environment variable
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          cd release
+          zip -r ../release.zip *
+          cd ..
+          # Butler will read the API key from the environment variable
+          ./butler login
+          ./butler push release.zip CodeRedRanger/Calc_App:html5
+          ./butler logout
+          
+          #cmake -DwxWidgets_CONFIG_EXECUTABLE=${{ github.workspace }}/vcpkg_installed/x64-windows/share/wxwidgets
