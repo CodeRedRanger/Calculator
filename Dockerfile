@@ -9,7 +9,10 @@ RUN apt-get update && apt-get -y install \
     cmake \
     git \
     libgtk-3-dev \
-    pkg-config
+    pkg-config \
+    autoconf \
+    automake \
+    libtool
 
 # Clone vcpkg and bootstrap it
 # Use a submodule for vcpkg to ensure a consistent version
