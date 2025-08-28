@@ -24,12 +24,12 @@ jobs:
         run: ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Restore vcpkg cache
-        uses: lukka/run-vcpkg@v11
+        uses: lukka/run-vcpkg@v10
         with:
           doNotRunVcpkgInstall: true # Let CMake do the install
 
       - name: Configure and build with CMake
-        uses: lukka/run-cmake@v11
+        uses: lukka/run-cmake@v10
         with:
           buildDirectory: ${{ github.workshop }}/build
           configurePreset: 'default' # Use your CMakePresets.json
