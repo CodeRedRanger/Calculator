@@ -2,11 +2,10 @@ name: CI/CD wxWidgets with vcpkg
 
 on: 
   push:
-    branches:
-      - development
+    branches: [development]
   pull_request:
-    branches:
-      - development
+    branches: [development]
+    types: [closed]
 
 permissions: 
   contents: read
