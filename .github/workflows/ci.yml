@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: action/checkout@v3
+      uses: action/checkout@v5
       with: 
         submodules: true #Needed to fetch the vcpkg submodule
 
@@ -33,7 +33,7 @@ jobs:
         # vcpkg-root is automatically found when used as a submodule
 
     - name: Upload binary artifact
-      uses: action/upload-artifact@v3
+      uses: action/upload-artifact@v5
       with:
         name: Calc_App-binary
         path: ${{ github.workspace }}/build/Calc_App
@@ -45,7 +45,7 @@ jobs:
 
     steps:
     - name: Download build artifact
-      uses: actions/download-artifact@v3
+      uses: actions/download-artifact@v5
       with:
         name: Calc_App-binary
 
