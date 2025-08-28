@@ -47,12 +47,14 @@ jobs:
          mingw32-make
 
       - name: Package application
+        shell: msys2 {0}
         run: |
           cd build
-          zip -r Calc_App-Windows.zip *
+          zip -r Calc_App_windows.zip *
           #Compress-Archive -Path "build/Calc_App.exe" -DestinationPath "Calc_App_windows.zip"
 
       - name: Download Butler
+        shell: msys2 {0}
         run: |
           curl -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
           unzip butler.zip
