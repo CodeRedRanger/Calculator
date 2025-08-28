@@ -24,7 +24,7 @@ jobs:
         run: ./vcpkg/bootstrap-vcpkg.sh
 
       - name: Restore vcpkg cache
-        uses: lukka/run-vcpkg@v10
+        uses: lukka/run-vcpkg@v11
         with:
           doNotRunVcpkgInstall: true # Let CMake do the install
 
