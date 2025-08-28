@@ -1,21 +1,23 @@
 name: CI/CD wxWidgets with vcpkg
 
-on: [push]
-#  push:
-#    branches:
-#      - development
-#  pull_request:
-#    branches:
-#      - development
+on: 
+  push:
+    branches:
+      - development
+  pull_request:
+    branches:
+      - development
+
+permissions: 
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions: 
-      contents: read
+   
     steps:
-    - name: Checkout repository
-      uses: action/checkout@v4
+   # - name: Checkout repository
+      - uses: action/checkout@v4
 #      with: 
 #        submodules: true #Needed to fetch the vcpkg submodule
 
