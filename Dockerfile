@@ -1,10 +1,33 @@
 #Stage 1: Build environment
 # Use a base image with a recent C++ compiler and build tools
-FROM lukka/vcpkg AS builder
+FROM debian:stable-slim AS builder
 
-# Set environment vcpkg root
-# Configure cmake to find vcpkg automatically
+#Install build dependencies
+# For Linux (GTK), you can install the required packages
+RUN apt-get update && apt-get -y install \
+    build-essential \
+    cmake \
+    git \
+    libgtk-3-dev \
+    pkg-config \
+    autoconf \
+    automake \
+    libtool \
+    libltdl-dev \
+    libgtk-3-dev \
+    libtoolize
+
+
+# Clone vcpkg and bootstrap it
+# Use a submodule for vcpkg to ensure a consistent version
+WORKDIR /usr/src/vcpkg
+COPY vcpkg/ .
+RUN ./bookstrap-vcpkg.sh
+
+# Set environment variables for vcpkg
 ENV VCPKG_ROOT=/usr/src/vcpkg
+
+# Configure cmake to find vcpkg automatically
 # See: http://learn.microsoft.com/en-us/vcpkg/users/buildsystem/cmake-integration#manifest-mode
 ENV CMAKE_TOOLCHAIN_FILE=${VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake
 
@@ -17,7 +40,7 @@ RUN cmake -B build
 RUN cmake --build build
 
 #Stage 2: Minimal runtime image
-FROM lukka/vcpkg
+FROM debian:stable-slim
 
 #Install runtime libraries
 RUN apt-get update && apt-get -y install \
