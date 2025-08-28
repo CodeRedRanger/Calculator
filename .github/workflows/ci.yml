@@ -15,13 +15,13 @@ jobs:
     runs-on: ubuntu-latest
    
     steps:
-   # - name: Checkout repository
-      - uses: action/checkout@v4
-#      with: 
-#        submodules: true #Needed to fetch the vcpkg submodule
+      - name: Checkout repository
+      - uses: actions/checkout@v4
+        with: 
+          submodules: true #Needed to fetch the vcpkg submodule
 
-#    - name: Bootstrap vcpkg
-#      run: ./vcpkg/bootstrap-vcpkg.sh
+      - name: Bootstrap vcpkg
+        run: ./vcpkg/bootstrap-vcpkg.sh
 
 #    - name: Restore vcpkg cache
 #      uses: lukka/run-vcpkg@v10
