@@ -8,7 +8,7 @@
      "generator": "Ninja",
      "binaryDir": "${sourceDir}/build",
      "cacheVariables": {
-	"CMAKE_TOOLCHAIN_FILE": "$env{GITHUB_WORKSPACE}/vcpkg/sripts/buildsystems/vcpkg.cmake"
+	"CMAKE_TOOLCHAIN_FILE": "$env{GITHUB_WORKSPACE}/vcpkg/scripts/buildsystems/vcpkg.cmake"
        }
     }
 ],
