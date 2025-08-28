@@ -56,7 +56,7 @@ jobs:
       - name: Download Butler
         shell: msys2 {0}
         run: |
-          curl -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
+          curl -L -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
           unzip butler.zip
 
       - name: Upload to itch.io
