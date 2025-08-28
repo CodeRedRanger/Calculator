@@ -1,19 +1,18 @@
 name: CI/CD wxWidgets with vcpkg
 
-on:
-  push:
-    branches:
-      - development
-  pull_request:
-    branches:
-      - development
-
-permissions: 
-  contents: read
+on: [push]
+#  push:
+#    branches:
+#      - development
+#  pull_request:
+#    branches:
+#      - development
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions: 
+      contents: read
     steps:
     - name: Checkout repository
       uses: action/checkout@v4
