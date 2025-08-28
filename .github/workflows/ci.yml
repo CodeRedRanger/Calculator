@@ -3,22 +3,19 @@ name: CI/CD wxWidgets with vcpkg
 on:
   push:
     branches: [development]
-  pull_request:
-    branches: [development]
-    types: [closed]
+  release:
+    types: [created]
 
 jobs:
   release_web:
     name: Web Release
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     env:
       ACTIONS_STEP_DEBUG: true
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with: 
-          submodules: true #Needed to fetch the vcpkg submodule
 
       - name: Clean build directory
      #  run: rm -f build/CMakeCache.txt
@@ -26,53 +23,34 @@ jobs:
 
       - name: Create Build Directory
         run: cmake -E make_directory ${{ github.workspace }}/build
+        
+      - name: Setup MSYS2
+        uses: msys2/setup-msys2@v2
 
-      #- name: Bootstrap vcpkg
-      #  run: ./vcpkg/bootstrap-vcpkg.sh
-
-      - name: Restore vcpkg cache
-        uses: lukka/run-vcpkg@v11
-    #    with:
-    #      doNotRunVcpkgInstall: true # Let CMake do the install
-
-      - name: Configure and build with CMake
-        uses: lukka/run-cmake@v10
-        with:
-          #buildDirectory: ${{ github.workshop }}/build
-          configurePreset: 'default' # Use your CMakePresets.json
-          buildPreset: 'default' 
-          # vcpkg-root is automatically found when used as a submodule
-
-      - name: Get build artifact from container
+      - name: Build wxWidgets project
+        shell: msys2 {0}
         run: |
-         cp ${{ github.workspace }}/build/Calc_App ./
+         mkdir build
+         cd build
+         cmake .. -G "MinGW Makefiles"
+         make
 
-      - name: Upload binary artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: Calc_App-binary
-          path: ${{ github.workspace }}/build/Calc_App
+      - name: Package application
+        run: |
+          Compress-Archive -Path "build/Calc_App.exe" -DestinationPath "Calc_App-Windows.zip"
 
-#  deploy:
-#    runs-on: ubuntu-latest
-#    needs: build
-#    if: github.event_name == 'push' && github.ref == 'refs/heads/development'
+      - name: Download Butler
+        run: |
+          curl -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
+          Expand-Archive butler.zip -DestinationPath butler_cli
 
-#    steps:
-#    - name: Download build artifact
-#      uses: actions/download-artifact@v4
-#      with:
-#        name: Calc_App-binary
+      - name: Upload to itch.io
+        env: 
+          BUTLER_API_KEY: ${{ }}
+        run: |
+         ./butler_cli/butler push Calc_App-Windows.zip CodeRedRanger/Calc_App:windows-build
+   
 
-#    - name: Run Docker build and push
-#      run: |
-#        docker build -t coderedranger/Calc_App: latest . #docker username
-#        # Uncomment and configure if pushing to Docker Hub
-#        # echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-#        # docker push CodeRedRanger/Calc_App:latest
-
-#        # push to itch IO
-      
         
 
     
