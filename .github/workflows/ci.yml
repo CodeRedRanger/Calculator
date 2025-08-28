@@ -51,10 +51,12 @@ jobs:
 
     - name: Run Docker build and push
       run: |
-        docker build -t CodeRedRanger/Calc_App: latest . #change to your dockers username
+        docker build -t coderedranger/Calc_App: latest . #docker username
         # Uncomment and configure if pushing to Docker Hub
         # echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
         # docker push CodeRedRanger/Calc_App:latest
+
+        # push to itch IO
       
         
 
