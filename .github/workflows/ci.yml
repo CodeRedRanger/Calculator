@@ -64,7 +64,7 @@ jobs:
         env: 
           BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
-         ./butler push build/Calc_App_windows.zip CodeRedRanger/Calc_App:windows
+         ./butler push build/Calc_App_windows.zip CodeRedRanger/calc-app:windows
    
 
         
