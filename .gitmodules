@@ -1,9 +1,6 @@
 [submodule "3rdparthy/wxwidgets"]
 	path = 3rdparthy/wxwidgets
 	url = https://github.com/wxWidgets/wxWidgets.git
-[submodule "3rdparty/wxwidgets"]
-	path = 3rdparty/wxwidgets
-	url = https://github.com/wxWidgets/wxWidgets.git
 [submodule "vcpkg"]
 	path = vcpkg
 	url = https://github.com/microsoft/vcpkg
