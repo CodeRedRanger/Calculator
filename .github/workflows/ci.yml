@@ -38,9 +38,14 @@ jobs:
       - name: Configure and build with CMake
         uses: lukka/run-cmake@v10
         with:
-          buildDirectory: ${{ github.workshop }}/build
+          #buildDirectory: ${{ github.workshop }}/build
           configurePreset: 'default' # Use your CMakePresets.json
+          buildPreset: 'default' 
           # vcpkg-root is automatically found when used as a submodule
+
+      - name: Get build artifact from container
+        run: |
+         cp ${{ github.workspace }}/build/Calc_App ./
 
       - name: Upload binary artifact
         uses: actions/upload-artifact@v4
