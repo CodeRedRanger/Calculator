@@ -28,18 +28,18 @@ jobs:
         with:
           doNotRunVcpkgInstall: true # Let CMake do the install
 
-#    - name: Configure and build with CMake
-#      uses: lukka/run-cmake@v10
-#      with:
-#        buildDirectory: ${{ github.workshop }}/build
-#        configurePreset: 'default' # Use your CMakePresets.json
-#        # vcpkg-root is automatically found when used as a submodule
+      - name: Configure and build with CMake
+        uses: lukka/run-cmake@v10
+        with:
+          buildDirectory: ${{ github.workshop }}/build
+          configurePreset: 'default' # Use your CMakePresets.json
+          # vcpkg-root is automatically found when used as a submodule
 
-#    - name: Upload binary artifact
-#      uses: action/upload-artifact@v4
-#      with:
-#        name: Calc_App-binary
-#        path: ${{ github.workspace }}/build/Calc_App
+      - name: Upload binary artifact
+        uses: action/upload-artifact@v4
+        with:
+          name: Calc_App-binary
+          path: ${{ github.workspace }}/build/Calc_App
 
 #  deploy:
 #    runs-on: ubuntu-latest
