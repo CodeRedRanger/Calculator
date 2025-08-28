@@ -46,7 +46,7 @@ jobs:
 
       - name: Upload to itch.io
         env: 
-          BUTLER_API_KEY: ${{ BUTLER_API_KEY }}
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
         run: |
          ./butler_cli/butler push Calc_App-Windows.zip CodeRedRanger/Calc_App:windows-build
    
