@@ -40,7 +40,7 @@ RUN apt-get update && apt-get -y install \
     libgtk-3-0
 
 #Copy the built binary and runtime dependencies from the build stage
-COPY --from=builder /usr/src/app/build/my_app /user/lcoal/bin/my_app
+COPY --from=builder /usr/src/app/build/my_app /user/lcoal/bin/Calc_App
 COPY --from=builder /usr/src/vcpkg/installed/x64-linux/bin /usr/local/bin
 COPY --from=builder /usr/src/vcpkg/installed/x64-linux/lib /usr/local/lib
 
