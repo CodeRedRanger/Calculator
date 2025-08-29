@@ -9,14 +9,15 @@ on:
 jobs:
   release_web:
     name: Web Release
-    runs-on: windows-latest
+    runs-on: windows-latest #use latests windows runner
     env:
       ACTIONS_STEP_DEBUG: true
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        
+
+      # Set up MSYS2 environment for building
       - name: Setup MSYS2
         uses: msys2/setup-msys2@v2
         with:
@@ -31,6 +32,8 @@ jobs:
             unzip
             curl
 
+      # Use a run step with MSYS2 shell to clean and create build directory
+      # otherwise you'll get error that CMakeLists.txt and CMakeCache are found in different folders (remote) than they were created in (local)
       - name: Clean and create build directory
         shell: msys2 {0}
         run: |
@@ -38,7 +41,7 @@ jobs:
           rm -rf build || true
           mkdir build
 
-
+      # Use the MSYS2 shell to build the project
       - name: Build wxWidgets project with CMake
         shell: msys2 {0}
         run: |
@@ -46,6 +49,7 @@ jobs:
          cmake .. -G "MinGW Makefiles"
          mingw32-make
 
+      # Create a zip file of the build for distribution
       - name: Package application
         shell: msys2 {0}
         run: |
@@ -61,12 +65,15 @@ jobs:
           zip -r Calc_App_windows.zip *
           #Compress-Archive -Path "build/Calc_App.exe" -DestinationPath "Calc_App_windows.zip"
 
+      # Download Butler tool for uploading to itch.io
       - name: Download Butler
         shell: msys2 {0}
         run: |
           curl -L -o butler.zip https://broth.itch.ovh/butler/windows-amd64/LATEST/archive/default
           unzip butler.zip
 
+      # Upload packaged build to itch.io using Butler tool
+      # Need to create API key (Itch.io -> settings -> API keys, then create new secret on GitHub -> settings -> Secrets and variables -> actions -> new repository secret
       - name: Upload to itch.io
         shell: msys2 {0}
         env: 
